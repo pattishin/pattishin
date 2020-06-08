@@ -1,0 +1,7 @@
+
+# Third party libs
+node_modules/
+
+# Temporary vim files
+*.swo
+*.swp
