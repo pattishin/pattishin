@@ -3,21 +3,20 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import avatar from './assets/patti.jpeg';
 
 const drawerWidth = 240;
 
@@ -98,6 +97,10 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  authorAvatarWrapper: {
+    display: 'flex',
+    borderRadius: '50px'
+  }
 }));
 
 function App() {
@@ -110,6 +113,9 @@ function App() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+  fetch('/api/characters', { method: 'GET' })
+    .then(res => console.log(res.json()));
 
   return (
     <div className={classes.root}>
@@ -146,6 +152,21 @@ function App() {
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
+        </div>
+        <div className="authorCard">
+          <div className="authorCardTop">
+            <div className={classes.authorAvatarWrapper}>
+            </div>
+          </div>
+          <div className="authorCardBody">
+            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+              patti shin
+            </Typography>
+            <div className="authorSocialMedia">
+              <GitHubIcon />
+              <TwitterIcon />
+            </div>
+          </div>
         </div>
       </Drawer>
       <main className={classes.content}>

@@ -1,4 +1,7 @@
 
+# Credentials (keep out of github)
+firebase.json
+
 # Third party libs
 node_modules/
 
