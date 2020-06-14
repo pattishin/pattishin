@@ -1,11 +1,11 @@
 package main
 
 import (
-  "fmt"
   "context"
   "net/http"
   "cloud.google.com/go/firestore"
   "github.com/gin-gonic/gin"
+  "github.com/gin-contrib/cors"
   "google.golang.org/api/iterator"
   "google.golang.org/api/option"
 )
@@ -24,10 +24,24 @@ type Response struct {
   Body        string    `json:"body"`
 }
 
+type Character struct {
+  Name string `json:"name" binding:"required"`
+  Height int `json:"height" binding:"required"`
+  HairColor string `json:"hair_color" binding:"required"`
+  BirthYear string `json:"birth_year" binding:"required"`
+}
+
 func main() {
-  // gin init
+  // router init
   router := gin.Default()
-  router.Use(gin.Logger())
+  config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"http://localhost:3000"}
+  config.AllowMethods = []string{"GET", "POST"}
+	config.AllowHeaders = []string{"Origin"}
+	config.ExposeHeaders = []string{"Content-Length"}
+
+  router.Use(cors.New(config))
+
   // routes
   apiRoutes := router.Group("/api")
   apiRoutes.GET("/characters", characterHandler)
@@ -87,6 +101,7 @@ func userHandler(c *gin.Context) {
    defer client.Close()
 
    // [START get star wars from firestore]
+   var characters []Character
    var iter = client.Collection("characters").Documents(ctx)
 
    defer iter.Stop()
@@ -99,13 +114,16 @@ func userHandler(c *gin.Context) {
      if err != nil {
        c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
      }
-     fmt.Println(doc.Data())
 
+     var model Character
+     if err := doc.DataTo(&model); err != nil {
+       c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
+     }
+
+     characters = append(characters, model)
      // [END get star wars from firestore]
-     
-      // c.JSON(http.StatusOK, gin.H{"status": "user added to db"})
-
-     c.JSON(http.StatusOK, doc.Data())
    }
-}
+   c.Writer.Header().Set("Content-Type", "application/json")
+   c.JSON(http.StatusOK, characters)
+ }
 

@@ -114,8 +114,15 @@ function App() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-  fetch('/api/characters', { method: 'GET' })
-    .then(res => console.log(res.json()));
+  fetch('http://localhost:8080/api/characters', { method: 'GET' })
+    .then(res => {
+      if (res.status === 200) {
+        console.log(res);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
 
   return (
     <div className={classes.root}>

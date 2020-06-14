@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gcloud app deploy --project=PROJECT_ID
+gcloud app deploy --project=pattishin-b5b2a
