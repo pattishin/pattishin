@@ -4,6 +4,9 @@ handlers:
 - url: /api/user
   script: auto
 
+- url: /api/author
+  script: auto
+
 - url: /api/characters
   script: auto
 

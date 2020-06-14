@@ -31,6 +31,11 @@ type Character struct {
   BirthYear string `json:"birth_year" binding:"required"`
 }
 
+type Author struct {
+  Name string `json:"name" binding:"required"`
+  Description string `json:"description" binding:"required"`
+}
+
 func main() {
   // router init
   router := gin.Default()
@@ -44,6 +49,7 @@ func main() {
 
   // routes
   apiRoutes := router.Group("/api")
+  apiRoutes.GET("/author", authorHandler)
   apiRoutes.GET("/characters", characterHandler)
   apiRoutes.POST("/user", userHandler)
   // Serve from static build library
@@ -125,5 +131,42 @@ func userHandler(c *gin.Context) {
    }
    c.Writer.Header().Set("Content-Type", "application/json")
    c.JSON(http.StatusOK, characters)
+ }
+
+ /**
+ *  Handle author
+ */
+ func authorHandler(c *gin.Context) {
+   ctx := context.Background()
+   client, err := createNewFirestore(ctx)
+   if err != nil {
+     c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
+   }
+
+   defer client.Close()
+
+   var authors []Author
+   var iter = client.Collection("author").Documents(ctx)
+
+   defer iter.Stop()
+
+   for {
+     doc, err := iter.Next()
+     if err == iterator.Done {
+       break
+     }
+     if err != nil {
+       c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
+     }
+
+     var model Author
+     if err := doc.DataTo(&model); err != nil {
+       c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
+     }
+
+     authors = append(authors, model)
+   }
+   c.Writer.Header().Set("Content-Type", "application/json")
+   c.JSON(http.StatusOK, authors)
  }
 

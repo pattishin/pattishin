@@ -1,26 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import MicIcon from '@material-ui/icons/Mic';
+import SlideshowIcon from '@material-ui/icons/Slideshow';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import TwitterIcon from '@material-ui/icons/Twitter';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import avatar from './assets/patti.jpeg';
+import './App.css';
 
 const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   root: {
     display: 'flex',
   },
@@ -32,10 +34,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '0 8px',
+    backgroundColor: '#404040',
     ...theme.mixins.toolbar,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
+    backgroundColor: 'black',
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -43,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBarShift: {
     marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
+    width: `calc(100% - ${drawerWidth-1}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -62,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
+    backgroundColor: '#404040',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -73,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing(7),
+    width: '0px',
     [theme.breakpoints.up('sm')]: {
       width: theme.spacing(9),
     },
@@ -96,111 +101,130 @@ const useStyles = makeStyles((theme) => ({
   },
   fixedHeight: {
     height: 240,
-  },
-  authorAvatarWrapper: {
-    display: 'flex',
-    borderRadius: '50px'
   }
-}));
+});
 
-function App() {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: true,
+      authors: []
+    };
+  }
 
-  fetch('http://localhost:8080/api/characters', { method: 'GET' })
-    .then(res => {
-      if (res.status === 200) {
-        console.log(res);
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  componentDidMount() {
+    fetch(
+      'http://localhost:8080/api/author',
+      { method: 'GET' }
+    )
+    .then(res => res.json())
+    .then(authors => this.setState({ authors }))
+    .catch(err => err);
+  }
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            patti shin
-          </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <div className="authorCard">
-          <div className="authorCardTop">
-            <div className={classes.authorAvatarWrapper}>
+  render() {
+    const { classes } = this.props;
+    const { open, authors } = this.state;
+    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+          <Toolbar className={classes.toolbar}>
+            <IconButton
+              edge="end"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={() => this.setState({ open: true }) }
+              className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <IconButton color="inherit">
+              <SlideshowIcon />
+            </IconButton>
+            <IconButton color="inherit">
+              <MicIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          }}
+          open={open}
+        >
+          <div className={classes.toolbarIcon}>
+            <IconButton onClick={() => this.setState({ open: false }) }>
+              <ChevronLeftIcon style={{ color: 'white' }}/>
+            </IconButton>
+          </div>
+          <div className="authorCard">
+            <div className="authorCardTop">
+              <div className="authorAvatarWrapper">
+                <img src={avatar} className="avatar" alt="avatar" />
+              </div>
+            </div>
+            <div className="authorCardBody">
+              <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                patti shin
+              </Typography>
+              <div className="authorSocialMedia">
+                <a href="https://github.com/pattishin" target="_blank" rel="noopener noreferrer">
+                  <IconButton>
+                    <GitHubIcon style={{ color: 'white' }} />
+                  </IconButton>
+                </a>
+                <a href="https://twitter.com/pattishin" target="_blank" rel="noopener noreferrer">
+                  <IconButton>
+                    <TwitterIcon style={{ color: 'white' }} />
+                  </IconButton>
+                </a>
+                <a href="https://www.linkedin.com/in/pattishin" target="_blank" rel="noopener noreferrer">
+                  <IconButton>
+                    <LinkedInIcon style={{ color: 'white' }} />
+                  </IconButton>
+                </a>
+              </div>
             </div>
           </div>
-          <div className="authorCardBody">
-            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-              patti shin
-            </Typography>
-            <div className="authorSocialMedia">
-              <GitHubIcon />
-              <TwitterIcon />
-            </div>
-          </div>
-        </div>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                hello
-              </Paper>
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <Container maxWidth="lg" className={classes.container}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={4} lg={3}>
+                <Paper className={fixedHeightPaper}>
+                  {authors && authors[0]
+                    ? authors[0].description
+                    : ''
+                  }
+                </Paper>
+              </Grid>
+              <Grid item xs={12} md={8} lg={9}>
+                <Paper className={fixedHeightPaper}>
+                  hello
+                </Paper>
+              </Grid>
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  hello
+                </Paper>
+              </Grid>
             </Grid>
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                hello
-              </Paper>
-            </Grid>
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                hello
-              </Paper>
-            </Grid>
-          </Grid>
-        </Container>
-      </main>
-    </div>
-  );
+          </Container>
+        </main>
+      </div>
+    );
+  }
 }
 
-export default App;
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(App);
 
