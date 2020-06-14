@@ -1,0 +1,45 @@
+.authorCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgb(10, 25, 47);
+  color: white;
+}
+
+.avatar {
+  width: 100%;
+}
+
+.authorCardTop {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  background-color: rgb(10, 25, 47);
+}
+
+.authorCardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.authorSocialMedia {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.authorAvatarWrapper {
+  display: flex;
+  border-radius: 100%;
+  overflow: hidden;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  border: 5px solid rgb(100, 255, 218);
+}
+

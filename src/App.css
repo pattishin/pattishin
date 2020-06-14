@@ -1,44 +1,18 @@
 
-.authorCard {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: darkblue;
-  color: white;
+html, body {
+  font-family: "Roboto Mono" !important;
+  color: 'white' !important;
+  background-color: 'black' !important;
+  height: 100%;
 }
 
-.avatar {
-  width: 100%;
+#root {
+  width: inherit;
+  height: inherit;
 }
 
-.authorCardTop {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 15px;
-  background-color: #0b0ba2;
-}
-
-.authorCardBody {
+section {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 10px;
-}
-
-.authorSocialMedia {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.authorAvatarWrapper {
-    display: flex;
-    border-radius: 100%;
-    overflow: hidden;
-    height: 150px;
-    align-items: center;
-    justify-content: center;
-    width: 150px;
+  width: inherit;
 }
