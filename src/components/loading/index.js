@@ -7,7 +7,7 @@ class Loading extends Component {
     return (
       <div className="loadingContainer">
         <img src={loadingAnimation} className="logoAnimation" alt="logo"/>  
-        <p>Loading ...</p>
+        <p>Dialing in ...</p>
       </div>
     );
   }

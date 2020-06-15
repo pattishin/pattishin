@@ -16,3 +16,10 @@ section {
   flex-direction: column;
   width: inherit;
 }
+
+.menuButton {
+  border: 2px solid rgb(100, 255, 218) !important;
+  padding: 10px !important;
+  margin: 10px !important;
+  width: 50px;
+}

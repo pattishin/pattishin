@@ -4,15 +4,14 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Drawer from '@material-ui/core/Drawer';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import avatar from '../../assets/patti.jpeg';
+import avatar from '../../assets/pattishin.jpg';
 import './Sidebar.css';
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 const styles = (theme) => ({
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -22,7 +21,7 @@ const styles = (theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '0 8px',
-    backgroundColor: 'rgb(10, 25, 47)',
+    backgroundColor: 'black',
     ...theme.mixins.toolbar,
   },
   title: {
@@ -32,7 +31,7 @@ const styles = (theme) => ({
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
-    backgroundColor: 'rgb(10, 25, 47)',
+    backgroundColor: 'black',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -75,22 +74,19 @@ class Sidebar extends Component {
             </div>
           </div>
           <div className="authorCardBody">
-            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-              patti shin
-            </Typography>
             <div className="authorSocialMedia">
               <a href="https://github.com/pattishin" target="_blank" rel="noopener noreferrer">
-                <IconButton>
+                <IconButton className="menuButton">
                   <GitHubIcon style={{ color: 'rgb(100, 255, 218)' }} />
                 </IconButton>
               </a>
               <a href="https://twitter.com/pattishin" target="_blank" rel="noopener noreferrer">
-                <IconButton>
+                <IconButton className="menuButton">
                   <TwitterIcon style={{ color: 'rgb(100, 255, 218)' }} />
                 </IconButton>
               </a>
               <a href="https://www.linkedin.com/in/pattishin" target="_blank" rel="noopener noreferrer">
-                <IconButton>
+                <IconButton className="menuButton">
                   <LinkedInIcon style={{ color: 'rgb(100, 255, 218)' }} />
                 </IconButton>
               </a>

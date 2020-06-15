@@ -40,7 +40,7 @@ func main() {
   // router init
   router := gin.Default()
   config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:3000"}
+	config.AllowOrigins = []string{"http://localhost:3000","http://pattishin.io/","https://pattishin-b5b2a.uc.r.appspot.com"}
   config.AllowMethods = []string{"GET", "POST"}
 	config.AllowHeaders = []string{"Origin"}
 	config.ExposeHeaders = []string{"Content-Length"}

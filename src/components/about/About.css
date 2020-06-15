@@ -1,0 +1,18 @@
+.aboutTitle {
+  font-weight: bold;
+  font-size: 55px;
+}
+
+.aboutDetails {
+  font-weight: 100;
+  font-size: 20px;
+}
+
+.aboutContainer {
+  display: flex !important;
+  align-items: center;
+  padding: 0 45px 45px 45px !important;
+  border: 5px solid black;
+  background: white;
+  box-shadow: 4px 6px 7px #58638a;
+}
