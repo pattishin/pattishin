@@ -11,16 +11,28 @@
   content: "";
   display: block;
   height: 1px;
-  width: 40%;
-  background-color: #5c668e;
-  position: relative;
-  top: -5px;
+  width: 35%;
+  background-color: rgb(100, 255, 218);
 }
 
 .projectTitle {
-  border: 1px solid #5c668e;
-  border-radius: 50px;
   padding: 10px 20px;
-  background: #5c668e;
-  color: white;
+  color: rgb(100, 255, 218);
 }
+
+.projectFolder {
+  color: rgb(100, 255, 218);
+  border: 1px solid rgb(100, 255, 218);
+  border-radius: 5px;
+  padding: 20px;
+  background: #333333;
+  transition: height 10s;
+}
+
+.projectFolder:hover {
+  top: -5px;
+  position: relative;
+  box-border: 1px 1px 1px black;
+  cursor: pointer;
+}
+

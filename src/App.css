@@ -23,3 +23,21 @@ section {
   margin: 10px !important;
   width: 50px;
 }
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 25px;
+  color: white;
+  font-size: 11px;
+}
+
+.footer a {
+  color: white;
+}
+
+.footer p {
+  margin: auto 5px;
+}
+

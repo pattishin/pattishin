@@ -3,8 +3,6 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import talk1 from '../../assets/talk1.svg';
 import talk2 from '../../assets/talk2.svg';
 import talk3 from '../../assets/talk3.svg';
@@ -39,25 +37,28 @@ class Talks extends Component {
             <span>{" Talks"}</span>
           </div>
         </h3>
-        <Grid container spacing={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={4} lg={4}>
-              <Paper className={fixedHeightPaper}>
-                <img src={talk1} />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={4} lg={4}>
-              <Paper className={fixedHeightPaper}>
-                <img src={talk2} />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={4} lg={4}>
-              <Paper className={fixedHeightPaper}>
-                <img src={talk3} />
-              </Paper>
-            </Grid>
-          </Grid>
-        </Grid>
+        <div>
+          <ul className="timelineList">
+            <ol className="timelineItem">
+              <div className="timelineContent">
+                <h4>GDG SF DevFest 2019</h4>
+                <img src={talk1} alt="GDG SF DevFest 2019" />
+              </div>
+            </ol>
+            <ol className="timelineItem">
+              <div className="timelineContent">
+                <h4>Google I/O Extended (GDG Berkeley)</h4>
+                <img src={talk2} alt="Google I/O Extended (GDG Berkeley)" />
+              </div>
+            </ol>
+            <ol className="timelineItem">
+              <div className="timelineContent">
+                <h4>JS Conf 2014</h4>
+                <img src={talk3} alt="JS Conf 2014" />
+              </div>
+            </ol>
+          </ul>
+        </div>
       </Container>
     );
   }

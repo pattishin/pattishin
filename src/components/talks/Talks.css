@@ -11,16 +11,55 @@
   content: "";
   display: block;
   height: 1px;
-  width: 40%;
-  background-color: #5c668e;
-  position: relative;
-  top: -5px;
+  width: 35%;
+  background-color: rgb(100, 255, 218);
 }
 
 .talkTitle {
-  border: 1px solid #5c668e;
-  border-radius: 50px;
   padding: 10px 20px;
-  background: #5c668e;
-  color: white;
+  color: rgb(100, 255, 218);
 }
+
+.timelineList {
+  color: rgb(100, 255, 218);
+  display: flex;
+  flex-direction: column; 
+}
+
+.timelineList ol {
+  display: flex;
+  padding: 0 0 20px 20px;
+  border-left: 2px solid rgb(100, 255, 218);
+}
+
+.timelineList ol:before {
+  content: '';
+  display: block;
+  border: 5px solid rgb(100, 255, 218);
+  background: #3e3e3e;
+  width: 55px;
+  height: 55px;
+  right: 49px;
+  border-radius: 50px;
+  margin-right: 10px;
+  position: relative;
+}
+
+.timelineList ol:last-child {
+  border: none;
+  left: 3px;
+  position: relative;
+}
+
+.timelineContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid rgb(100, 255, 218);
+  border-radius: 5px;
+  padding: 20px;
+  margin-left: -40px;
+  background: #333333;
+}
+

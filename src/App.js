@@ -7,6 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import MicIcon from '@material-ui/icons/Mic';
 import CodeIcon from '@material-ui/icons/Code';
 import SlideshowIcon from '@material-ui/icons/Slideshow';
@@ -60,7 +61,7 @@ const styles = (theme) => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
-    backgroundColor: "#a5b7ff"
+    backgroundColor: "#3e3e3e"
   },
   container: {
     paddingTop: theme.spacing(4),
@@ -167,6 +168,12 @@ class App extends Component {
             <section id="podcast_section">
               <Podcast />
             </section>
+            <footer className="footer">
+              <p>Developed with</p>
+              <FavoriteIcon fontSize="small" style={{ color: 'rgb(100, 255, 218)' }} />
+              <p>by</p>
+              <a href="mailto:pshin518@gmail.com">Patti Shin</a>
+            </footer>
           </main>
         </>
       )}
