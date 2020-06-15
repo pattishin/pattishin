@@ -8,12 +8,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MicIcon from '@material-ui/icons/Mic';
+import CodeIcon from '@material-ui/icons/Code';
 import SlideshowIcon from '@material-ui/icons/Slideshow';
 import Sidebar from './components/sidebar';
 import Loading from './components/loading';
 import Podcast from './components/podcast';
 import Talks from './components/talks';
 import About from './components/about';
+import Projects from './components/projects';
 import './App.css';
 
 const drawerWidth = 300;
@@ -88,6 +90,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // Author
     fetch('/api/author', { method: 'GET' })
     .then(res => res.json())
     .then(authors => {
@@ -98,6 +101,7 @@ class App extends Component {
     })
     .catch(err => err);
     
+    // Character list
     fetch('/api/characters',{ method: 'GET' })
     .then(res => res.json())
     .then(data => this.setState({ characters: data }))
@@ -126,6 +130,11 @@ class App extends Component {
                 >
                   <MenuIcon style={{ color: 'rgb(100, 255, 218)' }} />
                 </IconButton>
+                <a href="#projects_section">
+                  <IconButton className="menuButton">
+                    <CodeIcon style={{ color: 'rgb(100, 255, 218)' }} />
+                  </IconButton>
+                </a>
                 <a href="#talks_section">
                   <IconButton className="menuButton">
                     <SlideshowIcon style={{ color: 'rgb(100, 255, 218)' }} />
@@ -145,6 +154,10 @@ class App extends Component {
             <div className={classes.appBarSpacer} />
             <section id="about_section">
               <About />
+            </section>
+            <div className={classes.appBarSpacer} />
+            <section id="projects_section">
+              <Projects />
             </section>
             <div className={classes.appBarSpacer} />
             <section id="talks_section">

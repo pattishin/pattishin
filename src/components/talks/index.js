@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import talk1 from '../../assets/talk1.svg';
 import talk2 from '../../assets/talk2.svg';
+import talk3 from '../../assets/talk3.svg';
 import './Talks.css';
 
 const styles = (theme) => ({
@@ -42,12 +43,17 @@ class Talks extends Component {
           <Grid container spacing={3}>
             <Grid item xs={12} md={4} lg={4}>
               <Paper className={fixedHeightPaper}>
+                <img src={talk1} />
+              </Paper>
+            </Grid>
+            <Grid item xs={12} md={4} lg={4}>
+              <Paper className={fixedHeightPaper}>
                 <img src={talk2} />
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={4}>
               <Paper className={fixedHeightPaper}>
-                <img src={talk1} />
+                <img src={talk3} />
               </Paper>
             </Grid>
           </Grid>

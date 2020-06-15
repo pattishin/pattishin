@@ -1,6 +1,9 @@
 
 .DS_Store
 
+# Bundled builds
+build/
+
 # Credentials (keep out of github)
 firebase.json
 
