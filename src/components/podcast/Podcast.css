@@ -18,4 +18,5 @@
 .podcastTitle {
   padding: 10px 20px;
   color: rgb(100, 255, 218);
+  white-space: nowrap;
 }
