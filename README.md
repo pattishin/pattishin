@@ -56,7 +56,7 @@
 
 ## 🚀 Deploying
 
-1. Create production build manually
+Create production build manually
 
    ```sh
    npm run build
