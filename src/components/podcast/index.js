@@ -31,7 +31,7 @@ class Podcast extends Component {
         <h3 className="podcastHeader">
           <div className="podcastTitle">
             <span role="img" aria-label="microphone">🎙️</span>
-            <span>{" Podcasts"}</span>
+            <span>{" Uncut Podcasts"}</span>
           </div>
         </h3>
         <Grid container className={"podcastWrapper"}>

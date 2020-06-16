@@ -29,7 +29,8 @@ const styles = (theme) => ({
 class Talks extends Component {
   render() {
     const { classes } = this.props;
-    
+
+    // TODO: Make timeline feature here it's own component and add to podcast section
     return (
       <Container maxWidth="lg" className={classes.container}>
         <h3 className="talkHeader">
