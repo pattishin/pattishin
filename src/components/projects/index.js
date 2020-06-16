@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';

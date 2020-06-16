@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import './Podcast.css';
 
 const styles = (theme) => ({
@@ -23,7 +21,6 @@ const styles = (theme) => ({
 class Podcast extends Component {
   render() {
     const { classes } = this.props;
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
     // TODO: Create component out of soundcloud iframe
     return (

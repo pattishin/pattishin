@@ -1,21 +1,12 @@
 import React, { Component } from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
 import './About.css';
-
-const drawerWidth = 240;
-const styles = (theme) => ({
-  title: {
-    flexGrow: 1,
-  },
-});
 
 class About extends Component {
   render() {
-    const { classes, authors } = this.props;
+    const { authors } = this.props;
     const mainAuthor = authors && authors[0];
 
     return (
@@ -50,10 +41,7 @@ class About extends Component {
 }
 
 About.propTypes = {
-  classes: PropTypes.object.isRequired,
   authors: PropTypes.array
 };
 
-export default withStyles(styles)(About);
-
-
+export default About;

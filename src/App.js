@@ -11,6 +11,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import MicIcon from '@material-ui/icons/Mic';
 import CodeIcon from '@material-ui/icons/Code';
 import SlideshowIcon from '@material-ui/icons/Slideshow';
+import Grid from '@material-ui/core/Grid';
 import Sidebar from './components/sidebar';
 import Loading from './components/loading';
 import Podcast from './components/podcast';
@@ -30,6 +31,10 @@ const styles = (theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+  },
+  toolbarItem: {
+    display: "inline-flex",
+    justifyContent: "flex-end",
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -64,8 +69,8 @@ const styles = (theme) => ({
     backgroundColor: "#3e3e3e"
   },
   container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
   paper: {
     display: 'flex',
@@ -73,9 +78,6 @@ const styles = (theme) => ({
     flexDirection: 'column',
     padding: theme.spacing(2),
   },
-  fixedHeight: {
-    height: 240,
-  }
 });
 
 // TODO: Move component hard-coded data into Cloud Firestore
@@ -106,7 +108,6 @@ class App extends Component {
   render() {
     const { classes } = this.props;
     const { open, loading, authors } = this.state;
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
     return (
       <div className={classes.root}>
@@ -114,34 +115,38 @@ class App extends Component {
         <>
           <CssBaseline />
           <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-            <Toolbar className={classes.toolbar}>
-              <div>
-                <IconButton
-                  edge="end"
-                  color="inherit"
-                  aria-label="open drawer"
-                  onClick={() => this.setState({ open: true }) }
-                  className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-                >
-                  <MenuIcon style={{ color: 'rgb(100, 255, 218)' }} />
-                </IconButton>
-                <a href="#projects_section">
-                  <IconButton className="menuButton">
-                    <CodeIcon style={{ color: 'rgb(100, 255, 218)' }} />
+            <Toolbar>
+              <Grid container className={classes.toolbar}>
+                <Grid item xs={12} lg={9}>
+                  <IconButton
+                    edge="end"
+                    color="inherit"
+                    aria-label="open drawer"
+                    onClick={() => this.setState({ open: true }) }
+                    className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+                  >
+                    <MenuIcon style={{ color: 'rgb(100, 255, 218)' }} />
                   </IconButton>
-                </a>
-                <a href="#talks_section">
-                  <IconButton className="menuButton">
-                    <SlideshowIcon style={{ color: 'rgb(100, 255, 218)' }} />
-                  </IconButton>
-                </a>
-                <a href="#podcast_section">
-                  <IconButton className="menuButton">
-                    <MicIcon style={{ color: 'rgb(100, 255, 218)' }} />
-                  </IconButton>
-                </a>
-              </div>
-              <p>{"#blacklivesmatter"}</p>
+                  <a href="#projects_section">
+                    <IconButton className="menuButton">
+                      <CodeIcon style={{ color: 'rgb(100, 255, 218)' }} />
+                    </IconButton>
+                  </a>
+                  <a href="#talks_section">
+                    <IconButton className="menuButton">
+                      <SlideshowIcon style={{ color: 'rgb(100, 255, 218)' }} />
+                    </IconButton>
+                  </a>
+                  <a href="#podcast_section">
+                    <IconButton className="menuButton">
+                      <MicIcon style={{ color: 'rgb(100, 255, 218)' }} />
+                    </IconButton>
+                  </a>
+                </Grid>
+                <Grid item xs={"auto"} lg={3} className={classes.toolbarItem}> 
+                  <p>{"#blacklivesmatter"}</p>
+                </Grid>
+              </Grid>
             </Toolbar>
           </AppBar>
           <Sidebar open={open} setOpen={status => this.setState({ open: status })} />
