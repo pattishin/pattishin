@@ -28,6 +28,7 @@
   padding: 20px;
   background: #333333;
   transition: height 10s;
+  height: 100%;
 }
 
 .projectFolder:hover {

@@ -1,3 +1,9 @@
+.podcastWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .podcastHeader {
   display: flex;
   align-items: center;

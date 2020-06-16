@@ -78,6 +78,8 @@ const styles = (theme) => ({
   }
 });
 
+// TODO: Move component hard-coded data into Cloud Firestore
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -85,13 +87,11 @@ class App extends Component {
     this.state = {
       open: false,
       loading: true,
-      authors: [],
-      characters: []
+      authors: []
     };
   }
 
   componentDidMount() {
-    // Author
     fetch('/api/author', { method: 'GET' })
     .then(res => res.json())
     .then(authors => {
@@ -101,17 +101,11 @@ class App extends Component {
       });
     })
     .catch(err => err);
-    
-    // Character list
-    fetch('/api/characters',{ method: 'GET' })
-    .then(res => res.json())
-    .then(data => this.setState({ characters: data }))
-    .catch(err => err);
   }
 
   render() {
     const { classes } = this.props;
-    const { open, characters, loading, authors } = this.state;
+    const { open, loading, authors } = this.state;
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
     return (
@@ -154,17 +148,14 @@ class App extends Component {
           <main className={classes.content}>
             <div className={classes.appBarSpacer} />
             <section id="about_section">
-              <About />
+              <About authors={authors} />
             </section>
-            <div className={classes.appBarSpacer} />
             <section id="projects_section">
               <Projects />
             </section>
-            <div className={classes.appBarSpacer} />
             <section id="talks_section">
               <Talks />
             </section>
-            <div className={classes.appBarSpacer} />
             <section id="podcast_section">
               <Podcast />
             </section>

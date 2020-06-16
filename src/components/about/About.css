@@ -3,14 +3,27 @@
   font-size: 55px;
 }
 
-.aboutDetails {
-  font-weight: 100;
+.aboutDetails{
+  width: 100%;
+  line-height: 18px;
+}
+
+.aboutSummary {
+  width: 100%;
+  max-width: 500px;
+  padding: 0 10px 10px 0;
+}
+
+.aboutAuthor {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   font-size: 20px;
 }
 
 .aboutContainer {
   display: flex !important;
-  align-items: center;
+  flex-direction: column;
   padding: 0 45px 45px 45px !important;
   border: 5px solid black;
   background: white;

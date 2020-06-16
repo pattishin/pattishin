@@ -42,31 +42,33 @@ class Projects extends Component {
           </div>
         </h3>
         <Grid container spacing={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} lg={4} onClick={() => this.selectFolder('movie-performance-ui')}>
-              <div className="projectFolder">
-                <h4>Movie List</h4>
-                <FolderIcon style={{ color: 'rgb(100, 255, 218)' }} />
-              </div>
-            </Grid>
-            <Grid item xs={12} lg={4} onClick={() => this.selectFolder('fireflygallery')}>
-              <div className="projectFolder">
-                <h4>Firefly Gallery</h4>
-                <FolderIcon style={{ color: 'rgb(100, 255, 218)' }} />
-              </div>
-            </Grid>
-            <Grid item xs={12} lg={4} onClick={() => this.selectFolder('tinker-pebble-drone-remote')}>
-              <div className="projectFolder">
-                <h4>Pebble Drone Remote</h4>
-                <FolderIcon style={{ color: 'rgb(100, 255, 218)' }} />
-              </div>
-            </Grid>
-            <Grid item xs={12} lg={4} onClick={() => this.selectFolder('tinker-drone')}>
-              <div className="projectFolder">
-                <h4>Nodecopters</h4>
-                <FolderIcon style={{ color: 'rgb(100, 255, 218)' }} />
-              </div>
-            </Grid>
+          <Grid item xs={12} lg={4} onClick={() => this.selectFolder('pattishin')}>
+            <div className="projectFolder">
+              <FolderIcon style={{ color: 'rgb(100, 255, 218)' }} />
+              <h4>{"Personal Site"}</h4>
+              <p>{"This current site in fact! Utilizes React.js, simple Golang server, Cloud Firestore, and deployed via Google Cloud App Engine."}</p>
+            </div>
+          </Grid>
+          <Grid item xs={12} lg={4} onClick={() => this.selectFolder('movie-performance-ui')}>
+            <div className="projectFolder">
+              <FolderIcon style={{ color: 'rgb(100, 255, 218)' }} />
+              <h4>{"Movie Search UI"}</h4>
+              <p>{"Vanilla JavaScript movie list app to practice load performance."}</p>
+            </div>
+          </Grid>
+          <Grid item xs={12} lg={4} onClick={() => this.selectFolder('fireflygallery')}>
+            <div className="projectFolder">
+              <FolderIcon style={{ color: 'rgb(100, 255, 218)' }} />
+              <h4>{"Firefly Gallery UI"}</h4>
+              <p>{"Incredibly simple gallery list that uses React.js to practice image aspect ratio"}</p>
+            </div>
+          </Grid>
+          <Grid item xs={12} lg={4} onClick={() => this.selectFolder('tinker-drone')}>
+            <div className="projectFolder">
+              <FolderIcon style={{ color: 'rgb(100, 255, 218)' }} />
+              <h4>{"Nodecopters"}</h4>
+              <p>{"Uses NodeJS, Cylon.js, and Node AR Drone module to programmatically control a parrot drone from your local environment."}</p>
+            </div>
           </Grid>
         </Grid>
       </Container>
