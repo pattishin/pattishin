@@ -1,23 +1,18 @@
 <div align="center">
-  <img alt="Logo" src="https://github.com/pattishin/pattishin/blob/master/src/assets/logo.png" width="100" />
+  <img alt="Logo" src="https://github.com/pattishin/pattishin/blob/master/src/assets/logo.png" width="200px" />
 </div>
 <h1 align="center">
    pattishin.com
 </h1>
-<p>🚧 Work in progress</p>
-<div align="center">
-  <ul>
-    <li>
-      prod: <a href="https://pattishin.io" target="_blank">pattishin.io</a>
-    </li>
-    <li>
-      staging: <a href="https://pattishin-b5b2a.uc.r.appspot.com" target="_blank">https://pattishin-b5b2a.uc.r.appspot.com</a>
-    </li>
-  </ul>
-</div
-<div>
+<p align="center">
+  Production: <a href="https://pattishin.io" target="_blank"> pattishin.io</a>
+</p>
+<p align="center">
+  Staging: <a href="https://pattishin-b5b2a.uc.r.appspot.com" target="_blank"> https://pattishin-b5b2a.uc.r.appspot.com</a>
+</p>
+<p align="center">
 <a href="https://pattishin.io" target="_blank">pattishin.io</a> is built with <a href="https://reactjs.org/" target="_blank">React</a> and hosted with <a href="https://cloud.google.com/appengine" target="_blank">Google Cloud App Engine</a>
-</div>
+</p>
 
 ## ⚙️ Getting started for client-side
 
