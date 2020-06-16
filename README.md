@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="Logo" src="https://github.com/pattishin/pattishin/blob/master/src/assets/logo.png" width="100" />
+  <img alt="Logo" src="https://github.com/pattishin/pattishin/blob/master/src/assets/logo.png" width="200px" />
 </div>
 <h1 align="center">
    pattishin.com
