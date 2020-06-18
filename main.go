@@ -18,24 +18,34 @@ type formData struct {
   Email string `json:"email" binding:"required"`
 }
 
-type Response struct {
-  StatusCode  int       `json:"statusCode"`
-  Headers     map[string]string  `json:"headers"`
-  Body        string    `json:"body"`
-}
-
-type Character struct {
-  Name string `json:"name" binding:"required"`
-  Height int `json:"height" binding:"required"`
-  HairColor string `json:"hair_color" binding:"required"`
-  BirthYear string `json:"birth_year" binding:"required"`
-}
-
 type Author struct {
   Name string `json:"name" binding:"required"`
   Description string `json:"description" binding:"required"`
 }
 
+type Talk struct {
+  Title string `json:"title" binding:"required`
+  Summary string `json:"summary" binding:"required"`
+  Date string `json:"date" binding:"optional"`
+  Link string `json:"link" binding:"optional"`
+  Img string `json:"img" binding:"optional"`
+}
+
+type Project struct {
+  Title string `json:"title" binding:"required`
+  Summary string `json:"summary" binding:"required"`
+  Link string `json:"link" binding:"optional"`
+}
+
+type Podcast struct {
+  Title string `json:"title" binding:"required`
+  SeriesName string `json:"series_name" binding:"required"`
+  Episode int `json:"episode" binding:"required"`
+  Date string `json:"date" binding:"optional"`
+  Link string `json:"link" binding:"optional"`
+}
+
+// TODO: Refactor common portions in /talks & /author api
 func main() {
   // router init
   router := gin.Default()
@@ -49,11 +59,15 @@ func main() {
 
   // routes
   apiRoutes := router.Group("/api")
+ 
   apiRoutes.GET("/author", authorHandler)
-  apiRoutes.GET("/characters", characterHandler)
+  apiRoutes.GET("/talks", talksHandler)
+  // apiRoutes.GET("/projects", projectsHandler)
+  // apiRoutes.GET("/podcasts", podcastHandler)
+  // apiRoutes.GET("/community", communityHandler)
+  // apiRoutes.GET("/experience", experienceHandler)
+  
   apiRoutes.POST("/user", userHandler)
-  // Serve from static build library
-  //router.StaticFS("/", http.Dir("./build"))
 
   // run application on port 8080
   router.Run(":8080")
@@ -95,9 +109,9 @@ func userHandler(c *gin.Context) {
 }
 
 /**
- *  Handle characters
+ *  Get talk list
  */
- func characterHandler(c *gin.Context) {
+ func talksHandler(c *gin.Context) {
    ctx := context.Background()
    client, err := createNewFirestore(ctx)
    if err != nil {
@@ -106,9 +120,9 @@ func userHandler(c *gin.Context) {
 
    defer client.Close()
 
-   // [START get star wars from firestore]
-   var characters []Character
-   var iter = client.Collection("characters").Documents(ctx)
+   // [START get talks from firestore]
+   var talks []Talk
+   var iter = client.Collection("talks").Documents(ctx)
 
    defer iter.Stop()
 
@@ -121,20 +135,20 @@ func userHandler(c *gin.Context) {
        c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
      }
 
-     var model Character
+     var model Talk
      if err := doc.DataTo(&model); err != nil {
        c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
      }
 
-     characters = append(characters, model)
-     // [END get star wars from firestore]
+     talks = append(talks, model)
+     // [END get talks from firestore]
    }
    c.Writer.Header().Set("Content-Type", "application/json")
-   c.JSON(http.StatusOK, characters)
+   c.JSON(http.StatusOK, talks)
  }
 
- /**
- *  Handle author
+/**
+ *  Retrieve author
  */
  func authorHandler(c *gin.Context) {
    ctx := context.Background()
