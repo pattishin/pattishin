@@ -94,10 +94,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch(
-      `${process.env.REACT_APP_BASE_URL || ''}/api/author`,
-      { method: 'GET' }
-    )
+    const baseUrl = (
+      process.env.NODE_ENV === 'development'
+        ? `${process.env.REACT_APP_BASE_URL}/api/author`
+        : '/api/author'
+    );
+
+    fetch(baseUrl, { method: 'GET' })
     .then(res => res.json())
     .then(authors => {
       this.setState({
