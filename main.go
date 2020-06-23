@@ -24,7 +24,7 @@ type Author struct {
 }
 
 type Talk struct {
-  Title string `json:"title" binding:"required`
+  Title string `json:"title" binding:"required"`
   Summary string `json:"summary" binding:"required"`
   Date string `json:"date" binding:"optional"`
   Link string `json:"link" binding:"optional"`
@@ -32,13 +32,13 @@ type Talk struct {
 }
 
 type Project struct {
-  Title string `json:"title" binding:"required`
+  Title string `json:"title" binding:"required"`
   Summary string `json:"summary" binding:"required"`
   Link string `json:"link" binding:"optional"`
 }
 
 type Podcast struct {
-  Title string `json:"title" binding:"required`
+  Title string `json:"title" binding:"required"`
   SeriesName string `json:"series_name" binding:"required"`
   Episode int `json:"episode" binding:"required"`
   Date string `json:"date" binding:"optional"`
@@ -114,13 +114,13 @@ func userHandler(c *gin.Context) {
  func talksHandler(c *gin.Context) {
    ctx := context.Background()
    client, err := createNewFirestore(ctx)
+   
    if err != nil {
      c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
    }
 
    defer client.Close()
 
-   // [START get talks from firestore]
    var talks []Talk
    var iter = client.Collection("talks").Documents(ctx)
 
@@ -141,8 +141,8 @@ func userHandler(c *gin.Context) {
      }
 
      talks = append(talks, model)
-     // [END get talks from firestore]
    }
+   
    c.Writer.Header().Set("Content-Type", "application/json")
    c.JSON(http.StatusOK, talks)
  }
@@ -153,6 +153,7 @@ func userHandler(c *gin.Context) {
  func authorHandler(c *gin.Context) {
    ctx := context.Background()
    client, err := createNewFirestore(ctx)
+   
    if err != nil {
      c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
    }
@@ -169,6 +170,7 @@ func userHandler(c *gin.Context) {
      if err == iterator.Done {
        break
      }
+
      if err != nil {
        c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
      }
@@ -180,6 +182,7 @@ func userHandler(c *gin.Context) {
 
      authors = append(authors, model)
    }
+
    c.Writer.Header().Set("Content-Type", "application/json")
    c.JSON(http.StatusOK, authors)
  }
