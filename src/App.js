@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -18,6 +19,9 @@ import Podcast from './components/podcast';
 import Talks from './components/talks';
 import About from './components/about';
 import Projects from './components/projects';
+
+import { simpleAction } from './actions/simpleActions';
+
 import './App.css';
 
 const drawerWidth = 300;
@@ -112,7 +116,7 @@ class App extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, simpleAction } = this.props;
     const { open, loading, authors } = this.state;
 
     return (
@@ -149,6 +153,8 @@ class App extends Component {
                     </IconButton>
                   </a>
                 </Grid>
+                <div>{JSON.stringify(this.props)}</div>
+                <button onClick={simpleAction}>Test</button>
                 <Grid item xs={"auto"} lg={3} className={classes.toolbarItem}> 
                   <p>{"#blacklivesmatter"}</p>
                 </Grid>
@@ -188,5 +194,15 @@ App.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(App);
+const mapStateToProps = state => ({
+  ...state
+});
+
+const mapDispatchToProps = dispatch => ({
+  simpleAction: () => dispatch(simpleAction())
+});
+
+export default withStyles(styles)(
+  connect(mapStateToProps, mapDispatchToProps)(App)
+);
 
