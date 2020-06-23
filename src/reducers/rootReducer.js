@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import simpleReducer from './simpleReducer';
+import author from './author';
 
-export default combineReducers({ simpleReducer });
+export default combineReducers({ author });
 

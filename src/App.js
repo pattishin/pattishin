@@ -14,7 +14,7 @@ import About from './components/about';
 import Header from './components/header';
 import Projects from './components/projects';
 
-import { simpleAction } from './actions/simpleActions';
+import { getAuthor } from './actions/author';
 
 import './App.css';
 
@@ -54,32 +54,21 @@ class App extends Component {
 
     this.state = {
       open: false,
-      loading: true,
-      authors: []
+      loading: false
     };
   }
 
   componentDidMount() {
-    const baseUrl = (
-      process.env.NODE_ENV === 'development'
-        ? `${process.env.REACT_APP_BASE_URL}/api/author`
-        : '/api/author'
+    this.setState({ loading: true })
+    
+    this.props.getAuthor().then(author => 
+      this.setState({ loading: false })
     );
-
-    fetch(baseUrl, { method: 'GET' })
-    .then(res => res.json())
-    .then(authors => {
-      this.setState({
-        authors,
-        loading: false
-      });
-    })
-    .catch(err => err);
   }
 
   render() {
-    const { classes, simpleAction } = this.props;
-    const { open, loading, authors } = this.state;
+    const { classes, authors} = this.props;
+    const { open, loading } = this.state;
 
     return (
       <div className={classes.root}>
@@ -121,11 +110,11 @@ App.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  ...state
+  authors: state.author.authors
 });
 
 const mapDispatchToProps = dispatch => ({
-  simpleAction: () => dispatch(simpleAction())
+  getAuthor: () => dispatch(getAuthor())
 });
 
 export default withStyles(styles)(
