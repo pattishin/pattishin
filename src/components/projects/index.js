@@ -48,6 +48,13 @@ class Projects extends Component {
               <p>{"This current site in fact! Utilizes React.js, simple Golang server, Cloud Firestore, and deployed via Google Cloud App Engine."}</p>
             </div>
           </Grid>
+          <Grid item xs={12} lg={4} onClick={() => this.selectFolder('geronimo')}>
+            <div className="projectFolder">
+              <FolderIcon style={{ color: 'rgb(100, 255, 218)' }} />
+              <h4>{"Geronimo API Explorer"}</h4>
+              <p>{"Toy API Explorer app built in vanilla JavaScript and deployed in Google Cloud App Engine."}</p>
+            </div>
+          </Grid>
           <Grid item xs={12} lg={4} onClick={() => this.selectFolder('movie-performance-ui')}>
             <div className="projectFolder">
               <FolderIcon style={{ color: 'rgb(100, 255, 218)' }} />
