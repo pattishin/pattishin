@@ -6,13 +6,15 @@ import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
-import Sidebar from './components/sidebar';
-import Loading from './components/loading';
-import Podcast from './components/podcast';
-import Talks from './components/talks';
-import About from './components/about';
-import Header from './components/header';
-import Projects from './components/projects';
+import {
+  Sidebar,
+  Loading,
+  Podcast,
+  Talks,
+  About,
+  Header,
+  Projects
+} from './components';
 
 import { getAuthor } from './actions/author';
 
@@ -45,8 +47,6 @@ const styles = (theme) => ({
     padding: theme.spacing(2),
   },
 });
-
-// TODO: Move component hard-coded data into Cloud Firestore
 
 class App extends Component {
   constructor(props) {
