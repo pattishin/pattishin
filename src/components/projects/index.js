@@ -5,19 +5,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import FolderIcon from '@material-ui/icons/Folder';
 import './Projects.css';
-
-const styles = (theme) => ({
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
-  paper: {
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
-    padding: theme.spacing(2),
-  }
-});
+import styles from './styles';
 
 class Projects extends Component {
   constructor(props) {
@@ -87,4 +75,3 @@ Projects.propTypes = {
 };
 
 export default withStyles(styles)(Projects);
-

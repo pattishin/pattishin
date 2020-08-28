@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-
 import {
   Sidebar,
   Loading,
@@ -14,39 +12,10 @@ import {
   About,
   Header,
   Projects
-} from './components';
-
-import { getAuthor } from './actions/author';
-
+} from '../../components';
+import { getAuthor } from '../../actions/author';
 import './App.css';
-
-const styles = (theme) => ({
-  root: {
-    display: 'flex',
-    fontFamily: "Roboto Mono",
-    height: "inherit"
-  },
-  title: {
-    fontFamily: "Roboto Mono"
-  },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: '100vh',
-    overflow: 'auto',
-    backgroundColor: "#3e3e3e"
-  },
-  container: {
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
-  },
-  paper: {
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
-    padding: theme.spacing(2),
-  },
-});
+import styles from './styles';
 
 class App extends Component {
   constructor(props) {

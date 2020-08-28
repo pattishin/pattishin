@@ -9,41 +9,7 @@ import MicIcon from '@material-ui/icons/Mic';
 import CodeIcon from '@material-ui/icons/Code';
 import SlideshowIcon from '@material-ui/icons/Slideshow';
 import Grid from '@material-ui/core/Grid';
-
-const drawerWidth = 300;
-const styles = (theme) => ({
-  toolbar: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  toolbarItem: {
-    display: "inline-flex",
-    justifyContent: "flex-end",
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    backgroundColor: 'black',
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth-1}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: 36,
-  },
-  menuButtonHidden: {
-    display: 'none',
-  },
-});
+import styles from './styles';
 
 class Header extends Component {
   render() {

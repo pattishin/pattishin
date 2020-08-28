@@ -9,21 +9,7 @@ import talk3 from '../../assets/talk3.png';
 import talk4 from '../../assets/talk4.svg';
 import talk5 from '../../assets/talk5.svg';
 import './Talks.css';
-
-const styles = (theme) => ({
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
-  paper: {
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
-  },
-  fixedHeight: {
-    height: 'inherit',
-  }
-});
+import styles from './styles';
 
 class Talks extends Component {
   render() {
