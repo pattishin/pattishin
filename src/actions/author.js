@@ -1,12 +1,9 @@
 
 export const getAuthor = () => dispatch => {
-    console.log(process.env.REACT_APP_BASE_URL);
-    console.log(process.env);
-
     const baseUrl = (
       process.env.NODE_ENV === 'development'
         ? `${process.env.REACT_APP_BASE_URL}/api/author`
-        : '/api/author'
+        : `${process.env.PUBLIC_URL}/api/author`
     );
 
     return fetch(baseUrl, { method: 'GET' })
