@@ -3,18 +3,17 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import NewspaperIcon from '@mui/icons-material/Newspaper';
 import './Blogs.css';
 import styles from './styles';
 
 class Blogs extends Component {
   constructor(props) {
     super(props);
-    this.selectFolder = this.selectFolder.bind(this);
+    this.selectBlog = this.selectBlog.bind(this);
   }
 
-  selectFolder(slug) {
-    window.open(`https://github.com/pattishin/${slug}`, '_blank');
+  selectBlog(slug) {
+    window.open(`journey-to-cloud-city-blog.glitch.me${slug}`, '_blank');
   }
 
   render() {
@@ -29,13 +28,13 @@ class Blogs extends Component {
           </div>
         </h3>
         <Grid container spacing={3}>
-          <Grid item xs={12} lg={4} onClick={() => this.selectFolder('')}>
+          <Grid item xs={12} lg={4} onClick={() => this.selectBlog('/')}>
             <div className="blogFolder">
-              <NewspaperIcon style={{ color: 'rgb(100, 255, 218)' }} />
               <h4>{"Journey to Cloud City"}</h4>
               <p>{"Google Cloud Platform story series of the adventures of Cloud Traveler and Cloud Train Conductor to Cloud City."}</p>
             </div>
           </Grid>
+        </Grid>
       </Container>
     );
   }
