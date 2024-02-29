@@ -7,10 +7,10 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import {
   Sidebar,
   Loading,
-  Podcast,
   Talks,
   About,
   Header,
+  Blogs,
   Projects
 } from '../../components';
 import { getAuthor } from '../../actions/author';
@@ -51,14 +51,14 @@ class App extends Component {
             <section id="about_section">
               <About authors={authors} />
             </section>
+            <section id="blogs_section">
+              <Blogs />
+            </section>
             <section id="projects_section">
               <Projects />
             </section>
             <section id="talks_section">
               <Talks />
-            </section>
-            <section id="podcast_section">
-              <Podcast />
             </section>
             <footer className="footer">
               <p>Developed with</p>

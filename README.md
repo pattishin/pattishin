@@ -63,6 +63,3 @@ Or just do it in all one go. (Builds and deploys via Google Cloud App Engine)
    ```sh
    npm run deploy
    ```
-
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

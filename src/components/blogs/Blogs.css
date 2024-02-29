@@ -1,0 +1,40 @@
+.blogHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.blogHeader:before,
+.blogHeader:after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 35%;
+  background-color: rgb(100, 255, 218);
+}
+
+.blogTitle {
+  padding: 10px 20px;
+  color: rgb(100, 255, 218);
+  white-space: nowrap;
+}
+
+.blogFolder {
+  color: rgb(100, 255, 218);
+  border: 1px solid rgb(100, 255, 218);
+  border-radius: 5px;
+  padding: 20px;
+  background: #333333;
+  transition: height 10s;
+  height: 100%;
+}
+
+.blogFolder:hover {
+  top: -5px;
+  position: relative;
+  box-border: 1px 1px 1px black;
+  cursor: pointer;
+}
+
