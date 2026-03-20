@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import { withStyles } from '../../utils/withStyles';
+import CssBaseline from '@mui/material/CssBaseline';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import {
   Sidebar,
   Loading,
@@ -30,7 +30,7 @@ class App extends Component {
   componentDidMount() {
     this.setState({ loading: true })
     
-    this.props.getAuthor().then(author => 
+    this.props.getAuthor().then(() =>
       this.setState({ loading: false })
     );
   }

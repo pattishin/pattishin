@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
+import Container from '@mui/material/Container';
+import Grid2 from '@mui/material/Grid2';
 import './About.css';
 
 class About extends Component {
@@ -12,29 +12,29 @@ class About extends Component {
     return (
       <Container className="aboutContainer">
         <h1 className="aboutTitle">Patti Shin</h1>
-        <Grid container className="aboutAuthor">
-          <Grid item xs={12} lg={6} className="aboutSummary">
+        <Grid2 container className="aboutAuthor">
+          <Grid2 size={{ xs: 12, lg: 6 }} className="aboutSummary">
             {mainAuthor && mainAuthor.description}
-          </Grid>
-          <Grid item xs={12} lg={6} className="aboutDetails">
+          </Grid2>
+          <Grid2 size={{ xs: 12, lg: 6 }} className="aboutDetails">
             <p>
-              <span role="img" aria-label="engineer">💻</span>  
+              <span role="img" aria-label="engineer">💻</span>
               <span>{" Software Engineer"}</span>
             </p>
             <p>
-              <span role="img" aria-label="builder">👷</span>  
+              <span role="img" aria-label="builder">👷</span>
               <span>{" Community builder"}</span>
             </p>
             <p>
-              <span role="img" aria-label="coffee">☕</span>  
+              <span role="img" aria-label="coffee">☕</span>
               <span>{" Fluent in all things coffee"}</span>
             </p>
             <p>
-              <span role="img" aria-label="pray">🙏</span>  
+              <span role="img" aria-label="pray">🙏</span>
               <span>{" #hopeistheanthem"}</span>
             </p>
-          </Grid>
-        </Grid>
+          </Grid2>
+        </Grid2>
       </Container>
     );
   }

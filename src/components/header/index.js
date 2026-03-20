@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import MicIcon from '@material-ui/icons/Mic';
-import CodeIcon from '@material-ui/icons/Code';
-import SlideshowIcon from '@material-ui/icons/Slideshow';
-import Grid from '@material-ui/core/Grid';
+import { withStyles } from '../../utils/withStyles';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Grid2 from '@mui/material/Grid2';
+import MenuIcon from '@mui/icons-material/Menu';
+import MicIcon from '@mui/icons-material/Mic';
+import CodeIcon from '@mui/icons-material/Code';
+import SlideshowIcon from '@mui/icons-material/Slideshow';
 import styles from './styles';
 
 class Header extends Component {
@@ -18,8 +18,8 @@ class Header extends Component {
     return (
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar>
-          <Grid container className={classes.toolbar}>
-            <Grid item xs={12} lg={9}>
+          <Grid2 container className={classes.toolbar}>
+            <Grid2 size={{ xs: 12, lg: 9 }}>
               <IconButton
                 edge="end"
                 color="inherit"
@@ -44,11 +44,11 @@ class Header extends Component {
                   <MicIcon style={{ color: 'rgb(100, 255, 218)' }} />
                 </IconButton>
               </a>
-            </Grid>
-            <Grid item xs={"auto"} lg={3} className={classes.toolbarItem}> 
+            </Grid2>
+            <Grid2 size={{ xs: "auto", lg: 3 }} className={classes.toolbarItem}>
               <p>{"#blacklivesmatter"}</p>
-            </Grid>
-          </Grid>
+            </Grid2>
+          </Grid2>
         </Toolbar>
       </AppBar>
     );
@@ -56,4 +56,3 @@ class Header extends Component {
 }
 
 export default withStyles(styles)(Header);
-

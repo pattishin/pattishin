@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Drawer from '@material-ui/core/Drawer';
-import IconButton from '@material-ui/core/IconButton';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import { withStyles } from '../../utils/withStyles';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import avatar from '../../assets/pattishin.jpg';
 import './Sidebar.css';
 import styles from './styles';
@@ -72,5 +72,3 @@ Sidebar.propTypes = {
 };
 
 export default withStyles(styles)(Sidebar);
-
-
