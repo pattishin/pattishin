@@ -49,6 +49,9 @@
   position: relative;
   transition: box-shadow 0.25s ease, transform 0.2s ease;
   overflow: hidden;
+  text-align: left;
+  font-family: inherit;
+  width: 100%;
 }
 
 /* Corner accents */

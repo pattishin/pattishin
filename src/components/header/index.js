@@ -23,24 +23,24 @@ class Header extends Component {
               <IconButton
                 edge="end"
                 color="inherit"
-                aria-label="open drawer"
+                aria-label="Open sidebar"
                 onClick={() => setOpen(true)}
                 className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
               >
                 <MenuIcon style={{ color: 'rgb(100, 255, 218)' }} />
               </IconButton>
               <a href="#projects_section">
-                <IconButton className="menuButton">
+                <IconButton className="menuButton" aria-label="Projects">
                   <CodeIcon style={{ color: 'rgb(100, 255, 218)' }} />
                 </IconButton>
               </a>
               <a href="#talks_section">
-                <IconButton className="menuButton">
+                <IconButton className="menuButton" aria-label="Talks">
                   <SlideshowIcon style={{ color: 'rgb(100, 255, 218)' }} />
                 </IconButton>
               </a>
               <a href="#podcast_section">
-                <IconButton className="menuButton">
+                <IconButton className="menuButton" aria-label="Podcast">
                   <MicIcon style={{ color: 'rgb(100, 255, 218)' }} />
                 </IconButton>
               </a>
