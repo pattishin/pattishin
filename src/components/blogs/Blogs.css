@@ -2,39 +2,86 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  font-size: 15px;
+  padding: 12px;
+  font-size: 11px;
+  font-family: var(--font-pixel);
+  margin: 0 0 8px 0;
 }
 
-.blogHeader:before,
-.blogHeader:after {
-  content: "";
+.blogHeader::before,
+.blogHeader::after {
+  content: '';
   display: block;
   height: 1px;
-  width: 35%;
-  background-color: rgb(100, 255, 218);
+  width: 30%;
+}
+
+.blogHeader::before {
+  background: linear-gradient(90deg, transparent, var(--tron-teal));
+  margin-right: 12px;
+}
+
+.blogHeader::after {
+  background: linear-gradient(90deg, var(--tron-teal), transparent);
+  margin-left: 12px;
 }
 
 .blogTitle {
-  padding: 10px 20px;
-  color: rgb(100, 255, 218);
+  padding: 6px 16px;
+  color: var(--tron-teal);
   white-space: nowrap;
+  text-shadow: var(--glow-sm);
 }
 
 .blogFolder {
-  color: rgb(100, 255, 218);
-  border: 1px solid rgb(100, 255, 218);
-  border-radius: 5px;
+  color: var(--tron-teal);
+  border: 1px solid var(--tron-teal);
+  background: rgba(0, 26, 51, 0.7);
   padding: 20px;
-  background: #333333;
-  transition: height 10s;
   height: 100%;
+  cursor: pointer;
+  position: relative;
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
+  overflow: hidden;
+}
+
+.blogFolder::before,
+.blogFolder::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--tron-teal);
+  border-style: solid;
+  transition: width 0.2s ease, height 0.2s ease;
+}
+
+.blogFolder::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
+.blogFolder::after  { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+.blogFolder:hover::before,
+.blogFolder:hover::after {
+  width: 20px;
+  height: 20px;
 }
 
 .blogFolder:hover {
-  top: -5px;
-  position: relative;
-  box-border: 1px 1px 1px black;
-  cursor: pointer;
+  box-shadow: var(--glow-md);
+  transform: translateY(-4px);
 }
 
+.blogFolder h4 {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  margin: 0 0 12px 0;
+  color: var(--tron-teal);
+  text-shadow: var(--glow-sm);
+  line-height: 1.6;
+}
+
+.blogFolder p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #7fd9cc;
+  margin: 0;
+}

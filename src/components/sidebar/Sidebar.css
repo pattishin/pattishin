@@ -3,12 +3,21 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: black;
-  color: white;
+  background-color: var(--tron-dark);
+  color: var(--tron-teal);
+  border-right: 1px solid var(--tron-teal);
+  box-shadow: 2px 0 12px rgba(0, 255, 231, 0.15);
+  height: 100%;
 }
 
 .avatar {
   width: 100%;
+  filter: sepia(0.3) hue-rotate(150deg) saturate(1.5);
+  transition: filter 0.3s ease;
+}
+
+.avatar:hover {
+  filter: sepia(0) hue-rotate(0deg) saturate(1) drop-shadow(0 0 8px var(--tron-teal));
 }
 
 .authorCardTop {
@@ -16,7 +25,7 @@
   display: flex;
   justify-content: center;
   padding: 15px;
-  background-color: black;
+  background-color: var(--tron-dark);
 }
 
 .authorCardBody {
@@ -31,6 +40,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  gap: 4px;
 }
 
 .authorAvatarWrapper {
@@ -40,11 +50,17 @@
   align-items: center;
   justify-content: center;
   width: 150px;
-  border: 5px solid rgb(100, 255, 218);
+  border: 2px solid var(--tron-teal);
+  box-shadow: var(--glow-md);
+  animation: neonPulse 3s ease-in-out infinite;
 }
 
 .menuButton {
-  border: 2px solid rgb(100, 255, 218);
-  padding: 10px;
+  border: 1px solid var(--tron-teal);
+  padding: 8px;
+  transition: box-shadow 0.2s ease;
 }
 
+.menuButton:hover {
+  box-shadow: var(--glow-sm);
+}

@@ -8,21 +8,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  font-size: 15px;
+  padding: 12px;
+  font-size: 11px;
+  font-family: var(--font-pixel);
+  margin: 0 0 8px 0;
 }
 
-.podcastHeader:before,
-.podcastHeader:after {
-  content: "";
+.podcastHeader::before,
+.podcastHeader::after {
+  content: '';
   display: block;
   height: 1px;
-  width: 35%;
-  background-color: rgb(100, 255, 218);
+  width: 30%;
+}
+
+.podcastHeader::before {
+  background: linear-gradient(90deg, transparent, var(--tron-teal));
+  margin-right: 12px;
+}
+
+.podcastHeader::after {
+  background: linear-gradient(90deg, var(--tron-teal), transparent);
+  margin-left: 12px;
 }
 
 .podcastTitle {
-  padding: 10px 20px;
-  color: rgb(100, 255, 218);
+  padding: 6px 16px;
+  color: var(--tron-teal);
   white-space: nowrap;
+  text-shadow: var(--glow-sm);
 }

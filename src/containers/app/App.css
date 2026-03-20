@@ -1,8 +1,7 @@
-
 html, body {
-  font-family: "Roboto Mono" !important;
-  color: 'white' !important;
-  background-color: 'black' !important;
+  font-family: var(--font-mono) !important;
+  color: #e0fff9 !important;
+  background-color: var(--tron-dark) !important;
   height: 100%;
 }
 
@@ -18,26 +17,41 @@ section {
 }
 
 .menuButton {
-  border: 2px solid rgb(100, 255, 218) !important;
-  padding: 10px !important;
-  margin: 10px !important;
-  width: 50px;
+  border: 1px solid var(--tron-teal) !important;
+  padding: 8px !important;
+  margin: 6px !important;
+  width: 44px;
+  transition: box-shadow 0.25s ease;
+}
+
+.menuButton:hover {
+  box-shadow: var(--glow-sm) !important;
 }
 
 .footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 25px;
-  color: white;
-  font-size: 11px;
+  margin: 30px;
+  color: var(--tron-teal);
+  font-size: 9px;
+  font-family: var(--font-pixel);
+  letter-spacing: 1px;
+  text-shadow: var(--glow-sm);
+  animation: flicker 8s infinite;
 }
 
 .footer a {
-  color: white;
+  color: var(--tron-teal);
+  text-decoration: none;
+  text-shadow: var(--glow-sm);
+  margin: 0 4px;
+}
+
+.footer a:hover {
+  text-shadow: var(--glow-lg);
 }
 
 .footer p {
-  margin: auto 5px;
+  margin: 0 5px;
 }
-

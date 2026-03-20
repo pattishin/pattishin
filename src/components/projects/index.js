@@ -3,16 +3,45 @@ import PropTypes from 'prop-types';
 import { withStyles } from '../../utils/withStyles';
 import Container from '@mui/material/Container';
 import Grid2 from '@mui/material/Grid2';
-import FolderIcon from '@mui/icons-material/Folder';
+import PixelSprite from '../../utils/PixelSprite';
+import { MONITOR, EXPLORER, CLAPPER, FIREFLY, DRONE } from './sprites';
 import './Projects.css';
 import styles from './styles';
 
-class Projects extends Component {
-  constructor(props) {
-    super(props);
-    this.selectFolder = this.selectFolder.bind(this);
-  }
+const PROJECTS = [
+  {
+    slug: 'pattishin',
+    name: 'Personal Site',
+    desc: 'This current site! React.js, Golang server, Cloud Firestore, deployed via Google Cloud App Engine.',
+    sprite: MONITOR,
+  },
+  {
+    slug: 'geronimo',
+    name: 'Geronimo API Explorer',
+    desc: 'Toy API Explorer app built in vanilla JavaScript and deployed in Google Cloud App Engine.',
+    sprite: EXPLORER,
+  },
+  {
+    slug: 'movie-performance-ui',
+    name: 'Movie Search UI',
+    desc: 'Vanilla JavaScript movie list app to practice load performance.',
+    sprite: CLAPPER,
+  },
+  {
+    slug: 'fireflygallery',
+    name: 'Firefly Gallery UI',
+    desc: 'Incredibly simple gallery list using React.js to practice image aspect ratio.',
+    sprite: FIREFLY,
+  },
+  {
+    slug: 'tinker-drone',
+    name: 'Nodecopters',
+    desc: 'NodeJS + Cylon.js + Node AR Drone to programmatically control a parrot drone.',
+    sprite: DRONE,
+  },
+];
 
+class Projects extends Component {
   selectFolder(slug) {
     window.open(`https://github.com/pattishin/${slug}`, '_blank');
   }
@@ -29,41 +58,19 @@ class Projects extends Component {
           </div>
         </h3>
         <Grid2 container spacing={3}>
-          <Grid2 size={{ xs: 12, lg: 4 }} onClick={() => this.selectFolder('pattishin')}>
-            <div className="projectFolder">
-              <FolderIcon style={{ color: 'rgb(100, 255, 218)' }} />
-              <h4>{"Personal Site"}</h4>
-              <p>{"This current site in fact! Utilizes React.js, simple Golang server, Cloud Firestore, and deployed via Google Cloud App Engine."}</p>
-            </div>
-          </Grid2>
-          <Grid2 size={{ xs: 12, lg: 4 }} onClick={() => this.selectFolder('geronimo')}>
-            <div className="projectFolder">
-              <FolderIcon style={{ color: 'rgb(100, 255, 218)' }} />
-              <h4>{"Geronimo API Explorer"}</h4>
-              <p>{"Toy API Explorer app built in vanilla JavaScript and deployed in Google Cloud App Engine."}</p>
-            </div>
-          </Grid2>
-          <Grid2 size={{ xs: 12, lg: 4 }} onClick={() => this.selectFolder('movie-performance-ui')}>
-            <div className="projectFolder">
-              <FolderIcon style={{ color: 'rgb(100, 255, 218)' }} />
-              <h4>{"Movie Search UI"}</h4>
-              <p>{"Vanilla JavaScript movie list app to practice load performance."}</p>
-            </div>
-          </Grid2>
-          <Grid2 size={{ xs: 12, lg: 4 }} onClick={() => this.selectFolder('fireflygallery')}>
-            <div className="projectFolder">
-              <FolderIcon style={{ color: 'rgb(100, 255, 218)' }} />
-              <h4>{"Firefly Gallery UI"}</h4>
-              <p>{"Incredibly simple gallery list that uses React.js to practice image aspect ratio"}</p>
-            </div>
-          </Grid2>
-          <Grid2 size={{ xs: 12, lg: 4 }} onClick={() => this.selectFolder('tinker-drone')}>
-            <div className="projectFolder">
-              <FolderIcon style={{ color: 'rgb(100, 255, 218)' }} />
-              <h4>{"Nodecopters"}</h4>
-              <p>{"Uses NodeJS, Cylon.js, and Node AR Drone module to programmatically control a parrot drone from your local environment."}</p>
-            </div>
-          </Grid2>
+          {PROJECTS.map(({ slug, name, desc, sprite }) => (
+            <Grid2 key={slug} size={{ xs: 12, lg: 4 }} onClick={() => this.selectFolder(slug)}>
+              <div className="projectFolder">
+                <div className="projectSpriteWrapper">
+                  <PixelSprite pixels={sprite} size={7} />
+                </div>
+                <div className="projectInfo">
+                  <h4>{name}</h4>
+                  <p>{desc}</p>
+                </div>
+              </div>
+            </Grid2>
+          ))}
         </Grid2>
       </Container>
     );
