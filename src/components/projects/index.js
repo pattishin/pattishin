@@ -59,8 +59,12 @@ class Projects extends Component {
         </h3>
         <Grid2 container spacing={3}>
           {PROJECTS.map(({ slug, name, desc, sprite }) => (
-            <Grid2 key={slug} size={{ xs: 12, lg: 4 }} onClick={() => this.selectFolder(slug)}>
-              <div className="projectFolder">
+            <Grid2 key={slug} size={{ xs: 12, lg: 4 }}>
+              <button
+                className="projectFolder"
+                onClick={() => this.selectFolder(slug)}
+                aria-label={`View project: ${name}`}
+              >
                 <div className="projectSpriteWrapper">
                   <PixelSprite pixels={sprite} size={7} />
                 </div>
@@ -68,7 +72,7 @@ class Projects extends Component {
                   <h4>{name}</h4>
                   <p>{desc}</p>
                 </div>
-              </div>
+              </button>
             </Grid2>
           ))}
         </Grid2>
