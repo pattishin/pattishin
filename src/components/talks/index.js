@@ -15,15 +15,28 @@ class Talks extends Component {
   render() {
     const { classes } = this.props;
 
-    // TODO: Make timeline feature here it's own component and add to podcast section
     return (
       <Container maxWidth="lg" className={classes.container}>
+
+        {/* ── Game scene banner ── */}
+        <div className="gameStageBanner">
+          <div className="gsb-top">
+            <span className="gsb-badge">STAGE 02</span>
+            <div className="gsb-line" />
+            <span className="gsb-title">THE SPEAKING ARENA</span>
+            <div className="gsb-line" />
+            <div className="gsb-stars">★★★★☆</div>
+          </div>
+          <p className="gsb-desc">⚔ Complete quests to unlock new talks  ·  XP REWARD: 500</p>
+        </div>
+
         <h3 className="talkHeader">
           <div className="talkTitle">
             <span role="img" aria-label="speaker">🔊</span>
             <span>{" Talks"}</span>
           </div>
         </h3>
+
         <div>
           <ul className="timelineList">
             <li className="timelineItem year">
@@ -40,6 +53,7 @@ class Talks extends Component {
                     <img src={talk5} alt="GDG SF DevFest 2019" />
                   </Grid2>
                   <Grid2 size={{ xs: 12, lg: 9 }} className="timelineContent">
+                    <div className="talkQuestTag">QUEST COMPLETE ✓</div>
                     <h4>{"Let's Cache! - Introduction to Service Workers"}</h4>
                     <p>{"Presented at GDG San Francisco DevFest Conference 2019."}</p>
                   </Grid2>
@@ -60,6 +74,7 @@ class Talks extends Component {
                     <img src={talk4} alt="Google I/O Extended (GDG Berkeley) 2018" />
                   </Grid2>
                   <Grid2 size={{ xs: 12, lg: 9 }} className="timelineContent">
+                    <div className="talkQuestTag">QUEST COMPLETE ✓</div>
                     <h4>{"Google I/O Extended Keynote 2018"}</h4>
                     <p>{"Presented at GDG Berkeley I/O Extended Meetup 2018."}</p>
                   </Grid2>
@@ -80,6 +95,7 @@ class Talks extends Component {
                     <img src={talk3} alt="Google I/O 2016 Re-cap" />
                   </Grid2>
                   <Grid2 size={{ xs: 12, lg: 9 }} className="timelineContent">
+                    <div className="talkQuestTag">QUEST COMPLETE ✓</div>
                     <h4>{"Google I/O Highlights 2016"}</h4>
                     <p>{"Presented at GDG Triangle (Durham, NC) to share major talks from Google I/O 2016."}</p>
                   </Grid2>
@@ -93,15 +109,16 @@ class Talks extends Component {
               <button
                 className="timelineButton"
                 onClick={() => window.open('https://pattishin.github.io/techtalks')}
-                aria-label="View talk: Build with Confidence - Jive into front-end development"
+                aria-label="View talk: Build with Confidence"
               >
                 <Grid2 container className="timelineContentWrapper">
                   <Grid2 size={{ xs: 12, lg: 3 }}>
                     <img src={talk2} alt="Build with confidence 2015" />
                   </Grid2>
                   <Grid2 size={{ xs: 12, lg: 9 }} className="timelineContent">
+                    <div className="talkQuestTag">QUEST COMPLETE ✓</div>
                     <h4>{"Build with Confidence - Jive into front-end development"}</h4>
-                    <p>{"Presented at DiamondHacks hackathon event at NC State University for students getting started in web development."}</p>
+                    <p>{"Presented at DiamondHacks hackathon event at NC State University."}</p>
                   </Grid2>
                 </Grid2>
               </button>
@@ -120,8 +137,9 @@ class Talks extends Component {
                     <img src={talk1} alt="JSConf 2014" />
                   </Grid2>
                   <Grid2 size={{ xs: 12, lg: 9 }} className="timelineContent">
+                    <div className="talkQuestTag">QUEST COMPLETE ✓</div>
                     <h4>{"JSConf 2014 Highlights"}</h4>
-                    <p>{"Presented at WillowTree, Inc Lunch & Learn event to share learnings and personal demos from JSConf 2014 conference."}</p>
+                    <p>{"Presented at WillowTree, Inc Lunch & Learn event to share learnings from JSConf 2014."}</p>
                   </Grid2>
                 </Grid2>
               </button>

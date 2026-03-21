@@ -21,17 +21,66 @@
 }
 
 .aboutContainer::before {
-  top: -1px;
-  left: -1px;
+  top: -1px; left: -1px;
   border-width: 2px 0 0 2px;
   box-shadow: -2px -2px 8px rgba(0, 255, 231, 0.6);
 }
-
 .aboutContainer::after {
-  bottom: -1px;
-  right: -1px;
+  bottom: -1px; right: -1px;
   border-width: 0 2px 2px 0;
   box-shadow: 2px 2px 8px rgba(0, 255, 231, 0.6);
+}
+
+/* ── Stage label ─────────────────────────────────────────── */
+.stageLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 255, 231, 0.2);
+}
+
+.stageBadge {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: #000;
+  background: var(--tron-teal);
+  padding: 4px 10px;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px var(--tron-teal);
+}
+
+.stageName {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--tron-teal);
+  letter-spacing: 3px;
+  text-shadow: var(--glow-sm);
+}
+
+.stageStars {
+  font-size: 10px;
+  color: #ffd700;
+  text-shadow: 0 0 6px #ffd700, 0 0 15px rgba(255,215,0,0.5);
+  letter-spacing: 2px;
+  margin-left: auto;
+}
+
+/* ── Hero profile header ─────────────────────────────────── */
+.heroProfileHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.playerTag {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--tron-blue);
+  letter-spacing: 3px;
+  text-shadow: 0 0 8px var(--tron-blue);
 }
 
 .aboutTitle {
@@ -40,14 +89,85 @@
   color: var(--tron-teal);
   text-shadow: var(--glow-lg);
   letter-spacing: 2px;
-  margin-bottom: 20px;
+  margin: 4px 0;
   animation: flicker 10s infinite;
+}
+
+.heroClass {
+  font-family: var(--font-pixel);
+  font-size: 7px;
+  color: #7fd9cc;
+  letter-spacing: 2px;
+}
+
+/* ── HP / XP bars ────────────────────────────────────────── */
+.heroStats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.4);
+  border-left: 2px solid var(--tron-teal);
+}
+
+.statRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.statLabel {
+  font-family: var(--font-pixel);
+  font-size: 7px;
+  color: var(--tron-teal);
+  width: 24px;
+  flex-shrink: 0;
+}
+
+.statBarTrack {
+  flex: 1;
+  height: 10px;
+  background: rgba(0, 255, 231, 0.1);
+  border: 1px solid rgba(0, 255, 231, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.statBarFill {
+  height: 100%;
+  transition: width 1s ease;
+}
+.statBarFill.hp {
+  background: var(--tron-teal);
+  box-shadow: 0 0 8px var(--tron-teal);
+}
+.statBarFill.xp {
+  background: var(--tron-blue);
+  box-shadow: 0 0 8px var(--tron-blue);
+}
+
+.statVal {
+  font-family: var(--font-pixel);
+  font-size: 6px;
+  color: #7fd9cc;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Quest log / attributes ──────────────────────────────── */
+.questLogLabel {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--tron-blue);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 6px var(--tron-blue);
 }
 
 .aboutAuthor {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
 }
 
 .aboutSummary {
@@ -69,8 +189,19 @@
 .aboutDetails p {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin: 6px 0;
-  padding: 4px 10px;
+  padding: 6px 10px;
   border-left: 2px solid var(--tron-teal);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.aboutDetails p:hover {
+  background: rgba(0, 255, 231, 0.05);
+  box-shadow: inset 0 0 10px rgba(0, 255, 231, 0.05);
+}
+
+.attrIcon {
+  font-size: 16px;
+  flex-shrink: 0;
 }
