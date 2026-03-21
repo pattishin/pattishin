@@ -2,6 +2,7 @@ package main
 
 import (
   "context"
+  "log"
   "net/http"
   "os"
   "cloud.google.com/go/firestore"
@@ -44,10 +45,23 @@ type Podcast struct {
   Link string `json:"link" binding:"optional"`
 }
 
+func SecurityHeadersMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Set("X-Content-Type-Options", "nosniff")
+		c.Writer.Header().Set("X-Frame-Options", "DENY")
+		c.Writer.Header().Set("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;")
+		c.Next()
+	}
+}
+
 // TODO: Refactor common portions in /talks & /author api
 func main() {
   // router init
   router := gin.Default()
+
+  // Apply security headers
+  router.Use(SecurityHeadersMiddleware())
+
   config := cors.DefaultConfig()
 	config.AllowOrigins = []string{"http://localhost:3000","https://pattishin.io","https://pattishin-site.web.app","https://pattishin-site.firebaseapp.com"}
   config.AllowMethods = []string{"GET", "POST"}
@@ -87,16 +101,20 @@ func createNewFirestore(ctx context.Context) (*firestore.Client, error) {
  *  Handle new user creation
  */
 func userHandler(c *gin.Context) {
-  ctx := context.Background()
+  ctx := c.Request.Context()
   client, err := createNewFirestore(ctx)
   if err != nil {
-    c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
+    log.Printf("Error creating firestore client: %v", err)
+    c.JSON(http.StatusInternalServerError, gin.H{ "error": "Internal server error" })
+    return
   }
 
   defer client.Close()
 
   var form formData
-  c.BindJSON(&form)
+  if err := c.BindJSON(&form); err != nil {
+    return
+  }
 
 	// [START add user to firestore]
 	_, _, err = client.Collection("users").Add(ctx, map[string]interface{}{
@@ -104,7 +122,8 @@ func userHandler(c *gin.Context) {
 		"email": form.Email,
 	})
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+    log.Printf("Error adding user to firestore: %v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal server error"})
 		return
 	}
 	// [END add user to firestore]
@@ -115,11 +134,13 @@ func userHandler(c *gin.Context) {
  *  Get talk list
  */
  func talksHandler(c *gin.Context) {
-   ctx := context.Background()
+   ctx := c.Request.Context()
    client, err := createNewFirestore(ctx)
    
    if err != nil {
-     c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
+     log.Printf("Error creating firestore client: %v", err)
+     c.JSON(http.StatusInternalServerError, gin.H{ "error": "Internal server error" })
+     return
    }
 
    defer client.Close()
@@ -135,12 +156,16 @@ func userHandler(c *gin.Context) {
        break
      }
      if err != nil {
-       c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
+       log.Printf("Error iterating talks: %v", err)
+       c.JSON(http.StatusInternalServerError, gin.H{ "error": "Internal server error" })
+       return
      }
 
      var model Talk
      if err := doc.DataTo(&model); err != nil {
-       c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
+       log.Printf("Error mapping talk data: %v", err)
+       c.JSON(http.StatusInternalServerError, gin.H{ "error": "Internal server error" })
+       return
      }
 
      talks = append(talks, model)
@@ -154,11 +179,13 @@ func userHandler(c *gin.Context) {
  *  Retrieve author
  */
  func authorHandler(c *gin.Context) {
-   ctx := context.Background()
+   ctx := c.Request.Context()
    client, err := createNewFirestore(ctx)
    
    if err != nil {
-     c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
+     log.Printf("Error creating firestore client: %v", err)
+     c.JSON(http.StatusInternalServerError, gin.H{ "error": "Internal server error" })
+     return
    }
 
    defer client.Close()
@@ -175,12 +202,16 @@ func userHandler(c *gin.Context) {
      }
 
      if err != nil {
-       c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
+       log.Printf("Error iterating authors: %v", err)
+       c.JSON(http.StatusInternalServerError, gin.H{ "error": "Internal server error" })
+       return
      }
 
      var model Author
      if err := doc.DataTo(&model); err != nil {
-       c.JSON(http.StatusBadRequest, gin.H{ "error": err.Error() })
+       log.Printf("Error mapping author data: %v", err)
+       c.JSON(http.StatusInternalServerError, gin.H{ "error": "Internal server error" })
+       return
      }
 
      authors = append(authors, model)

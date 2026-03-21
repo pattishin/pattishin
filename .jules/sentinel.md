@@ -1,0 +1,4 @@
+## 2025-05-22 - Preventing Information Leakage and Enhancing Request Context Management
+**Vulnerability:** Backend API handlers were returning raw error messages (`err.Error()`) from Firestore and client creation directly to clients in JSON responses.
+**Learning:** Raw errors can leak sensitive information about the database structure, project IDs, or internal configurations. Additionally, using `context.Background()` for request-scoped operations like database queries ignores client cancellations, potentially leading to resource exhaustion.
+**Prevention:** Always return generic error messages (e.g., "Internal server error") to clients while logging the specific error details on the server. Always use the request context (`c.Request.Context()` in Gin) for operations that should be tied to the HTTP request lifecycle.
