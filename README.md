@@ -1,65 +1,133 @@
 <div align="center">
   <img alt="Logo" src="https://github.com/pattishin/pattishin/blob/master/src/assets/logo.png" width="200px" />
 </div>
-<h1 align="center">
-   pattishin.com
-</h1>
+<h1 align="center">pattishin.io</h1>
 <p align="center">
-  Production: <a href="https://pattishin.io" target="_blank"> pattishin.io</a>
+  <a href="https://pattishin.io" target="_blank">pattishin.io</a>
 </p>
 <p align="center">
-  Staging: <a href="https://pattishin-b5b2a.uc.r.appspot.com" target="_blank"> https://pattishin-b5b2a.uc.r.appspot.com</a>
-</p>
-<p align="center">
-<a href="https://pattishin.io" target="_blank">pattishin.io</a> is built with <a href="https://reactjs.org/" target="_blank">React</a> and hosted with <a href="https://cloud.google.com/appengine" target="_blank">Google Cloud App Engine</a>
+  A Tron-inspired 8-bit hero's journey personal site built with React + Golang.
 </p>
 
-## ⚙️ Getting started for client-side
+---
 
-1. Install dependencies
+## Tech stack
 
-   ```sh
-   npm install
-   ```
+| Layer | Technology |
+|---|---|
+| Frontend | React 18, Material UI v6, Emotion |
+| Backend | Golang (Gin), Cloud Firestore |
+| Hosting | Firebase Hosting (frontend), Google Cloud Run (backend) |
+| CI/CD | GitHub Actions |
 
-2. Start the development server
+---
 
-   ```sh
-   npm start
-   ```
-  Runs the app in the development mode.<br />
-  Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting started
 
-  The page will reload if you make edits.<br />
-  You will also see any lint errors in the console.
+### Frontend (React)
 
-3. Run tests
+```sh
+npm install
+npm start
+```
 
-   ```sh
-   npm start
-   ```
+Opens at [http://localhost:3000](http://localhost:3000). The page hot-reloads on edits.
 
-  Launches the test runner in the interactive watch mode.<br />
-  See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+npm test   # run tests in interactive watch mode
+npm run build  # create an optimized production build → /build
+```
 
-## ⚙️ Getting started for Golang web server
-  
-  ```sh
-   go get ./...
-   go run main.go
-   curl localhost:8080/api/...
-   ```
+### Backend (Golang)
 
-## 🚀 Deploying
+```sh
+go mod download
+go run main.go
+```
 
-Create production build manually
+API runs at `http://localhost:8080`. Example:
 
-   ```sh
-   npm run build
-   ```
+```sh
+curl localhost:8080/api/author
+```
 
-Or just do it in all one go. (Builds and deploys via Google Cloud App Engine)
+The backend requires a Firestore service account. Set `GOOGLE_APPLICATION_CREDENTIALS` to your credentials file, or run inside GCP where ADC is available automatically.
 
-   ```sh
-   npm run deploy
-   ```
+### Backend (Docker)
+
+```sh
+docker build -t pattishin-api .
+docker run -p 8080:8080 pattishin-api
+```
+
+---
+
+## Deploying
+
+Deployments to production happen automatically via GitHub Actions on every push to `main` (see [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)).
+
+To deploy manually:
+
+```sh
+# Frontend only (builds React → Firebase Hosting)
+./deploy.sh frontend
+
+# Backend only (Docker → Cloud Run)
+./deploy.sh backend
+
+# Both
+./deploy.sh all
+```
+
+The deploy script requires `firebase-tools` and the `gcloud` CLI to be installed and authenticated.
+
+---
+
+## Writing blog posts
+
+Blog posts live in [`public/blog/`](public/blog/) as plain Markdown files. No code changes needed.
+
+**1. Create the post file**
+
+```
+public/blog/my-post-slug.md
+```
+
+Standard Markdown is supported, including fenced code blocks, tables (GFM), blockquotes, and inline code.
+
+**2. Register it in the manifest**
+
+Add an entry to [`public/blog/manifest.json`](public/blog/manifest.json):
+
+```json
+{
+  "posts": [
+    {
+      "slug": "my-post-slug",
+      "title": "My Post Title",
+      "date": "2026-03-20",
+      "description": "A short description shown on the blog list card.",
+      "tags": ["tag1", "tag2"]
+    }
+  ]
+}
+```
+
+Posts appear in the order they are listed in the manifest. The `slug` must exactly match the filename (without `.md`).
+
+---
+
+## GitHub Actions workflows
+
+| Workflow | Trigger | What it does |
+|---|---|---|
+| `deploy.yml` | Push to `main` | Builds and deploys frontend + backend in parallel |
+| `security-agent.yml` | Daily at 6 AM UTC | Jules scans for vulnerabilities and opens a PR if found |
+| `weekly-cleanup.yml` | Mondays at 2 AM UTC | Jules refactors dead code and opens a PR if changes are impactful |
+
+### Required secrets
+
+| Secret | Used by |
+|---|---|
+| `GCP_SA_KEY` | `deploy.yml` — GCP service account JSON with Firebase Hosting Admin, Cloud Run Admin, Storage Admin, and Service Account User roles |
+| `JULES_API_KEY` | `security-agent.yml`, `weekly-cleanup.yml` |

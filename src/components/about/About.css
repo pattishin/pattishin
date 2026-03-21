@@ -139,12 +139,12 @@
   transition: width 1s ease;
 }
 .statBarFill.hp {
-  background: var(--tron-teal);
-  box-shadow: 0 0 8px var(--tron-teal);
+  background: var(--leaf-green);
+  box-shadow: 0 0 8px var(--leaf-green);
 }
 .statBarFill.xp {
-  background: var(--tron-blue);
-  box-shadow: 0 0 8px var(--tron-blue);
+  background: var(--amber);
+  box-shadow: 0 0 8px var(--amber);
 }
 
 .statVal {

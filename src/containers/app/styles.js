@@ -12,7 +12,7 @@ const styles = (theme) => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
-    backgroundColor: "#3e3e3e"
+    backgroundColor: 'transparent',
   },
   container: {
     paddingTop: theme.spacing(2),

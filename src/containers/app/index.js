@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '../../utils/withStyles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,6 +15,7 @@ import {
   Projects,
   Podcast,
   GameStart,
+  BlogPost,
 } from '../../components';
 import { getAuthor } from '../../actions/author';
 import './App.css';
@@ -22,13 +24,11 @@ import styles from './styles';
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       open: false,
       loading: false,
       gameStarted: false,
     };
-
     this.handleGameStart = this.handleGameStart.bind(this);
   }
 
@@ -41,7 +41,7 @@ class App extends Component {
     this.setState({ gameStarted: true });
   }
 
-  render() {
+  renderMain() {
     const { classes, authors } = this.props;
     const { open, loading, gameStarted } = this.state;
 
@@ -75,7 +75,7 @@ class App extends Component {
               </section>
               <footer className="footer">
                 <p>Developed with</p>
-                <FavoriteIcon fontSize="small" style={{ color: 'rgb(100, 255, 218)' }} />
+                <FavoriteIcon fontSize="small" style={{ color: '#e06890' }} />
                 <p>by</p>
                 <a href="mailto:pshin518@gmail.com">Patti Shin</a>
               </footer>
@@ -85,6 +85,17 @@ class App extends Component {
       </div>
     );
   }
+
+  render() {
+    return (
+      <Routes>
+        {/* Blog post detail — standalone page, no game gate */}
+        <Route path="/blog/:slug" element={<BlogPost />} />
+        {/* Everything else — game gate + main site */}
+        <Route path="*" element={this.renderMain()} />
+      </Routes>
+    );
+  }
 }
 
 App.propTypes = {
@@ -92,11 +103,11 @@ App.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  authors: state.author.authors
+  authors: state.author.authors,
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAuthor: () => dispatch(getAuthor())
+  getAuthor: () => dispatch(getAuthor()),
 });
 
 export default withStyles(styles)(

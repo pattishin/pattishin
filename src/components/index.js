@@ -7,3 +7,4 @@ export { default as Blogs } from './blogs';
 export { default as Projects } from './projects';
 export { default as Header } from './header';
 export { default as GameStart } from './game-start';
+export { default as BlogPost } from './blog-post';

@@ -1,0 +1,11 @@
+{
+  "posts": [
+    {
+      "slug": "journey-to-cloud-city",
+      "title": "Journey to Cloud City",
+      "date": "2021-03-15",
+      "description": "A Google Cloud Platform story series following the adventures of Cloud Traveler and Cloud Train Conductor on their quest to reach Cloud City.",
+      "tags": ["GCP", "Cloud", "Story"]
+    }
+  ]
+}

@@ -27,21 +27,21 @@ class Header extends Component {
                 onClick={() => setOpen(true)}
                 className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
               >
-                <MenuIcon style={{ color: 'rgb(100, 255, 218)' }} />
+                <MenuIcon style={{ color: '#7bc950' }} />
               </IconButton>
               <a href="#projects_section">
                 <IconButton className="menuButton" aria-label="Projects">
-                  <CodeIcon style={{ color: 'rgb(100, 255, 218)' }} />
+                  <CodeIcon style={{ color: '#7bc950' }} />
                 </IconButton>
               </a>
               <a href="#talks_section">
                 <IconButton className="menuButton" aria-label="Talks">
-                  <SlideshowIcon style={{ color: 'rgb(100, 255, 218)' }} />
+                  <SlideshowIcon style={{ color: '#7bc950' }} />
                 </IconButton>
               </a>
               <a href="#podcast_section">
                 <IconButton className="menuButton" aria-label="Podcast">
-                  <MicIcon style={{ color: 'rgb(100, 255, 218)' }} />
+                  <MicIcon style={{ color: '#7bc950' }} />
                 </IconButton>
               </a>
             </Grid2>

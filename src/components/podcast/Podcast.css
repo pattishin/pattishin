@@ -1,27 +1,3 @@
-/* ── Game stage banner ───────────────────────────────────── */
-.gameStageBanner {
-  border: 1px solid rgba(0, 255, 231, 0.3);
-  background: rgba(0, 26, 51, 0.8);
-  padding: 16px 20px;
-  margin-bottom: 28px;
-  position: relative;
-  overflow: hidden;
-}
-.gameStageBanner::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--tron-teal), transparent);
-  box-shadow: 0 0 8px var(--tron-teal);
-}
-.gsb-top { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-.gsb-badge { font-family: var(--font-pixel); font-size: 8px; color: #000; background: var(--tron-teal); padding: 4px 10px; white-space: nowrap; box-shadow: 0 0 10px var(--tron-teal); flex-shrink: 0; }
-.gsb-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--tron-teal), transparent); opacity: 0.5; }
-.gsb-title { font-family: var(--font-pixel); font-size: 10px; color: var(--tron-teal); letter-spacing: 3px; text-shadow: var(--glow-sm); white-space: nowrap; }
-.gsb-stars { font-size: 10px; color: #ffd700; text-shadow: 0 0 6px #ffd700; flex-shrink: 0; }
-.gsb-desc { font-family: var(--font-pixel); font-size: 7px; color: #7fd9cc; margin: 0; letter-spacing: 1px; }
-
 /* ── Podcast card ────────────────────────────────────────── */
 .podcastCard {
   border: 1px solid rgba(0, 255, 231, 0.4);

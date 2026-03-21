@@ -1,57 +1,5 @@
-html, body {
-  font-family: var(--font-mono) !important;
-  color: #e0fff9 !important;
-  background-color: var(--tron-dark) !important;
-  height: 100%;
-}
-
-#root {
-  width: inherit;
-  height: inherit;
-}
-
 section {
   display: flex;
   flex-direction: column;
   width: inherit;
-}
-
-.menuButton {
-  border: 1px solid var(--tron-teal) !important;
-  padding: 8px !important;
-  margin: 6px !important;
-  width: 44px;
-  transition: box-shadow 0.25s ease;
-}
-
-.menuButton:hover {
-  box-shadow: var(--glow-sm) !important;
-}
-
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 30px;
-  color: var(--tron-teal);
-  font-size: 9px;
-  font-family: var(--font-pixel);
-  letter-spacing: 1px;
-  text-shadow: var(--glow-sm);
-  animation: flicker 8s infinite;
-}
-
-.footer a {
-  color: var(--tron-teal);
-  text-decoration: none;
-  text-shadow: var(--glow-sm);
-  margin: 0 4px;
-}
-
-.footer a:hover {
-  text-shadow: var(--glow-lg);
-}
-
-.footer p {
-  margin: 0 5px;
 }
