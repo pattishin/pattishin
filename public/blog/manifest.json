@@ -1,11 +1,11 @@
 {
   "posts": [
     {
-      "slug": "journey-to-cloud-city",
-      "title": "Journey to Cloud City",
-      "date": "2021-03-15",
-      "description": "A Google Cloud Platform story series following the adventures of Cloud Traveler and Cloud Train Conductor on their quest to reach Cloud City.",
-      "tags": ["GCP", "Cloud", "Story"]
+      "slug": "rig-build",
+      "title": "Rig Build",
+      "date": "2022-12-19",
+      "description": "Building Rig, personal server",
+      "tags": ["server", "home server", "personal server", "rig"]
     }
   ]
 }

@@ -42,8 +42,8 @@ class Sidebar extends Component {
                   <GitHubIcon style={{ color: 'rgb(100, 255, 218)' }} />
                 </IconButton>
               </a>
-              <a href="https://twitter.com/pattishin" target="_blank" rel="noopener noreferrer">
-                <IconButton className="menuButton" aria-label="Twitter">
+              <a href="https://indieweb.social/@pattishin" target="_blank" rel="noopener noreferrer">
+                <IconButton className="menuButton" aria-label="Mastodon">
                   <TwitterIcon style={{ color: 'rgb(100, 255, 218)' }} />
                 </IconButton>
               </a>

@@ -5,10 +5,8 @@ const styles = (theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-  },
-  toolbarItem: {
-    display: "inline-flex",
-    justifyContent: "flex-end",
+    flexWrap: "nowrap",
+    width: "100%",
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,

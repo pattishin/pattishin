@@ -1,5 +1,5 @@
-// Colour palette — plant core × vintage computer
-const PALETTE = {
+// Default palette — plant core × vintage computer
+const DEFAULT_PALETTE = {
   0: 'none',      // transparent
   1: '#7bc950',   // leaf green
   2: '#1a2d14',   // dark forest (suit body)
@@ -11,9 +11,10 @@ const PALETTE = {
 
 /**
  * Renders an inline SVG pixel-art sprite from a 16×16 pixel array.
- * Each value maps to PALETTE above.
+ * Each value maps to the palette (default or custom via prop).
  */
-export default function PixelSprite({ pixels, size = 8, className }) {
+export default function PixelSprite({ pixels, size = 8, palette, className }) {
+  const pal = palette || DEFAULT_PALETTE;
   const dim = 16 * size;
   return (
     <svg
@@ -33,7 +34,7 @@ export default function PixelSprite({ pixels, size = 8, className }) {
               y={r * size}
               width={size}
               height={size}
-              fill={PALETTE[col]}
+              fill={pal[col]}
             />
           ) : null
         )

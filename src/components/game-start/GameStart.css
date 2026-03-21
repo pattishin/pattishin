@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   GAME START SCREEN — Plant Core × Vintage Computer Night
+   GAME START SCREEN — Cyberpunk × Biopunk Night
    ═══════════════════════════════════════════════════════════ */
 
 .gs-root {
@@ -10,42 +10,53 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* Deep night forest gradient */
+  /* Deep cyberpunk night gradient */
   background: linear-gradient(
     180deg,
-    #060e12 0%,
-    #081408 40%,
-    #0a1a08 70%,
-    #0d2008 100%
+    #060a0e 0%,
+    #060c12 35%,
+    #080e18 65%,
+    #0a1020 100%
   );
   overflow: hidden;
 }
 
-/* Stars — pixel dots in the sky layer */
+/* Stars — cool blue-white pixel dots */
 .gs-root::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle, #dce8c8 1px, transparent 1px),
-    radial-gradient(circle, #dce8c8 1px, transparent 1px),
-    radial-gradient(circle, #c8d4a8 1px, transparent 1px);
+    radial-gradient(circle, #c8d4e8 1px, transparent 1px),
+    radial-gradient(circle, #c8d4e8 1px, transparent 1px),
+    radial-gradient(circle, #a0b4cc 1px, transparent 1px);
   background-size: 180px 140px, 240px 200px, 120px 100px;
   background-position: 20px 15px, 90px 50px, 45px 80px;
-  opacity: 0.5;
+  opacity: 0.45;
   pointer-events: none;
   animation: starTwinkle 4s ease-in-out infinite alternate;
 }
 
-/* ── Fireflies ───────────────────────────────────────────── */
+/* Atmospheric teal haze */
+.gs-root::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 25%, rgba(0,180,130,0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 10%, rgba(0,120,100,0.05) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+/* ── Teal firefly particles ───────────────────────────────── */
 .gs-firefly {
   position: absolute;
   border-radius: 50%;
-  background: #ccff44;
+  background: #00ffcc;
   box-shadow:
-    0 0 6px #ccff44,
-    0 0 14px rgba(204,255,68,0.7),
-    0 0 28px rgba(204,255,68,0.3);
+    0 0 6px #00ffcc,
+    0 0 14px rgba(0,255,204,0.7),
+    0 0 28px rgba(0,255,204,0.3);
   animation: fireflyFloat linear infinite;
   pointer-events: none;
   image-rendering: pixelated;
@@ -55,7 +66,7 @@
 .gs-studio {
   font-family: var(--font-pixel);
   font-size: 8px;
-  color: var(--amber);
+  color: var(--rust-orange);
   letter-spacing: 3px;
   text-shadow: var(--glow-amber);
   margin: 0 0 24px 0;
@@ -74,12 +85,12 @@
 .gs-mainTitle {
   font-family: var(--font-pixel);
   font-size: clamp(26px, 5.5vw, 52px);
-  color: #e8f0d8;
+  color: #d0e8f0;
   text-shadow:
-    0 0 10px var(--leaf-green),
-    0 0 30px rgba(123,201,80,0.5),
-    0 0 70px rgba(123,201,80,0.2),
-    4px 4px 0px #1a2d14;
+    0 0 10px var(--teal-neon),
+    0 0 30px rgba(0,229,176,0.5),
+    0 0 70px rgba(0,229,176,0.2),
+    4px 4px 0px var(--ivy-deep);
   letter-spacing: 4px;
   margin: 0;
   line-height: 1.1;
@@ -89,32 +100,32 @@
 @keyframes gsMainTitlePulse {
   0%, 100% {
     text-shadow:
-      0 0 10px var(--leaf-green),
-      0 0 30px rgba(123,201,80,0.5),
-      0 0 70px rgba(123,201,80,0.2),
-      4px 4px 0px #1a2d14;
+      0 0 10px var(--teal-neon),
+      0 0 30px rgba(0,229,176,0.5),
+      0 0 70px rgba(0,229,176,0.2),
+      4px 4px 0px var(--ivy-deep);
   }
   50% {
     text-shadow:
-      0 0 14px var(--leaf-bright),
-      0 0 50px rgba(123,201,80,0.7),
-      0 0 100px rgba(123,201,80,0.3),
-      4px 4px 0px #1a2d14;
+      0 0 14px var(--teal-bright),
+      0 0 50px rgba(0,229,176,0.7),
+      0 0 100px rgba(0,229,176,0.3),
+      4px 4px 0px var(--ivy-deep);
   }
 }
 
 .gs-divider {
   width: 200px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--leaf-green), transparent);
-  box-shadow: 0 0 8px var(--leaf-green);
+  background: linear-gradient(90deg, transparent, var(--teal-neon), transparent);
+  box-shadow: 0 0 8px var(--teal-neon);
   margin: 14px 0;
 }
 
 .gs-subTitle {
   font-family: var(--font-pixel);
   font-size: clamp(12px, 2.5vw, 20px);
-  color: var(--leaf-green);
+  color: var(--teal-neon);
   text-shadow: var(--glow-sm);
   letter-spacing: 3px;
   margin: 0;
@@ -124,26 +135,26 @@
 .gs-tag {
   font-family: var(--font-pixel);
   font-size: 8px;
-  color: var(--amber);
+  color: var(--rust-orange);
   letter-spacing: 4px;
   margin: 10px 0 0 0;
   text-shadow: var(--glow-amber);
 }
 
-/* ── Start button — wooden pixel style ───────────────────── */
+/* ── Start button — teal neon style ──────────────────────── */
 .gs-startBtn {
   font-family: var(--font-pixel);
   font-size: clamp(10px, 1.8vw, 14px);
-  color: var(--plant-dark);
-  background: var(--leaf-green);
+  color: var(--cyber-dark);
+  background: var(--teal-neon);
   border: none;
   padding: 16px 40px;
   cursor: pointer;
   letter-spacing: 2px;
   box-shadow:
-    0 6px 0 #3d6b35,
-    0 0 20px rgba(123,201,80,0.6),
-    0 0 50px rgba(123,201,80,0.2);
+    0 6px 0 #007a60,
+    0 0 20px rgba(0,229,176,0.6),
+    0 0 50px rgba(0,229,176,0.2);
   transition: transform 0.1s, box-shadow 0.1s;
   animation: gsStartBlink 1.2s step-start infinite;
 }
@@ -151,13 +162,13 @@
 .gs-startBtn:hover {
   transform: translateY(-2px);
   box-shadow:
-    0 8px 0 #3d6b35,
-    0 0 30px rgba(123,201,80,0.9),
-    0 0 70px rgba(123,201,80,0.4);
+    0 8px 0 #007a60,
+    0 0 30px rgba(0,229,176,0.9),
+    0 0 70px rgba(0,229,176,0.4);
 }
 .gs-startBtn:active {
   transform: translateY(4px);
-  box-shadow: 0 2px 0 #3d6b35, 0 0 15px rgba(123,201,80,0.4);
+  box-shadow: 0 2px 0 #007a60, 0 0 15px rgba(0,229,176,0.4);
 }
 
 @keyframes gsStartBlink {
@@ -176,70 +187,70 @@
   overflow: hidden;
 }
 
-/* ── Ground — pixel grass ────────────────────────────────── */
+/* ── Ground — dark stone/concrete ────────────────────────── */
 .gs-ground {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 90px;
-  background: #0d1f0a;
-  /* Stepped pixel grass top edge */
-  border-top: 4px solid #4a8f3f;
-  box-shadow: 0 -6px 20px rgba(74,143,63,0.3), 0 -2px 0 #3d7a32;
-  /* Dirt texture via gradient */
+  background: #080c10;
+  border-top: 4px solid #1a2030;
+  box-shadow: 0 -6px 20px rgba(0,229,176,0.1), 0 -2px 0 #141824;
+  /* Subtle stone/concrete texture */
   background-image:
     repeating-linear-gradient(
       90deg,
-      rgba(74,143,63,0.15) 0px,  rgba(74,143,63,0.15) 8px,
-      rgba(61,122,50,0.15) 8px,  rgba(61,122,50,0.15) 16px,
-      rgba(92,163,68,0.15) 16px, rgba(92,163,68,0.15) 24px,
-      rgba(61,122,50,0.15) 24px, rgba(61,122,50,0.15) 32px
+      rgba(0,229,176,0.02) 0px,  rgba(0,229,176,0.02) 8px,
+      rgba(0,180,140,0.02) 8px,  rgba(0,180,140,0.02) 16px,
+      rgba(0,229,176,0.03) 16px, rgba(0,229,176,0.03) 24px,
+      rgba(0,180,140,0.02) 24px, rgba(0,180,140,0.02) 32px
     );
   background-size: 32px 8px;
   background-position: top;
 }
 
-/* ── Ruined structures (old overgrown computers/stonework) ── */
+/* ── Building silhouettes (overgrown/ruined structures) ──── */
 .gs-ruin {
   position: absolute;
   bottom: 90px;
-  background: #12100e;
-  border: 2px solid #2a2018;
+  background: #0e0c10;
+  border: 2px solid #1a1820;
   image-rendering: pixelated;
 }
 
-/* Moss/vine tint on top of each ruin */
+/* Ivy tint on top of each building */
 .gs-ruin::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 30%;
-  background: linear-gradient(rgba(45,82,38,0.6), transparent);
+  height: 35%;
+  background: linear-gradient(rgba(0,30,20,0.7), transparent);
   pointer-events: none;
 }
-/* Bottom amber "old screen" glow on some ruins */
+
+/* Teal-lit window slot */
 .gs-ruin::after {
   content: '';
   position: absolute;
-  bottom: 8px; left: 50%;
+  bottom: 12px; left: 50%;
   transform: translateX(-50%);
-  width: 60%;
-  height: 5px;
-  background: rgba(200,134,10,0.15);
-  box-shadow: 0 0 8px rgba(200,134,10,0.3);
+  width: 55%;
+  height: 6px;
+  background: rgba(0,229,176,0.08);
+  box-shadow: 0 0 10px rgba(0,229,176,0.25);
 }
 
-/* Left ruins */
-.gs-ruin-l1 { left: 1%;   width: 52px;  height: 80px;  border-color: #3d2a1a; }
-.gs-ruin-l2 { left: 7%;   width: 72px;  height: 135px; border-color: #2a2018; }
-.gs-ruin-l3 { left: 17%;  width: 44px;  height: 65px;  border-color: #3d2a1a; }
-/* Right ruins */
-.gs-ruin-r1 { right: 17%; width: 48px;  height: 75px;  border-color: #3d2a1a; }
-.gs-ruin-r2 { right: 7%;  width: 68px;  height: 125px; border-color: #2a2018; }
-.gs-ruin-r3 { right: 1%;  width: 52px;  height: 82px;  border-color: #3d2a1a; }
+/* Left buildings */
+.gs-ruin-l1 { left: 1%;   width: 52px;  height: 80px;  border-color: #1a1828; }
+.gs-ruin-l2 { left: 7%;   width: 72px;  height: 135px; border-color: #141820; }
+.gs-ruin-l3 { left: 17%;  width: 44px;  height: 65px;  border-color: #1a1828; }
+/* Right buildings */
+.gs-ruin-r1 { right: 17%; width: 48px;  height: 75px;  border-color: #1a1828; }
+.gs-ruin-r2 { right: 7%;  width: 68px;  height: 125px; border-color: #141820; }
+.gs-ruin-r3 { right: 1%;  width: 52px;  height: 82px;  border-color: #1a1828; }
 
-/* ── Pixel trees ─────────────────────────────────────────── */
+/* ── Overgrown trees — dark silhouettes ──────────────────── */
 .gs-tree {
   position: absolute;
   bottom: 90px;
@@ -252,9 +263,9 @@
 .gs-tree-trunk {
   width: 12px;
   height: 55px;
-  background: #5c3d28;
+  background: #1a1214;
   margin: 0 auto;
-  box-shadow: inset -3px 0 0 #3d2a1a;
+  box-shadow: inset -3px 0 0 #0e0a0c;
   image-rendering: pixelated;
 }
 
@@ -265,18 +276,18 @@
 .gs-tree-canopy-top {
   width: 40px;
   height: 28px;
-  background: #2d5a27;
-  box-shadow: inset -4px -4px 0 #1e3d1a, 0 0 8px rgba(61,107,53,0.4);
+  background: #0f1a10;
+  box-shadow: inset -4px -4px 0 #0a1010, 0 0 8px rgba(0,229,176,0.08);
 }
 .gs-tree-canopy-mid {
   width: 60px;
   height: 32px;
-  background: #3d7a32;
-  box-shadow: inset -5px -5px 0 #2d5a27, 0 0 10px rgba(74,143,63,0.3);
+  background: #142014;
+  box-shadow: inset -5px -5px 0 #0f1a10, 0 0 10px rgba(0,229,176,0.06);
   animation: leafSway 5s ease-in-out infinite;
 }
 
-/* ── Ground bushes ───────────────────────────────────────── */
+/* ── Ground ivy clusters ─────────────────────────────────── */
 .gs-bush {
   position: absolute;
   bottom: 88px;
@@ -288,23 +299,22 @@
 .gs-bush::after {
   content: '';
   position: absolute;
-  background: #2d5226;
+  background: #0f1a10;
 }
-/* Main bush body */
 .gs-bush-l {
   left: 22%;
   width: 48px;
-  background: #3d7a32;
-  box-shadow: inset -4px -4px 0 #2d5a27, 2px 0 0 #4a8f3f;
+  background: #142014;
+  box-shadow: inset -4px -4px 0 #0f1a10, 2px 0 0 #1a2818;
 }
 .gs-bush-r {
   right: 22%;
   width: 52px;
-  background: #3d7a32;
-  box-shadow: inset -4px -4px 0 #2d5a27, -2px 0 0 #4a8f3f;
+  background: #142014;
+  box-shadow: inset -4px -4px 0 #0f1a10, -2px 0 0 #1a2818;
 }
 
-/* ── Walking sprite ──────────────────────────────────────── */
+/* ── Wall-E rolling sprite ───────────────────────────────── */
 .gs-sprite {
   position: absolute;
   bottom: 90px;

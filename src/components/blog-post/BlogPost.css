@@ -1,22 +1,22 @@
 /* ═══════════════════════════════════════════════════════════
-   BLOG POST — Overgrown vintage codex reader
+   BLOG POST — Cyberpunk codex reader
    ═══════════════════════════════════════════════════════════ */
 
 .bp-root {
   min-height: 100vh;
-  background: linear-gradient(180deg, #060e06 0%, #081408 60%, #0a1808 100%);
-  color: var(--star-cream);
+  background: linear-gradient(180deg, #060a0e 0%, #080c12 60%, #0a1018 100%);
+  color: var(--star-cool);
   font-family: var(--font-mono);
   position: relative;
   z-index: 1;
 }
 
-/* Vine texture on far sides */
+/* Teal pixel grid texture */
 .bp-root::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(123,201,80,0.06) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(0,229,176,0.06) 1px, transparent 1px);
   background-size: 24px 24px;
   pointer-events: none;
   z-index: 0;
@@ -28,8 +28,8 @@
   align-items: center;
   gap: 16px;
   padding: 16px 32px;
-  border-bottom: 1px solid rgba(123,201,80,0.2);
-  background: rgba(6, 13, 6, 0.85);
+  border-bottom: 1px solid rgba(0,229,176,0.2);
+  background: rgba(6, 10, 14, 0.85);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -39,9 +39,9 @@
 .bp-back {
   font-family: var(--font-pixel);
   font-size: 8px;
-  color: var(--leaf-green);
+  color: var(--teal-neon);
   background: none;
-  border: 1px solid var(--leaf-green);
+  border: 1px solid var(--teal-neon);
   padding: 8px 16px;
   cursor: pointer;
   letter-spacing: 2px;
@@ -50,13 +50,13 @@
 }
 .bp-back:hover {
   box-shadow: var(--glow-sm);
-  background: rgba(123,201,80,0.08);
+  background: rgba(0,229,176,0.08);
 }
 
 .bp-breadcrumb {
   font-family: var(--font-pixel);
   font-size: 7px;
-  color: rgba(123,201,80,0.4);
+  color: rgba(0,229,176,0.4);
   letter-spacing: 2px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -76,14 +76,14 @@
 .bp-stateText {
   font-family: var(--font-pixel);
   font-size: 10px;
-  color: var(--leaf-green);
+  color: var(--teal-neon);
   letter-spacing: 3px;
   animation: pixelBlink 1s step-start infinite;
 }
 
 .bp-error {
-  color: var(--flower-pink);
-  text-shadow: 0 0 10px var(--flower-pink);
+  color: var(--cat-orange);
+  text-shadow: 0 0 10px var(--cat-orange);
   animation: flicker 4s infinite;
 }
 
@@ -100,22 +100,22 @@
 .bp-stageBadge {
   font-family: var(--font-pixel);
   font-size: 7px;
-  color: var(--plant-dark);
-  background: var(--leaf-green);
+  color: var(--cyber-dark);
+  background: var(--teal-neon);
   display: inline-block;
   padding: 4px 12px;
   letter-spacing: 2px;
-  box-shadow: 0 0 10px var(--leaf-green);
+  box-shadow: 0 0 10px var(--teal-neon);
   margin-bottom: 20px;
 }
 
 .bp-title {
   font-family: var(--font-pixel);
   font-size: clamp(14px, 2.8vw, 24px);
-  color: var(--star-cream);
+  color: var(--star-cool);
   text-shadow:
-    0 0 10px var(--leaf-green),
-    0 0 30px rgba(123,201,80,0.3);
+    0 0 10px var(--teal-neon),
+    0 0 30px rgba(0,229,176,0.3);
   margin: 0 0 16px 0;
   line-height: 1.6;
   letter-spacing: 2px;
@@ -132,24 +132,24 @@
 .bp-date {
   font-family: var(--font-pixel);
   font-size: 7px;
-  color: rgba(123,201,80,0.5);
+  color: rgba(0,229,176,0.5);
   letter-spacing: 2px;
 }
 
 .bp-tag {
   font-family: var(--font-pixel);
   font-size: 6px;
-  color: var(--plant-dark);
-  background: var(--amber);
+  color: var(--cyber-dark);
+  background: var(--rust-orange);
   padding: 3px 8px;
-  box-shadow: 0 0 6px var(--amber);
+  box-shadow: 0 0 6px var(--rust-orange);
   letter-spacing: 1px;
 }
 
 .bp-divider {
   height: 1px;
-  background: linear-gradient(90deg, var(--leaf-green), transparent);
-  box-shadow: 0 0 6px var(--leaf-green);
+  background: linear-gradient(90deg, var(--teal-neon), transparent);
+  box-shadow: 0 0 6px var(--teal-neon);
   margin-bottom: 40px;
 }
 
@@ -157,7 +157,7 @@
 .bp-content {
   line-height: 1.9;
   font-size: 15px;
-  color: #c8ddb8;
+  color: #b0c8d8;
 }
 
 .bp-content h1,
@@ -165,7 +165,7 @@
 .bp-content h3,
 .bp-content h4 {
   font-family: var(--font-pixel);
-  color: var(--leaf-green);
+  color: var(--teal-neon);
   text-shadow: var(--glow-sm);
   margin: 40px 0 16px;
   line-height: 1.6;
@@ -178,33 +178,33 @@
 .bp-content p { margin: 0 0 20px 0; }
 
 .bp-content strong {
-  color: var(--star-cream);
-  text-shadow: 0 0 4px rgba(220,232,200,0.3);
+  color: var(--star-cool);
+  text-shadow: 0 0 4px rgba(200,212,232,0.3);
 }
 
 .bp-content em {
-  color: var(--amber);
+  color: var(--rust-orange);
   font-style: normal;
   font-family: var(--font-pixel);
   font-size: 0.8em;
 }
 
 .bp-content a {
-  color: var(--leaf-green);
+  color: var(--teal-neon);
   text-decoration: none;
-  border-bottom: 1px solid rgba(123,201,80,0.4);
+  border-bottom: 1px solid rgba(0,229,176,0.4);
   transition: border-color 0.2s, text-shadow 0.2s;
 }
 .bp-content a:hover {
   text-shadow: var(--glow-sm);
-  border-color: var(--leaf-green);
+  border-color: var(--teal-neon);
 }
 
-/* ── Code blocks — vintage amber terminal ────────────────── */
+/* ── Code blocks — amber terminal ────────────────────────── */
 .bp-content pre {
-  background: #0a0e08;
-  border: 1px solid rgba(123,201,80,0.2);
-  border-left: 3px solid var(--amber);
+  background: #080c10;
+  border: 1px solid rgba(0,229,176,0.2);
+  border-left: 3px solid var(--rust-orange);
   padding: 20px 24px;
   overflow-x: auto;
   margin: 24px 0;
@@ -217,7 +217,7 @@
   right: 12px;
   font-family: var(--font-pixel);
   font-size: 6px;
-  color: rgba(200,134,10,0.5);
+  color: rgba(200,75,10,0.5);
   letter-spacing: 2px;
   animation: pixelBlink 1.2s step-start infinite;
 }
@@ -225,24 +225,24 @@
 .bp-content code {
   font-family: var(--font-mono);
   font-size: 13px;
-  color: var(--amber-bright);  /* amber — vintage terminal phosphor */
+  color: var(--rust-bright);
 }
 
 .bp-content :not(pre) > code {
-  background: rgba(200,134,10,0.1);
-  border: 1px solid rgba(200,134,10,0.25);
-  color: var(--amber-bright);
+  background: rgba(200,75,10,0.1);
+  border: 1px solid rgba(200,75,10,0.25);
+  color: var(--rust-bright);
   padding: 2px 6px;
   font-size: 12px;
 }
 
-/* ── Blockquote — plant scroll ───────────────────────────── */
+/* ── Blockquote ──────────────────────────────────────────── */
 .bp-content blockquote {
-  border-left: 3px solid var(--leaf-green);
+  border-left: 3px solid var(--teal-neon);
   margin: 24px 0;
   padding: 12px 20px;
-  background: rgba(61,107,53,0.08);
-  color: #a8c898;
+  background: rgba(0,80,80,0.08);
+  color: #90b8c0;
   font-style: italic;
 }
 .bp-content blockquote p { margin: 0; }
@@ -251,14 +251,14 @@
 .bp-content ul,
 .bp-content ol { padding-left: 24px; margin: 0 0 20px 0; }
 .bp-content li { margin: 6px 0; }
-.bp-content li::marker { color: var(--leaf-green); }
+.bp-content li::marker { color: var(--teal-neon); }
 
-/* ── Horizontal rule — vines ─────────────────────────────── */
+/* ── Horizontal rule ─────────────────────────────────────── */
 .bp-content hr {
   border: none;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--leaf-green), transparent);
-  box-shadow: 0 0 6px var(--leaf-green);
+  background: linear-gradient(90deg, transparent, var(--teal-neon), transparent);
+  box-shadow: 0 0 6px var(--teal-neon);
   margin: 40px 0;
 }
 
@@ -267,18 +267,18 @@
 .bp-content th {
   font-family: var(--font-pixel);
   font-size: 7px;
-  color: var(--leaf-green);
-  border-bottom: 2px solid var(--leaf-green);
+  color: var(--teal-neon);
+  border-bottom: 2px solid var(--teal-neon);
   padding: 10px 14px;
   text-align: left;
   letter-spacing: 1px;
 }
 .bp-content td {
   padding: 10px 14px;
-  border-bottom: 1px solid rgba(123,201,80,0.1);
-  color: #a8c898;
+  border-bottom: 1px solid rgba(0,229,176,0.1);
+  color: #90b8c0;
 }
-.bp-content tr:hover td { background: rgba(123,201,80,0.04); }
+.bp-content tr:hover td { background: rgba(0,229,176,0.04); }
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 600px) {

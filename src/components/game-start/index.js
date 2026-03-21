@@ -2,42 +2,56 @@ import { useState, useEffect } from 'react';
 import PixelSprite from '../../utils/PixelSprite';
 import './GameStart.css';
 
-// Pixel palette: 0=transparent,1=leaf-green,2=dark-forest,3=bark,4=cream,5=pink,6=firefly
+// Wall-E palette
+// 0=transparent, 1=sandy-rust body, 2=dark tread, 3=amber eye,
+// 4=dark shadow, 5=teal solar, 6=eye highlight
+const WALLE_PALETTE = {
+  0: 'none',
+  1: '#a07840',
+  2: '#1c1c1c',
+  3: '#f5c220',
+  4: '#4a2e0e',
+  5: '#00ccaa',
+  6: '#ddd8a0',
+};
+
+// Wall-E — frame A (treads position 1)
 const FRAME_A = [
-  [0,0,0,5,5,5,5,5,5,5,0,0,0,0,0,0],
-  [0,0,5,5,4,4,4,4,4,5,5,5,0,0,0,0],
-  [0,0,0,4,4,4,4,4,4,4,4,0,0,0,0,0],
-  [0,0,0,4,3,4,4,4,3,4,4,0,0,0,0,0],
-  [0,0,0,4,4,4,4,4,4,4,4,0,0,0,0,0],
-  [0,0,0,0,4,1,4,4,1,4,0,0,0,0,0,0],
-  [0,0,1,1,2,2,2,2,2,2,1,1,0,0,0,0],
-  [0,1,2,2,2,2,2,2,2,2,2,2,1,0,0,0],
-  [0,1,2,1,2,2,1,2,2,1,2,1,2,1,0,0],
-  [0,0,1,2,2,2,1,2,2,1,2,2,1,0,0,0],
-  [0,0,0,1,1,0,2,2,2,2,0,1,1,0,0,0],
-  [0,0,0,2,2,0,2,2,2,2,0,2,2,0,0,0],
-  [0,0,0,2,2,0,0,2,2,0,0,2,2,0,0,0],
-  [0,0,0,3,3,0,0,0,0,0,0,3,3,0,0,0],
-  [0,0,3,3,0,0,0,0,0,0,0,0,3,3,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,3,3,0,0,3,3,0,0,0,0,0,0],
+  [0,0,0,3,3,6,3,3,3,6,3,0,0,0,0,0],
+  [0,0,0,3,3,3,3,3,3,3,3,0,0,0,0,0],
+  [0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0],
+  [0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0],
+  [0,0,1,1,4,1,5,5,5,1,4,1,1,0,0,0],
+  [0,0,1,1,4,1,5,5,5,1,4,1,1,0,0,0],
+  [0,0,1,1,4,1,1,1,1,1,4,1,1,0,0,0],
+  [0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0],
+  [0,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0],
+  [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0],
+  [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0],
+  [0,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ];
 
+// Wall-E — frame B (treads shifted for roll animation)
 const FRAME_B = [
-  [0,0,0,5,5,5,5,5,5,5,0,0,0,0,0,0],
-  [0,0,5,5,4,4,4,4,4,5,5,5,0,0,0,0],
-  [0,0,0,4,4,4,4,4,4,4,4,0,0,0,0,0],
-  [0,0,0,4,3,4,4,4,3,4,4,0,0,0,0,0],
-  [0,0,0,4,4,4,4,4,4,4,4,0,0,0,0,0],
-  [0,0,0,0,4,1,4,4,1,4,0,0,0,0,0,0],
-  [0,0,1,1,2,2,2,2,2,2,1,1,0,0,0,0],
-  [0,1,2,2,2,2,2,2,2,2,2,2,1,0,0,0],
-  [0,1,2,1,2,2,1,2,2,1,2,1,2,1,0,0],
-  [0,0,1,2,2,2,1,2,2,1,2,2,1,0,0,0],
-  [0,0,0,1,1,0,2,2,2,2,0,1,1,0,0,0],
-  [0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0],
-  [0,2,2,0,0,0,0,0,2,2,0,0,0,2,2,0],
-  [0,2,3,0,0,0,0,0,0,3,0,0,0,3,2,0],
-  [0,3,3,0,0,0,0,0,0,3,3,0,0,3,3,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,3,3,0,0,3,3,0,0,0,0,0,0],
+  [0,0,0,3,3,6,3,3,3,6,3,0,0,0,0,0],
+  [0,0,0,3,3,3,3,3,3,3,3,0,0,0,0,0],
+  [0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0],
+  [0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0],
+  [0,0,1,1,4,1,5,5,5,1,4,1,1,0,0,0],
+  [0,0,1,1,4,1,5,5,5,1,4,1,1,0,0,0],
+  [0,0,1,1,4,1,1,1,1,1,4,1,1,0,0,0],
+  [0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0],
+  [2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0],
+  [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0],
+  [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0],
+  [2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ];
 
@@ -60,14 +74,14 @@ export default function GameStart({ onStart }) {
   const [frame, setFrame] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => setFrame(f => f === 0 ? 1 : 0), 180);
+    const interval = setInterval(() => setFrame(f => f === 0 ? 1 : 0), 200);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="gs-root">
 
-      {/* Floating fireflies */}
+      {/* Floating teal particles */}
       {FIREFLIES.map((f, i) => (
         <div
           key={i}
@@ -99,19 +113,19 @@ export default function GameStart({ onStart }) {
         [ PRESS START ]
       </button>
 
-      {/* Scene: night garden with ruined computers */}
+      {/* Scene: cyberpunk alley with overgrown buildings */}
       <div className="gs-scene">
 
-        {/* Ruined structures — left */}
+        {/* Building silhouettes — left */}
         <div className="gs-ruin gs-ruin-l1" />
         <div className="gs-ruin gs-ruin-l2" />
         <div className="gs-ruin gs-ruin-l3" />
-        {/* Ruined structures — right */}
+        {/* Building silhouettes — right */}
         <div className="gs-ruin gs-ruin-r1" />
         <div className="gs-ruin gs-ruin-r2" />
         <div className="gs-ruin gs-ruin-r3" />
 
-        {/* Pixel trees — far sides */}
+        {/* Overgrown trees — dark silhouettes */}
         <div className="gs-tree gs-tree-l">
           <div className="gs-tree-canopy gs-tree-canopy-top" />
           <div className="gs-tree-canopy gs-tree-canopy-mid" />
@@ -123,16 +137,20 @@ export default function GameStart({ onStart }) {
           <div className="gs-tree-trunk" />
         </div>
 
-        {/* Bushes at ground level */}
+        {/* Ground ivy clusters */}
         <div className="gs-bush gs-bush-l" />
         <div className="gs-bush gs-bush-r" />
 
-        {/* Walking sprite */}
+        {/* Wall-E rolling sprite */}
         <div className="gs-sprite">
-          <PixelSprite pixels={frame === 0 ? FRAME_A : FRAME_B} size={4} />
+          <PixelSprite
+            pixels={frame === 0 ? FRAME_A : FRAME_B}
+            palette={WALLE_PALETTE}
+            size={4}
+          />
         </div>
 
-        {/* Grass ground */}
+        {/* Ground — dark stone */}
         <div className="gs-ground" />
       </div>
     </div>

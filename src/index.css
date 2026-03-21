@@ -1,38 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;500&display=swap');
 
 /* ═══════════════════════════════════════════════════════════
-   PLANT CORE × VINTAGE COMPUTER — design tokens
+   CYBERPUNK × BIOPUNK — design tokens
    ═══════════════════════════════════════════════════════════ */
 :root {
   /* Core palette */
-  --plant-dark:   #060d06;
-  --plant-deep:   #0d1a0a;
-  --leaf-green:   #7bc950;
-  --leaf-bright:  #9ddf6e;
-  --moss:         #3d6b35;
+  --cyber-dark:   #060a0e;
+  --cyber-deep:   #0a1018;
+  --teal-neon:    #00e5b0;
+  --teal-bright:  #00ffcc;
+  --teal-dim:     #007a60;
   --bark:         #6b3f28;
   --earth:        #8b5e3c;
-  --amber:        #c8860a;
-  --amber-bright: #e8a832;
-  --firefly:      #ccff44;
-  --flower-pink:  #e06890;
-  --star-cream:   #dce8c8;
-  --vine-dark:    #1a2d14;
+  --rust-orange:  #c84b0a;
+  --rust-bright:  #e85a10;
+  --flare-teal:   #00ffcc;
+  --cat-orange:   #d06030;
+  --star-cool:    #c8d4e8;
+  --ivy-deep:     #0a1a12;
 
-  /* Map legacy variable names → new palette so all components cascade */
-  --tron-teal:  #7bc950;
-  --tron-blue:  #c8860a;
-  --tron-dark:  #060d06;
-  --tron-navy:  #0d1a0a;
-  --tron-grid:  rgba(123, 201, 80, 0.04);
+  /* Backward-compat aliases — keep for legacy components */
+  --plant-dark:   var(--cyber-dark);
+  --plant-deep:   var(--cyber-deep);
+  --leaf-green:   var(--teal-neon);
+  --leaf-bright:  var(--teal-bright);
+  --moss:         var(--teal-dim);
+  --amber:        var(--rust-orange);
+  --amber-bright: var(--rust-bright);
+  --firefly:      var(--flare-teal);
+  --flower-pink:  var(--cat-orange);
+  --star-cream:   var(--star-cool);
+  --vine-dark:    var(--ivy-deep);
 
-  /* Glow effects (green) */
-  --glow-sm:    0 0 6px #7bc950, 0 0 12px rgba(123,201,80,0.4);
-  --glow-md:    0 0 8px #7bc950, 0 0 20px rgba(123,201,80,0.5);
-  --glow-lg:    0 0 10px #7bc950, 0 0 30px rgba(123,201,80,0.6), 0 0 60px rgba(123,201,80,0.2);
-  --glow-amber: 0 0 8px #c8860a, 0 0 20px rgba(200,134,10,0.5);
+  /* Legacy tron aliases */
+  --tron-teal:  var(--teal-neon);
+  --tron-blue:  var(--rust-orange);
+  --tron-dark:  var(--cyber-dark);
+  --tron-navy:  var(--cyber-deep);
+  --tron-grid:  rgba(0, 229, 176, 0.04);
 
-  --border-neon: 1px solid #7bc950;
+  /* Glow effects (teal) */
+  --glow-sm:    0 0 6px #00e5b0, 0 0 12px rgba(0,229,176,0.4);
+  --glow-md:    0 0 8px #00e5b0, 0 0 20px rgba(0,229,176,0.5);
+  --glow-lg:    0 0 10px #00e5b0, 0 0 30px rgba(0,229,176,0.6), 0 0 60px rgba(0,229,176,0.2);
+  --glow-amber: 0 0 8px #c84b0a, 0 0 20px rgba(200,75,10,0.5);
+
+  --border-neon: 1px solid #00e5b0;
   --font-pixel:  'Press Start 2P', monospace;
   --font-mono:   'Roboto Mono', monospace;
 }
@@ -44,8 +57,8 @@
 }
 
 @keyframes vinePulse {
-  0%, 100% { box-shadow: var(--glow-sm); border-color: var(--leaf-green); }
-  50%       { box-shadow: var(--glow-md); border-color: var(--leaf-bright); }
+  0%, 100% { box-shadow: var(--glow-sm); border-color: var(--teal-neon); }
+  50%       { box-shadow: var(--glow-md); border-color: var(--teal-bright); }
 }
 
 @keyframes scanline {
@@ -75,9 +88,9 @@
 }
 
 @keyframes fireflyFloat {
-  0%   { transform: translateY(0) scale(1);   opacity: 0.9; }
-  50%  { transform: translateY(-80px) scale(1.2); opacity: 1; }
-  100% { transform: translateY(-200px) scale(0.8); opacity: 0; }
+  0%   { transform: translateY(0) scale(1);        opacity: 0.9; }
+  50%  { transform: translateY(-80px) scale(1.2);  opacity: 1;   }
+  100% { transform: translateY(-200px) scale(0.8); opacity: 0;   }
 }
 
 @keyframes starTwinkle {
@@ -97,20 +110,20 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: var(--plant-dark);
-  color: var(--star-cream);
+  background-color: var(--cyber-dark) !important;
+  color: var(--star-cool);
   font-family: var(--font-mono);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
 }
 
-/* Pixel dot grid — organic starfield feel */
+/* Teal pixel dot grid */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(123,201,80,0.08) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(0,229,176,0.06) 1px, transparent 1px);
   background-size: 28px 28px;
   pointer-events: none;
   z-index: 0;
@@ -141,20 +154,20 @@ body::after {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--plant-dark); }
+::-webkit-scrollbar-track { background: var(--cyber-dark); }
 ::-webkit-scrollbar-thumb {
-  background: var(--moss);
+  background: var(--teal-dim);
   box-shadow: var(--glow-sm);
 }
 
 code {
   font-family: var(--font-mono);
-  color: var(--leaf-green);
+  color: var(--teal-neon);
 }
 
 /* Section nav icons */
 .menuButton {
-  border: 1px solid var(--leaf-green) !important;
+  border: 1px solid var(--teal-neon) !important;
   padding: 8px !important;
   margin: 6px !important;
   width: 44px;
@@ -170,14 +183,14 @@ code {
   align-items: center;
   justify-content: center;
   margin: 30px;
-  color: var(--leaf-green);
+  color: var(--teal-neon);
   font-size: 10px;
   font-family: var(--font-pixel);
   letter-spacing: 1px;
   text-shadow: var(--glow-sm);
 }
 .footer a {
-  color: var(--leaf-green);
+  color: var(--teal-neon);
   text-decoration: none;
   text-shadow: var(--glow-sm);
 }
@@ -186,8 +199,8 @@ code {
 
 /* ── Shared: game stage banner ───────────────────────────── */
 .gameStageBanner {
-  border: 1px solid rgba(123, 201, 80, 0.35);
-  background: rgba(13, 26, 10, 0.9);
+  border: 1px solid rgba(0, 229, 176, 0.35);
+  background: rgba(10, 16, 24, 0.9);
   padding: 16px 20px;
   margin-bottom: 28px;
   position: relative;
@@ -198,8 +211,8 @@ code {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--leaf-green), transparent);
-  box-shadow: 0 0 8px var(--leaf-green);
+  background: linear-gradient(90deg, transparent, var(--teal-neon), transparent);
+  box-shadow: 0 0 8px var(--teal-neon);
 }
 /* Vine corner decoration */
 .gameStageBanner::after {
@@ -219,23 +232,23 @@ code {
 .gsb-badge {
   font-family: var(--font-pixel);
   font-size: 8px;
-  color: var(--plant-dark);
-  background: var(--leaf-green);
+  color: var(--cyber-dark);
+  background: var(--teal-neon);
   padding: 4px 10px;
   white-space: nowrap;
-  box-shadow: 0 0 10px var(--leaf-green);
+  box-shadow: 0 0 10px var(--teal-neon);
   flex-shrink: 0;
 }
 .gsb-line {
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, var(--leaf-green), transparent);
+  background: linear-gradient(90deg, var(--teal-neon), transparent);
   opacity: 0.5;
 }
 .gsb-title {
   font-family: var(--font-pixel);
   font-size: 10px;
-  color: var(--leaf-green);
+  color: var(--teal-neon);
   letter-spacing: 3px;
   text-shadow: var(--glow-sm);
   white-space: nowrap;
@@ -248,7 +261,7 @@ code {
 .gsb-desc {
   font-family: var(--font-pixel);
   font-size: 7px;
-  color: rgba(123, 201, 80, 0.7);
+  color: rgba(0, 229, 176, 0.7);
   margin: 0;
   letter-spacing: 1px;
 }

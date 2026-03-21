@@ -18,8 +18,8 @@ class Header extends Component {
     return (
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar>
-          <Grid2 container className={classes.toolbar}>
-            <Grid2 size={{ xs: 12, lg: 9 }}>
+          <Grid2 container className={classes.toolbar} style={{ flexWrap: 'nowrap', width: '100%' }}>
+            <Grid2 size={{ xs: "auto" }} style={{ flex: 1, display: 'flex', alignItems: 'center', flexWrap: 'nowrap' }}>
               <IconButton
                 edge="end"
                 color="inherit"
@@ -27,26 +27,23 @@ class Header extends Component {
                 onClick={() => setOpen(true)}
                 className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
               >
-                <MenuIcon style={{ color: '#7bc950' }} />
+                <MenuIcon style={{ color: '#00e5b0' }} />
               </IconButton>
               <a href="#projects_section">
                 <IconButton className="menuButton" aria-label="Projects">
-                  <CodeIcon style={{ color: '#7bc950' }} />
+                  <CodeIcon style={{ color: '#00e5b0' }} />
                 </IconButton>
               </a>
               <a href="#talks_section">
                 <IconButton className="menuButton" aria-label="Talks">
-                  <SlideshowIcon style={{ color: '#7bc950' }} />
+                  <SlideshowIcon style={{ color: '#00e5b0' }} />
                 </IconButton>
               </a>
               <a href="#podcast_section">
                 <IconButton className="menuButton" aria-label="Podcast">
-                  <MicIcon style={{ color: '#7bc950' }} />
+                  <MicIcon style={{ color: '#00e5b0' }} />
                 </IconButton>
               </a>
-            </Grid2>
-            <Grid2 size={{ xs: "auto", lg: 3 }} className={classes.toolbarItem}>
-              <p>{"#blacklivesmatter"}</p>
             </Grid2>
           </Grid2>
         </Toolbar>
