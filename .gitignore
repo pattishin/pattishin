@@ -4,13 +4,16 @@
 build/
 
 # Credentials (keep out of github)
-firebase.json
+serviceAccount.json
 
 # Third party libs
 node_modules/
 
 # Env variables
 .env
+
+# Firebase
+.firebase/hosting*
 
 # Temporary vim files
 *.swo

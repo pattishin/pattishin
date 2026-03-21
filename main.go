@@ -3,15 +3,14 @@ package main
 import (
   "context"
   "net/http"
+  "os"
   "cloud.google.com/go/firestore"
   "github.com/gin-gonic/gin"
   "github.com/gin-contrib/cors"
   "google.golang.org/api/iterator"
-  "google.golang.org/api/option"
 )
 
-const firestoreAccountFile = "firebase.json"
-const firestoreProjectId = "pattishin-b5b2a"
+const firestoreProjectId = "pattishin-site"
 
 type formData struct {
   Name string `json:"name" binding:"required"`
@@ -50,7 +49,7 @@ func main() {
   // router init
   router := gin.Default()
   config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:3000","http://pattishin.io/","https://pattishin-b5b2a.uc.r.appspot.com"}
+	config.AllowOrigins = []string{"http://localhost:3000","https://pattishin.io","https://pattishin-site.web.app","https://pattishin-site.firebaseapp.com"}
   config.AllowMethods = []string{"GET", "POST"}
 	config.AllowHeaders = []string{"Origin"}
 	config.ExposeHeaders = []string{"Content-Length"}
@@ -69,15 +68,19 @@ func main() {
   
   apiRoutes.POST("/user", userHandler)
 
-  // run application on port 8080
-  router.Run(":8080")
+  // Cloud Run injects PORT; fall back to 8080 for local dev
+  port := os.Getenv("PORT")
+  if port == "" {
+    port = "8080"
+  }
+  router.Run(":" + port)
 }
 
 /**
  * Create a new firestore instance 
  */
-func createNewFirestore (ctx context.Context) (*firestore.Client, error)  {
-  return firestore.NewClient(ctx, firestoreProjectId, option.WithServiceAccountFile(firestoreAccountFile))
+func createNewFirestore(ctx context.Context) (*firestore.Client, error) {
+  return firestore.NewClient(ctx, firestoreProjectId)
 }
 
 /**
