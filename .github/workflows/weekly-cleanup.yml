@@ -2,22 +2,25 @@ name: Weekly Codebase Cleanup
 
 on:
   schedule:
-    # Run every Monday at 2 AM UTC
-    - cron: '0 2 * * 1'
-  workflow_dispatch: # Allow manual triggers
+    - cron: '0 2 * * 1'  # Every Monday at 2 AM UTC
+  workflow_dispatch:
 
 jobs:
   cleanup:
+    name: Jules Codebase Cleanup
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-    
+      contents: write
+      pull-requests: write
+
     steps:
       - name: Invoke Jules for Cleanup
         uses: google-labs-code/jules-invoke@v1
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          jules_api_key: ${{ secrets.JULES_API_KEY }}
           prompt: |
-            Please analyze the codebase and perform maintenance tasks:
+            Please analyze the codebase and perform maintenance tasks.
 
             ## Focus Areas
 
@@ -49,7 +52,4 @@ jobs:
             - Preserve existing functionality
             - Run tests to verify changes
             - Group related changes logically
-
-            Do not open a PR if you do not have a validated and impactful change.
-          jules_api_key: ${{ secrets.JULES_API_KEY }}
-          include_commit_log: true
+            - Do not open a PR if you do not have a validated and impactful change

@@ -2,19 +2,25 @@ name: Daily Security Scan
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # Every day at 6 AM
+    - cron: '0 6 * * *'  # Every day at 6 AM UTC
   workflow_dispatch:
 
 jobs:
   scan:
+    name: Jules Security Scan
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+      pull-requests: write
+
     steps:
-      - uses: google-labs-code/jules-invoke@v1
+      - name: Invoke Jules for Security Scan
+        uses: google-labs-code/jules-invoke@v1
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          jules_api_key: ${{ secrets.JULES_API_KEY }}
           prompt: |
-            You are a security agent. Scan for vulnerabilities and fix them:
+            You are a security agent. Scan the codebase for vulnerabilities and fix them.
 
             CRITICAL (fix immediately):
             - Hardcoded secrets, API keys, passwords
@@ -27,7 +33,7 @@ jobs:
             - Missing input validation
 
             Rules:
-            - Fix highest severity first
-            - Keep changes under 100 lines
-            - Run tests before creating PR
-          jules_api_key: ${{ secrets.JULES_API_KEY }}
+            - Fix highest severity issues first
+            - Keep changes under 100 lines per PR
+            - Run tests before opening a PR
+            - Do not open a PR if no real vulnerabilities are found
