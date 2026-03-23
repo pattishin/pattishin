@@ -1,7 +1,6 @@
-import { Component } from 'react';
-import { connect } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { withStyles } from '../../utils/withStyles';
 import CssBaseline from '@mui/material/CssBaseline';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -21,32 +20,22 @@ import { getAuthor } from '../../actions/author';
 import './App.css';
 import styles from './styles';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-      loading: false,
-      gameStarted: false,
-    };
-    this.handleGameStart = this.handleGameStart.bind(this);
-  }
+function App({ classes }) {
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
 
-  componentDidMount() {
-    this.setState({ loading: true });
-    this.props.getAuthor().then(() => this.setState({ loading: false }));
-  }
+  const authors = useSelector(state => state.author.authors);
+  const dispatch = useDispatch();
 
-  handleGameStart() {
-    this.setState({ gameStarted: true });
-  }
+  useEffect(() => {
+    setLoading(true);
+    dispatch(getAuthor()).then(() => setLoading(false));
+  }, [dispatch]);
 
-  renderMain() {
-    const { classes, authors } = this.props;
-    const { open, loading, gameStarted } = this.state;
-
+  function renderMain() {
     if (!gameStarted) {
-      return <GameStart onStart={this.handleGameStart} />;
+      return <GameStart onStart={() => setGameStarted(true)} />;
     }
 
     return (
@@ -54,8 +43,8 @@ class App extends Component {
         {loading ? <Loading /> : (
           <>
             <CssBaseline />
-            <Header open={open} classes={classes} setOpen={status => this.setState({ open: status })} />
-            <Sidebar open={open} setOpen={status => this.setState({ open: status })} />
+            <Header open={open} classes={classes} setOpen={setOpen} />
+            <Sidebar open={open} setOpen={setOpen} />
             <main className={classes.content}>
               <div className={classes.appBarSpacer} />
               <section id="about_section">
@@ -86,30 +75,14 @@ class App extends Component {
     );
   }
 
-  render() {
-    return (
-      <Routes>
-        {/* Blog post detail — standalone page, no game gate */}
-        <Route path="/blog/:slug" element={<BlogPost />} />
-        {/* Everything else — game gate + main site */}
-        <Route path="*" element={this.renderMain()} />
-      </Routes>
-    );
-  }
+  return (
+    <Routes>
+      {/* Blog post detail — standalone page, no game gate */}
+      <Route path="/blog/:slug" element={<BlogPost />} />
+      {/* Everything else — game gate + main site */}
+      <Route path="*" element={renderMain()} />
+    </Routes>
+  );
 }
 
-App.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = state => ({
-  authors: state.author.authors,
-});
-
-const mapDispatchToProps = dispatch => ({
-  getAuthor: () => dispatch(getAuthor()),
-});
-
-export default withStyles(styles)(
-  connect(mapStateToProps, mapDispatchToProps)(App)
-);
+export default withStyles(styles)(App);
