@@ -3,12 +3,7 @@
 </div>
 <h1 align="center">pattishin.io</h1>
 <p align="center">
-  <a href="https://pattishin-site.web.app" target="_blank">pattishin-site.web.app</a>
-  &nbsp;·&nbsp;
   <a href="https://pattishin.io" target="_blank">pattishin.io</a>
-</p>
-<p align="center">
-  Built with React + Golang.
 </p>
 
 ---
@@ -17,85 +12,73 @@
 
 | Layer | Technology |
 |---|---|
-| Frontend | React 18, Material UI v6, Emotion, Cinzel / Raleway fonts |
-| Backend | Golang (Gin), Cloud Firestore |
-| Hosting | Firebase Hosting (frontend), Google Cloud Run (backend) |
+| Frontend | React 18, React Router v7, Material UI v6, Emotion |
+| Browser targeting | Browserslist with [Baseline](https://web.dev/baseline) queries |
+| Hosting | Firebase Hosting |
 | CI/CD | GitHub Actions |
 
 ---
 
 ## Getting started
 
-### Frontend (React)
-
 ```sh
 npm install
 npm start
 ```
 
-Opens at [http://localhost:3000](http://localhost:3000). The page hot-reloads on edits.
+Opens at [http://localhost:3000](http://localhost:3000) with hot reload.
 
 ```sh
-npm test   # run tests in interactive watch mode
-npm run build  # create an optimized production build → /build
-```
-
-### Backend (Golang)
-
-```sh
-go mod download
-go run main.go
-```
-
-API runs at `http://localhost:8080`. Example:
-
-```sh
-curl localhost:8080/api/author
-```
-
-The backend requires a Firestore service account. Set `GOOGLE_APPLICATION_CREDENTIALS` to your credentials file, or run inside GCP where ADC is available automatically.
-
-### Backend (Docker)
-
-```sh
-docker build -t pattishin-api .
-docker run -p 8080:8080 pattishin-api
+npm run build   # optimized production build → /build
+npm test        # run tests in watch mode
 ```
 
 ---
 
 ## Deploying
 
-Deployments to production happen automatically via GitHub Actions on every push to `main` (see [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)).
+Pushes to `main` automatically deploy via GitHub Actions.
 
 To deploy manually:
 
 ```sh
-# Frontend only (builds React → Firebase Hosting)
-./deploy.sh frontend
-
-# Backend only (Docker → Cloud Run)
-./deploy.sh backend
-
-# Both
-./deploy.sh all
+./deploy.sh
 ```
 
-The deploy script requires `firebase-tools` and the `gcloud` CLI to be installed and authenticated.
+Requires `firebase-tools` installed and authenticated (`firebase login`).
+
+### Required secret
+
+| Secret | Used by |
+|---|---|
+| `GCP_SA_KEY` | GitHub Actions — Firebase Hosting service account |
+
+---
+
+## Project structure
+
+```
+src/
+  components/       # UI components (About, Blogs, Projects, Talks, …)
+  containers/       # App shell and routing
+  helpers/          # Static data (Wall-E sprite frames, firefly positions)
+  sprites/          # PixelSprite renderer + Monument Valley sprite data
+  utils/            # Shared utilities (withStyles)
+```
 
 ---
 
 ## Writing blog posts
 
-Blog posts live in [`public/blog/`](public/blog/) as plain Markdown files. No code changes needed.
+Blog posts live in [`public/blog/`](public/blog/) as Markdown files.
 
-**1. Create the post file**
+**1. Create the post**
 
 ```
 public/blog/my-post-slug.md
 ```
 
-Standard Markdown is supported, including fenced code blocks, tables (GFM), blockquotes, and inline code.
+Supports standard Markdown including GFM tables, fenced code blocks, and blockquotes.
 
 **2. Register it in the manifest**
 
@@ -115,19 +98,4 @@ Add an entry to [`public/blog/manifest.json`](public/blog/manifest.json):
 }
 ```
 
-Posts appear in the order they are listed in the manifest. The `slug` must exactly match the filename (without `.md`).
-
----
-
-## GitHub Actions workflows
-
-| Workflow | Trigger | What it does |
-|---|---|---|
-| `deploy.yml` | Push to `main` | Builds and deploys frontend + backend in parallel |
-
-### Required secrets
-
-| Secret | Used by |
-|---|---|
-| `GCP_SA_KEY` | `deploy.yml` — GCP service account JSON with Firebase Hosting Admin, Cloud Run Admin, Storage Admin, and Service Account User roles |
-| `JULES_API_KEY` |
+The `slug` must match the filename exactly (without `.md`). Posts appear in manifest order.

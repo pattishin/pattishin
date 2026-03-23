@@ -294,11 +294,6 @@ code {
   white-space: nowrap;
   font-weight: 400;
 }
-.gsb-stars {
-  font-size: 12px;
-  flex-shrink: 0;
-  filter: sepia(0.3) saturate(1.5) hue-rotate(20deg);
-}
 .gsb-desc {
   font-family: var(--font-mono);
   font-size: 12px;

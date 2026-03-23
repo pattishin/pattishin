@@ -54,7 +54,6 @@ func SecurityHeadersMiddleware() gin.HandlerFunc {
 	}
 }
 
-// TODO: Refactor common portions in /talks & /author api
 func main() {
   // router init
   router := gin.Default()
@@ -91,10 +90,46 @@ func main() {
 }
 
 /**
- * Create a new firestore instance 
+ * Create a new firestore instance
  */
 func createNewFirestore(ctx context.Context) (*firestore.Client, error) {
   return firestore.NewClient(ctx, firestoreProjectId)
+}
+
+/**
+ * queryCollection iterates a Firestore collection, calling scan for each document.
+ * Returns false if it already wrote an error response to c.
+ */
+func queryCollection(c *gin.Context, collection string, scan func(*firestore.DocumentSnapshot) error) bool {
+  ctx := c.Request.Context()
+  client, err := createNewFirestore(ctx)
+  if err != nil {
+    log.Printf("Error creating firestore client: %v", err)
+    c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal server error"})
+    return false
+  }
+  defer client.Close()
+
+  iter := client.Collection(collection).Documents(ctx)
+  defer iter.Stop()
+
+  for {
+    doc, err := iter.Next()
+    if err == iterator.Done {
+      break
+    }
+    if err != nil {
+      log.Printf("Error iterating %s: %v", collection, err)
+      c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal server error"})
+      return false
+    }
+    if err := scan(doc); err != nil {
+      log.Printf("Error mapping %s data: %v", collection, err)
+      c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal server error"})
+      return false
+    }
+  }
+  return true
 }
 
 /**
@@ -133,91 +168,36 @@ func userHandler(c *gin.Context) {
 /**
  *  Get talk list
  */
- func talksHandler(c *gin.Context) {
-   ctx := c.Request.Context()
-   client, err := createNewFirestore(ctx)
-   
-   if err != nil {
-     log.Printf("Error creating firestore client: %v", err)
-     c.JSON(http.StatusInternalServerError, gin.H{ "error": "Internal server error" })
-     return
-   }
-
-   defer client.Close()
-
-   var talks []Talk
-   var iter = client.Collection("talks").Documents(ctx)
-
-   defer iter.Stop()
-
-   for {
-     doc, err := iter.Next()
-     if err == iterator.Done {
-       break
-     }
-     if err != nil {
-       log.Printf("Error iterating talks: %v", err)
-       c.JSON(http.StatusInternalServerError, gin.H{ "error": "Internal server error" })
-       return
-     }
-
-     var model Talk
-     if err := doc.DataTo(&model); err != nil {
-       log.Printf("Error mapping talk data: %v", err)
-       c.JSON(http.StatusInternalServerError, gin.H{ "error": "Internal server error" })
-       return
-     }
-
-     talks = append(talks, model)
-   }
-   
-   c.Writer.Header().Set("Content-Type", "application/json")
-   c.JSON(http.StatusOK, talks)
- }
+func talksHandler(c *gin.Context) {
+  var talks []Talk
+  if !queryCollection(c, "talks", func(doc *firestore.DocumentSnapshot) error {
+    var t Talk
+    if err := doc.DataTo(&t); err != nil {
+      return err
+    }
+    talks = append(talks, t)
+    return nil
+  }) {
+    return
+  }
+  c.JSON(http.StatusOK, talks)
+}
 
 /**
  *  Retrieve author
  */
- func authorHandler(c *gin.Context) {
-   ctx := c.Request.Context()
-   client, err := createNewFirestore(ctx)
-   
-   if err != nil {
-     log.Printf("Error creating firestore client: %v", err)
-     c.JSON(http.StatusInternalServerError, gin.H{ "error": "Internal server error" })
-     return
-   }
-
-   defer client.Close()
-
-   var authors []Author
-   var iter = client.Collection("author").Documents(ctx)
-
-   defer iter.Stop()
-
-   for {
-     doc, err := iter.Next()
-     if err == iterator.Done {
-       break
-     }
-
-     if err != nil {
-       log.Printf("Error iterating authors: %v", err)
-       c.JSON(http.StatusInternalServerError, gin.H{ "error": "Internal server error" })
-       return
-     }
-
-     var model Author
-     if err := doc.DataTo(&model); err != nil {
-       log.Printf("Error mapping author data: %v", err)
-       c.JSON(http.StatusInternalServerError, gin.H{ "error": "Internal server error" })
-       return
-     }
-
-     authors = append(authors, model)
-   }
-
-   c.Writer.Header().Set("Content-Type", "application/json")
-   c.JSON(http.StatusOK, authors)
- }
+func authorHandler(c *gin.Context) {
+  var authors []Author
+  if !queryCollection(c, "author", func(doc *firestore.DocumentSnapshot) error {
+    var a Author
+    if err := doc.DataTo(&a); err != nil {
+      return err
+    }
+    authors = append(authors, a)
+    return nil
+  }) {
+    return
+  }
+  c.JSON(http.StatusOK, authors)
+}
 

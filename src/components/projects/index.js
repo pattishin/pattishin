@@ -1,10 +1,8 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '../../utils/withStyles';
 import Container from '@mui/material/Container';
 import Grid2 from '@mui/material/Grid2';
-import PixelSprite from '../../utils/PixelSprite';
-import { MONITOR, EXPLORER, CLAPPER, FIREFLY, DRONE, MV_PALETTE } from './sprites';
+import PixelSprite from '../../sprites/PixelSprite';
+import { MONITOR, EXPLORER, CLAPPER, FIREFLY, DRONE, MV_PALETTE } from '../../sprites/sprites';
 import './Projects.css';
 import styles from './styles';
 
@@ -41,48 +39,36 @@ const PROJECTS = [
   },
 ];
 
-class Projects extends Component {
-  selectFolder(slug) {
-    window.open(`https://github.com/pattishin/${slug}`, '_blank');
-  }
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <Container maxWidth="lg" className={classes.container}>
-        <h3 className="projectHeader">
-          <div className="projectTitle">
-            <span role="img" aria-label="gear">⚙️</span>
-            <span>{" Code"}</span>
-          </div>
-        </h3>
-        <Grid2 container spacing={3}>
-          {PROJECTS.map(({ slug, name, desc, sprite }) => (
-            <Grid2 key={slug} size={{ xs: 12, lg: 4 }}>
-              <button
-                className="projectFolder"
-                onClick={() => this.selectFolder(slug)}
-                aria-label={`View project: ${name}`}
-              >
-                <div className="projectSpriteWrapper">
-                  <PixelSprite pixels={sprite} size={7} palette={MV_PALETTE} />
-                </div>
-                <div className="projectInfo">
-                  <h4>{name}</h4>
-                  <p>{desc}</p>
-                </div>
-              </button>
-            </Grid2>
-          ))}
-        </Grid2>
-      </Container>
-    );
-  }
+function Projects({ classes }) {
+  return (
+    <Container maxWidth="lg" className={classes.container}>
+      <h3 className="projectHeader">
+        <div className="projectTitle">
+          <span role="img" aria-label="gear">⚙️</span>
+          <span>{" Code"}</span>
+        </div>
+      </h3>
+      <Grid2 container spacing={3}>
+        {PROJECTS.map(({ slug, name, desc, sprite }) => (
+          <Grid2 key={slug} size={{ xs: 12, lg: 4 }}>
+            <button
+              className="projectFolder"
+              onClick={() => window.open(`https://github.com/pattishin/${slug}`, '_blank')}
+              aria-label={`View project: ${name}`}
+            >
+              <div className="projectSpriteWrapper">
+                <PixelSprite pixels={sprite} size={7} palette={MV_PALETTE} />
+              </div>
+              <div className="projectInfo">
+                <h4>{name}</h4>
+                <p>{desc}</p>
+              </div>
+            </button>
+          </Grid2>
+        ))}
+      </Grid2>
+    </Container>
+  );
 }
-
-Projects.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(Projects);
