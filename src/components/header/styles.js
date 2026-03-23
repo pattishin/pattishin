@@ -10,7 +10,8 @@ const styles = (theme) => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    backgroundColor: 'black',
+    backgroundColor: '#0f0c1a',
+    borderBottom: '1px solid rgba(90, 180, 172, 0.12)',
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

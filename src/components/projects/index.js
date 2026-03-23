@@ -4,7 +4,7 @@ import { withStyles } from '../../utils/withStyles';
 import Container from '@mui/material/Container';
 import Grid2 from '@mui/material/Grid2';
 import PixelSprite from '../../utils/PixelSprite';
-import { MONITOR, EXPLORER, CLAPPER, FIREFLY, DRONE } from './sprites';
+import { MONITOR, EXPLORER, CLAPPER, FIREFLY, DRONE, MV_PALETTE } from './sprites';
 import './Projects.css';
 import styles from './styles';
 
@@ -66,7 +66,7 @@ class Projects extends Component {
                 aria-label={`View project: ${name}`}
               >
                 <div className="projectSpriteWrapper">
-                  <PixelSprite pixels={sprite} size={7} />
+                  <PixelSprite pixels={sprite} size={7} palette={MV_PALETTE} />
                 </div>
                 <div className="projectInfo">
                   <h4>{name}</h4>

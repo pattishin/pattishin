@@ -1,107 +1,156 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap');
 
 /* ═══════════════════════════════════════════════════════════
-   CYBERPUNK × BIOPUNK — design tokens
+   MONUMENT VALLEY — design tokens
+   Impossible architecture · dusk palettes · sacred geometry
    ═══════════════════════════════════════════════════════════ */
 :root {
-  /* Core palette */
-  --cyber-dark:   #060a0e;
-  --cyber-deep:   #0a1018;
-  --teal-neon:    #00e5b0;
-  --teal-bright:  #00ffcc;
-  --teal-dim:     #007a60;
-  --bark:         #6b3f28;
-  --earth:        #8b5e3c;
-  --rust-orange:  #c84b0a;
-  --rust-bright:  #e85a10;
-  --flare-teal:   #00ffcc;
-  --cat-orange:   #d06030;
-  --star-cool:    #c8d4e8;
-  --ivy-deep:     #0a1a12;
+  /* ── Core palette ─────────────────────────────────────── */
+  --mv-void:       #0f0c1a;   /* deepest background */
+  --mv-deep:       #1c1530;   /* card / section background */
+  --mv-indigo:     #2d2050;   /* mid-tone panel */
+  --mv-purple:     #5c3a8a;   /* rich purple accent */
+  --mv-rose:       #c05848;   /* dusty rose / terracotta */
+  --mv-rose-pale:  #e09080;   /* pale rose highlight */
+  --mv-peach:      #d4806a;   /* warm peach / salmon */
+  --mv-gold:       #c09840;   /* muted warm gold */
+  --mv-gold-pale:  #e4c078;   /* pale gold */
+  --mv-teal:       #5ab4ac;   /* dusty teal */
+  --mv-teal-pale:  #90d4cc;   /* pale teal */
+  --mv-cream:      #f0e0c8;   /* warm cream — main text */
+  --mv-mist:       #b0a090;   /* dimmed / secondary text */
+  --mv-stone:      #2a1840;   /* deep stone for silhouettes */
 
-  /* Backward-compat aliases — keep for legacy components */
-  --plant-dark:   var(--cyber-dark);
-  --plant-deep:   var(--cyber-deep);
-  --leaf-green:   var(--teal-neon);
-  --leaf-bright:  var(--teal-bright);
-  --moss:         var(--teal-dim);
-  --amber:        var(--rust-orange);
-  --amber-bright: var(--rust-bright);
-  --firefly:      var(--flare-teal);
-  --flower-pink:  var(--cat-orange);
-  --star-cream:   var(--star-cool);
-  --vine-dark:    var(--ivy-deep);
+  /* ── Backward-compat aliases ──────────────────────────── */
+  --cyber-dark:    var(--mv-void);
+  --cyber-deep:    var(--mv-deep);
+  --teal-neon:     var(--mv-teal);
+  --teal-bright:   var(--mv-teal-pale);
+  --teal-dim:      #3a9088;
+  --bark:          #6b4030;
+  --earth:         #8b6040;
+  --rust-orange:   var(--mv-rose);
+  --rust-bright:   var(--mv-rose-pale);
+  --flare-teal:    var(--mv-teal-pale);
+  --cat-orange:    var(--mv-peach);
+  --star-cool:     var(--mv-cream);
+  --ivy-deep:      #1a0f2e;
 
-  /* Legacy tron aliases */
-  --tron-teal:  var(--teal-neon);
-  --tron-blue:  var(--rust-orange);
-  --tron-dark:  var(--cyber-dark);
-  --tron-navy:  var(--cyber-deep);
-  --tron-grid:  rgba(0, 229, 176, 0.04);
+  --plant-dark:    var(--mv-void);
+  --plant-deep:    var(--mv-deep);
+  --leaf-green:    var(--mv-teal);
+  --leaf-bright:   var(--mv-teal-pale);
+  --moss:          #3a9088;
+  --amber:         var(--mv-rose);
+  --amber-bright:  var(--mv-rose-pale);
+  --firefly:       var(--mv-gold-pale);
+  --flower-pink:   var(--mv-rose-pale);
+  --star-cream:    var(--mv-cream);
+  --vine-dark:     #1a0f2e;
 
-  /* Glow effects (teal) */
-  --glow-sm:    0 0 6px #00e5b0, 0 0 12px rgba(0,229,176,0.4);
-  --glow-md:    0 0 8px #00e5b0, 0 0 20px rgba(0,229,176,0.5);
-  --glow-lg:    0 0 10px #00e5b0, 0 0 30px rgba(0,229,176,0.6), 0 0 60px rgba(0,229,176,0.2);
-  --glow-amber: 0 0 8px #c84b0a, 0 0 20px rgba(200,75,10,0.5);
+  --tron-teal:     var(--mv-teal);
+  --tron-blue:     var(--mv-rose);
+  --tron-dark:     var(--mv-void);
+  --tron-navy:     var(--mv-deep);
+  --tron-grid:     rgba(90, 180, 172, 0.04);
 
-  --border-neon: 1px solid #00e5b0;
-  --font-pixel:  'Press Start 2P', monospace;
-  --font-mono:   'Roboto Mono', monospace;
+  /* ── Shadows — soft architectural depth, no neon ─────── */
+  --glow-sm:    0 4px 20px rgba(192, 88, 72, 0.16), 0 1px 6px rgba(0,0,0,0.35);
+  --glow-md:    0 8px 36px rgba(192, 88, 72, 0.24), 0 2px 10px rgba(0,0,0,0.45);
+  --glow-lg:    0 16px 56px rgba(192, 88, 72, 0.30), 0 4px 16px rgba(0,0,0,0.55);
+  --glow-amber: 0 8px 36px rgba(192, 152, 64, 0.28);
+
+  --shadow-card:  0 8px 48px rgba(15, 12, 26, 0.65), 0 2px 10px rgba(0,0,0,0.4);
+  --shadow-hover: 0 20px 72px rgba(15, 12, 26, 0.80), 0 4px 18px rgba(0,0,0,0.5);
+
+  --border-neon: 1px solid rgba(90, 180, 172, 0.3);
+
+  /* ── Fonts ─────────────────────────────────────────────── */
+  --font-pixel:  'Cinzel', serif;          /* elegant Roman architecture */
+  --font-mono:   'Raleway', sans-serif;    /* clean geometric body */
 }
 
-/* ── Core animations ─────────────────────────────────────── */
+/* ── Animations — graceful & meditative ─────────────────── */
 @keyframes neonPulse {
-  0%, 100% { box-shadow: var(--glow-sm); }
-  50%       { box-shadow: var(--glow-md); }
+  0%, 100% { box-shadow: 0 4px 20px rgba(90,180,172,0.12), 0 2px 8px rgba(0,0,0,0.3); }
+  50%       { box-shadow: 0 8px 36px rgba(90,180,172,0.24), 0 4px 14px rgba(0,0,0,0.4); }
 }
 
 @keyframes vinePulse {
-  0%, 100% { box-shadow: var(--glow-sm); border-color: var(--teal-neon); }
-  50%       { box-shadow: var(--glow-md); border-color: var(--teal-bright); }
+  0%, 100% { box-shadow: var(--glow-sm); border-color: rgba(90,180,172,0.3); }
+  50%       { box-shadow: var(--glow-md); border-color: rgba(90,180,172,0.55); }
 }
 
 @keyframes scanline {
-  0%   { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
+  0%, 100% { opacity: 0; }
 }
 
 @keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-  20%, 24%, 55%                           { opacity: 0.7; }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.90; }
 }
 
 @keyframes pixelBlink {
-  0%, 49%   { opacity: 1; }
-  50%, 100% { opacity: 0; }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
 }
 
 @keyframes spriteWalk {
-  0%, 100% { transform: translateY(0px); }
-  25%       { transform: translateY(-3px); }
-  75%       { transform: translateY(-2px); }
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
 }
 
 @keyframes neonEntrance {
-  0%   { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0%   { opacity: 0; transform: translateY(28px) scale(0.97); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes fireflyFloat {
-  0%   { transform: translateY(0) scale(1);        opacity: 0.9; }
-  50%  { transform: translateY(-80px) scale(1.2);  opacity: 1;   }
-  100% { transform: translateY(-200px) scale(0.8); opacity: 0;   }
+  0%   { transform: translateY(0) rotate(0deg) scale(1);    opacity: 0.85; }
+  50%  { transform: translateY(-55px) rotate(45deg) scale(1.1); opacity: 1; }
+  100% { transform: translateY(-170px) rotate(90deg) scale(0.5); opacity: 0; }
 }
 
 @keyframes starTwinkle {
-  0%, 100% { opacity: 0.6; }
-  50%       { opacity: 1;   }
+  0%, 100% { opacity: 0.45; }
+  50%       { opacity: 0.85; }
 }
 
 @keyframes leafSway {
-  0%, 100% { transform: rotate(0deg) translateY(0); }
-  33%       { transform: rotate(2deg) translateY(-2px); }
-  66%       { transform: rotate(-1deg) translateY(1px); }
+  0%, 100% { transform: rotate(-1.5deg) translateY(0); }
+  50%       { transform: rotate(1.5deg) translateY(-2px); }
+}
+
+/* Monument Valley specific */
+@keyframes mvFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-9px); }
+}
+
+@keyframes mvBreath {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+@keyframes mvShimmer {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50%       { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes mvEntrance {
+  0%   { opacity: 0; transform: translateY(32px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes mvSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes mvDiamond {
+  0%   { transform: rotate(45deg) scale(1); opacity: 0.6; }
+  50%  { transform: rotate(45deg) scale(1.3); opacity: 1; }
+  100% { transform: rotate(45deg) scale(1); opacity: 0.6; }
 }
 
 /* ── Base ────────────────────────────────────────────────── */
@@ -110,39 +159,30 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: var(--cyber-dark) !important;
-  color: var(--star-cool);
+  background-color: var(--mv-void) !important;
+  color: var(--mv-cream);
   font-family: var(--font-mono);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
 }
 
-/* Teal pixel dot grid */
+/* Subtle isometric diamond / geometric texture */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(0,229,176,0.06) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background-image:
+    linear-gradient(45deg, rgba(192, 152, 64, 0.045) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(192, 152, 64, 0.045) 1px, transparent 1px);
+  background-size: 40px 40px;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Vintage CRT scanline overlay */
+/* No scanline overlay */
 body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.08) 2px,
-    rgba(0, 0, 0, 0.08) 4px
-  );
-  pointer-events: none;
-  z-index: 9999;
+  content: none;
 }
 
 #root {
@@ -153,28 +193,30 @@ body::after {
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--cyber-dark); }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--mv-void); }
 ::-webkit-scrollbar-thumb {
-  background: var(--teal-dim);
-  box-shadow: var(--glow-sm);
+  background: var(--mv-indigo);
+  border-radius: 3px;
 }
+::-webkit-scrollbar-thumb:hover { background: var(--mv-purple); }
 
 code {
-  font-family: var(--font-mono);
-  color: var(--teal-neon);
+  font-family: 'Courier New', monospace;
+  color: var(--mv-teal);
 }
 
 /* Section nav icons */
 .menuButton {
-  border: 1px solid var(--teal-neon) !important;
+  border: 1px solid rgba(90, 180, 172, 0.3) !important;
   padding: 8px !important;
   margin: 6px !important;
   width: 44px;
-  transition: box-shadow 0.2s ease;
+  transition: border-color 0.35s, box-shadow 0.35s;
 }
 .menuButton:hover {
-  box-shadow: var(--glow-sm) !important;
+  border-color: rgba(90, 180, 172, 0.6) !important;
+  box-shadow: 0 0 20px rgba(90, 180, 172, 0.12) !important;
 }
 
 /* Footer */
@@ -182,26 +224,26 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 30px;
-  color: var(--teal-neon);
-  font-size: 10px;
+  margin: 40px 30px;
+  color: var(--mv-mist);
+  font-size: 11px;
   font-family: var(--font-pixel);
-  letter-spacing: 1px;
-  text-shadow: var(--glow-sm);
+  letter-spacing: 2px;
+  font-weight: 400;
 }
 .footer a {
-  color: var(--teal-neon);
+  color: var(--mv-teal);
   text-decoration: none;
-  text-shadow: var(--glow-sm);
+  transition: color 0.25s;
 }
-.footer a:hover { text-shadow: var(--glow-md); }
-.footer p { margin: 0 6px; }
+.footer a:hover { color: var(--mv-teal-pale); }
+.footer p { margin: 0 8px; }
 
-/* ── Shared: game stage banner ───────────────────────────── */
+/* ── Shared: architectural section banner ────────────────── */
 .gameStageBanner {
-  border: 1px solid rgba(0, 229, 176, 0.35);
-  background: rgba(10, 16, 24, 0.9);
-  padding: 16px 20px;
+  border: 1px solid rgba(90, 180, 172, 0.18);
+  background: rgba(28, 21, 48, 0.88);
+  padding: 18px 24px;
   margin-bottom: 28px;
   position: relative;
   overflow: hidden;
@@ -210,58 +252,58 @@ code {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--teal-neon), transparent);
-  box-shadow: 0 0 8px var(--teal-neon);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(192, 152, 64, 0.5), transparent);
 }
-/* Vine corner decoration */
 .gameStageBanner::after {
-  content: '🌿';
+  content: '◆';
   position: absolute;
-  bottom: 6px;
-  right: 10px;
-  font-size: 14px;
+  bottom: 10px;
+  right: 16px;
+  font-size: 9px;
+  color: var(--mv-gold);
   opacity: 0.3;
 }
 .gsb-top {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
+  gap: 14px;
+  margin-bottom: 10px;
 }
 .gsb-badge {
   font-family: var(--font-pixel);
-  font-size: 8px;
-  color: var(--cyber-dark);
-  background: var(--teal-neon);
-  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--mv-void);
+  background: var(--mv-teal);
+  padding: 5px 14px;
   white-space: nowrap;
-  box-shadow: 0 0 10px var(--teal-neon);
   flex-shrink: 0;
+  letter-spacing: 1px;
 }
 .gsb-line {
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, var(--teal-neon), transparent);
-  opacity: 0.5;
+  background: linear-gradient(90deg, rgba(90, 180, 172, 0.45), transparent);
 }
 .gsb-title {
   font-family: var(--font-pixel);
-  font-size: 10px;
-  color: var(--teal-neon);
-  letter-spacing: 3px;
-  text-shadow: var(--glow-sm);
+  font-size: 12px;
+  color: var(--mv-cream);
+  letter-spacing: 4px;
   white-space: nowrap;
+  font-weight: 400;
 }
 .gsb-stars {
-  font-size: 11px;
-  filter: sepia(0.3) saturate(2);
+  font-size: 12px;
   flex-shrink: 0;
+  filter: sepia(0.3) saturate(1.5) hue-rotate(20deg);
 }
 .gsb-desc {
-  font-family: var(--font-pixel);
-  font-size: 7px;
-  color: rgba(0, 229, 176, 0.7);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--mv-mist);
   margin: 0;
   letter-spacing: 1px;
 }

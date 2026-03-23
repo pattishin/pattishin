@@ -1,11 +1,11 @@
 const styles = (theme) => ({
   root: {
     display: 'flex',
-    fontFamily: "Roboto Mono",
+    fontFamily: "'Raleway', sans-serif",
     height: "inherit"
   },
   title: {
-    fontFamily: "Roboto Mono"
+    fontFamily: "'Raleway', sans-serif"
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {

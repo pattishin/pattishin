@@ -1,12 +1,14 @@
-/* ── Section header ────────────────────────────────────────────────────────── */
+/* ── Section header ──────────────────────────────────────── */
 .projectHeader {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 12px;
-  font-size: 11px;
+  font-size: 13px;
   font-family: var(--font-pixel);
   margin: 0 0 8px 0;
+  font-weight: 400;
+  letter-spacing: 2px;
 }
 
 .projectHeader::before,
@@ -15,95 +17,95 @@
   display: block;
   height: 1px;
   width: 30%;
-  background: linear-gradient(90deg, transparent, var(--tron-teal));
-  box-shadow: var(--glow-sm);
 }
 
 .projectHeader::before {
-  background: linear-gradient(90deg, transparent, var(--tron-teal));
-  margin-right: 12px;
+  background: linear-gradient(90deg, transparent, rgba(90, 180, 172, 0.45));
+  margin-right: 14px;
 }
-
 .projectHeader::after {
-  background: linear-gradient(90deg, var(--tron-teal), transparent);
-  margin-left: 12px;
+  background: linear-gradient(90deg, rgba(90, 180, 172, 0.45), transparent);
+  margin-left: 14px;
 }
 
 .projectTitle {
-  padding: 6px 16px;
-  color: var(--tron-teal);
+  padding: 6px 18px;
+  color: var(--mv-cream);
   white-space: nowrap;
-  text-shadow: var(--glow-sm);
 }
 
-/* ── Project card ───────────────────────────────────────────────────────────── */
+/* ── Project card ────────────────────────────────────────── */
 .projectFolder {
-  color: var(--tron-teal);
-  border: 1px solid var(--tron-teal);
-  background: rgba(0, 26, 51, 0.7);
+  color: var(--mv-cream);
+  border: 1px solid rgba(90, 180, 172, 0.18);
+  background: rgba(28, 21, 48, 0.75);
   padding: 0;
   height: 100%;
   display: flex;
   flex-direction: column;
   cursor: pointer;
   position: relative;
-  transition: box-shadow 0.25s ease, transform 0.2s ease;
+  transition: box-shadow 0.35s ease, transform 0.3s ease, border-color 0.35s ease;
   overflow: hidden;
   text-align: left;
   font-family: inherit;
   width: 100%;
 }
 
-/* Corner accents */
+/* Corner architectural accents */
 .projectFolder::before,
 .projectFolder::after {
   content: '';
   position: absolute;
   width: 10px;
   height: 10px;
-  border-color: var(--tron-teal);
+  border-color: rgba(192, 152, 64, 0.45);
   border-style: solid;
-  transition: width 0.2s ease, height 0.2s ease;
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+  z-index: 1;
 }
-
 .projectFolder::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
 .projectFolder::after  { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
 
 .projectFolder:hover::before,
 .projectFolder:hover::after {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
+  border-color: rgba(192, 152, 64, 0.75);
 }
 
 .projectFolder:hover {
-  box-shadow: var(--glow-md);
-  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-5px);
+  border-color: rgba(90, 180, 172, 0.35);
 }
 
-/* ── Sprite display area ───────────────────────────────────────────────────── */
+/* ── Sprite display area ─────────────────────────────────── */
 .projectSpriteWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 10px 14px;
-  background: rgba(0, 255, 231, 0.03);
-  border-bottom: 1px solid rgba(0, 255, 231, 0.2);
-  min-height: 80px;
+  padding: 22px 12px 16px;
+  background: rgba(15, 12, 26, 0.35);
+  border-bottom: 1px solid rgba(90, 180, 172, 0.12);
+  min-height: 86px;
 }
 
 .projectSpriteWrapper svg {
-  transition: filter 0.25s ease, transform 0.25s ease;
-  filter: drop-shadow(0 0 4px var(--tron-teal));
+  transition: filter 0.35s ease, transform 0.35s ease;
+  filter: drop-shadow(0 2px 8px rgba(90, 180, 172, 0.25));
 }
 
 .projectFolder:hover .projectSpriteWrapper svg {
-  filter: drop-shadow(0 0 10px var(--tron-teal)) drop-shadow(0 0 20px rgba(0, 255, 231, 0.5));
-  transform: scale(1.1);
+  filter:
+    drop-shadow(0 4px 16px rgba(90, 180, 172, 0.4))
+    drop-shadow(0 0 28px rgba(192, 152, 64, 0.2));
+  transform: scale(1.08);
 }
 
-/* ── Card text ──────────────────────────────────────────────────────────────── */
+/* ── Card text ───────────────────────────────────────────── */
 .projectInfo {
-  padding: 14px 16px 18px;
+  padding: 16px 18px 20px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -111,17 +113,19 @@
 
 .projectFolder h4 {
   font-family: var(--font-pixel);
-  font-size: 9px;
-  margin: 0 0 10px 0;
-  color: var(--tron-teal);
-  text-shadow: var(--glow-sm);
-  line-height: 1.6;
+  font-size: 11px;
+  font-weight: 400;
+  margin: 0 0 12px 0;
+  color: var(--mv-cream);
+  line-height: 1.65;
+  letter-spacing: 1px;
 }
 
 .projectFolder p {
-  font-size: 11px;
-  line-height: 1.8;
-  color: #7fd9cc;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.85;
+  color: var(--mv-mist);
   margin: 0;
   flex: 1;
 }

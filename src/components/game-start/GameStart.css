@@ -1,5 +1,6 @@
 /* ═══════════════════════════════════════════════════════════
-   GAME START SCREEN — Cyberpunk × Biopunk Night
+   GAME START SCREEN — Monument Valley Dusk
+   Impossible architecture silhouetted against a twilight sky
    ═══════════════════════════════════════════════════════════ */
 
 .gs-root {
@@ -10,67 +11,73 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* Deep cyberpunk night gradient */
+  /* Dusk sky — deep indigo to warm amber horizon */
   background: linear-gradient(
     180deg,
-    #060a0e 0%,
-    #060c12 35%,
-    #080e18 65%,
-    #0a1020 100%
+    #0f0c1a 0%,
+    #1a1035 16%,
+    #2e1858 34%,
+    #68244e 52%,
+    #a03840 66%,
+    #c05838 78%,
+    #c88048 90%,
+    #c09840 100%
   );
   overflow: hidden;
 }
 
-/* Stars — cool blue-white pixel dots */
+/* Stars in the upper sky */
 .gs-root::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle, #c8d4e8 1px, transparent 1px),
-    radial-gradient(circle, #c8d4e8 1px, transparent 1px),
-    radial-gradient(circle, #a0b4cc 1px, transparent 1px);
-  background-size: 180px 140px, 240px 200px, 120px 100px;
-  background-position: 20px 15px, 90px 50px, 45px 80px;
-  opacity: 0.45;
+    radial-gradient(circle, rgba(240, 224, 200, 0.75) 1px, transparent 1px),
+    radial-gradient(circle, rgba(240, 224, 200, 0.55) 1px, transparent 1px),
+    radial-gradient(circle, rgba(200, 180, 240, 0.65) 1px, transparent 1px),
+    radial-gradient(circle, rgba(240, 200, 160, 0.55) 1px, transparent 1px);
+  background-size: 200px 160px, 290px 240px, 155px 135px, 330px 270px;
+  background-position: 30px 20px, 100px 60px, 55px 40px, 180px 30px;
+  opacity: 0.55;
   pointer-events: none;
-  animation: starTwinkle 4s ease-in-out infinite alternate;
+  animation: starTwinkle 7s ease-in-out infinite alternate;
 }
 
-/* Atmospheric teal haze */
+/* Warm atmospheric glow at horizon */
 .gs-root::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 15% 25%, rgba(0,180,130,0.07) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 10%, rgba(0,120,100,0.05) 0%, transparent 40%);
+    radial-gradient(ellipse at 50% 95%, rgba(192, 152, 64, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 25% 75%, rgba(192, 88, 56, 0.14) 0%, transparent 42%),
+    radial-gradient(ellipse at 75% 75%, rgba(160, 60, 80, 0.12) 0%, transparent 42%);
   pointer-events: none;
 }
 
-/* ── Teal firefly particles ───────────────────────────────── */
+/* ── Floating geometric particles (diamonds) ─────────────── */
 .gs-firefly {
   position: absolute;
-  border-radius: 50%;
-  background: #00ffcc;
+  border-radius: 0;
+  transform: rotate(45deg);
+  background: rgba(228, 192, 120, 0.9);
   box-shadow:
-    0 0 6px #00ffcc,
-    0 0 14px rgba(0,255,204,0.7),
-    0 0 28px rgba(0,255,204,0.3);
+    0 0 6px rgba(228, 192, 120, 0.55),
+    0 0 18px rgba(228, 192, 120, 0.25);
   animation: fireflyFloat linear infinite;
   pointer-events: none;
-  image-rendering: pixelated;
 }
 
-/* ── Studio label ────────────────────────────────────────── */
+/* ── Studio attribution ──────────────────────────────────── */
 .gs-studio {
-  font-family: var(--font-pixel);
-  font-size: 8px;
-  color: var(--rust-orange);
-  letter-spacing: 3px;
-  text-shadow: var(--glow-amber);
-  margin: 0 0 24px 0;
-  animation: flicker 8s infinite;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(240, 224, 200, 0.5);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin: 0 0 28px 0;
+  animation: mvBreath 5s ease-in-out infinite;
 }
 
 /* ── Title block ─────────────────────────────────────────── */
@@ -79,101 +86,129 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 36px;
+  margin-bottom: 44px;
 }
 
 .gs-mainTitle {
   font-family: var(--font-pixel);
-  font-size: clamp(26px, 5.5vw, 52px);
-  color: #d0e8f0;
+  font-size: clamp(30px, 5.5vw, 60px);
+  font-weight: 600;
+  color: var(--mv-cream);
   text-shadow:
-    0 0 10px var(--teal-neon),
-    0 0 30px rgba(0,229,176,0.5),
-    0 0 70px rgba(0,229,176,0.2),
-    4px 4px 0px var(--ivy-deep);
-  letter-spacing: 4px;
+    0 2px 6px rgba(0, 0, 0, 0.55),
+    0 8px 32px rgba(192, 88, 56, 0.35),
+    0 18px 64px rgba(192, 88, 56, 0.15);
+  letter-spacing: 9px;
   margin: 0;
-  line-height: 1.1;
-  animation: gsMainTitlePulse 4s ease-in-out infinite;
+  line-height: 1.15;
+  animation: gsMainTitlePulse 7s ease-in-out infinite;
 }
 
 @keyframes gsMainTitlePulse {
   0%, 100% {
     text-shadow:
-      0 0 10px var(--teal-neon),
-      0 0 30px rgba(0,229,176,0.5),
-      0 0 70px rgba(0,229,176,0.2),
-      4px 4px 0px var(--ivy-deep);
+      0 2px 6px rgba(0, 0, 0, 0.55),
+      0 8px 32px rgba(192, 88, 56, 0.35),
+      0 18px 64px rgba(192, 88, 56, 0.15);
   }
   50% {
     text-shadow:
-      0 0 14px var(--teal-bright),
-      0 0 50px rgba(0,229,176,0.7),
-      0 0 100px rgba(0,229,176,0.3),
-      4px 4px 0px var(--ivy-deep);
+      0 2px 6px rgba(0, 0, 0, 0.55),
+      0 8px 40px rgba(200, 132, 72, 0.48),
+      0 22px 80px rgba(192, 88, 56, 0.25);
   }
 }
 
 .gs-divider {
-  width: 200px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--teal-neon), transparent);
-  box-shadow: 0 0 8px var(--teal-neon);
-  margin: 14px 0;
+  width: 240px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(192, 152, 64, 0.55),
+    rgba(192, 152, 64, 0.55),
+    transparent
+  );
+  margin: 20px auto;
+  position: relative;
+}
+.gs-divider::before {
+  content: '◆';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8px;
+  color: rgba(192, 152, 64, 0.85);
+  background: transparent;
+  line-height: 1;
 }
 
 .gs-subTitle {
   font-family: var(--font-pixel);
-  font-size: clamp(12px, 2.5vw, 20px);
-  color: var(--teal-neon);
-  text-shadow: var(--glow-sm);
-  letter-spacing: 3px;
+  font-size: clamp(13px, 2.5vw, 22px);
+  font-weight: 400;
+  color: rgba(240, 224, 200, 0.82);
+  letter-spacing: 6px;
   margin: 0;
   line-height: 1.5;
 }
 
 .gs-tag {
-  font-family: var(--font-pixel);
-  font-size: 8px;
-  color: var(--rust-orange);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(228, 192, 120, 0.65);
   letter-spacing: 4px;
-  margin: 10px 0 0 0;
-  text-shadow: var(--glow-amber);
+  margin: 14px 0 0 0;
+  font-style: italic;
 }
 
-/* ── Start button — teal neon style ──────────────────────── */
+/* ── Enter button — minimal architectural ────────────────── */
 .gs-startBtn {
   font-family: var(--font-pixel);
-  font-size: clamp(10px, 1.8vw, 14px);
-  color: var(--cyber-dark);
-  background: var(--teal-neon);
-  border: none;
-  padding: 16px 40px;
+  font-size: clamp(10px, 1.6vw, 13px);
+  font-weight: 400;
+  color: var(--mv-cream);
+  background: rgba(240, 224, 200, 0.05);
+  border: 1px solid rgba(192, 152, 64, 0.5);
+  padding: 17px 52px;
   cursor: pointer;
-  letter-spacing: 2px;
-  box-shadow:
-    0 6px 0 #007a60,
-    0 0 20px rgba(0,229,176,0.6),
-    0 0 50px rgba(0,229,176,0.2);
-  transition: transform 0.1s, box-shadow 0.1s;
-  animation: gsStartBlink 1.2s step-start infinite;
+  letter-spacing: 5px;
+  position: relative;
+  transition: background 0.4s, border-color 0.4s, box-shadow 0.4s, transform 0.2s;
+  animation: gsStartBlink 3.5s ease-in-out infinite;
 }
+
+.gs-startBtn::before,
+.gs-startBtn::after {
+  content: '◆';
+  position: absolute;
+  font-size: 7px;
+  color: rgba(192, 152, 64, 0.55);
+  top: 50%;
+  transform: translateY(-50%);
+  transition: color 0.4s;
+}
+.gs-startBtn::before { left: 14px; }
+.gs-startBtn::after  { right: 14px; }
 
 .gs-startBtn:hover {
-  transform: translateY(-2px);
+  background: rgba(192, 152, 64, 0.1);
+  border-color: rgba(192, 152, 64, 0.8);
   box-shadow:
-    0 8px 0 #007a60,
-    0 0 30px rgba(0,229,176,0.9),
-    0 0 70px rgba(0,229,176,0.4);
+    0 8px 40px rgba(192, 152, 64, 0.22),
+    0 2px 10px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
 }
-.gs-startBtn:active {
-  transform: translateY(4px);
-  box-shadow: 0 2px 0 #007a60, 0 0 15px rgba(0,229,176,0.4);
-}
+.gs-startBtn:hover::before,
+.gs-startBtn:hover::after { color: rgba(192, 152, 64, 0.9); }
+
+.gs-startBtn:active { transform: translateY(1px); }
 
 @keyframes gsStartBlink {
-  0%, 65%   { opacity: 1;   }
-  66%, 100% { opacity: 0.3; }
+  0%, 100% { opacity: 1;    }
+  50%       { opacity: 0.55; }
 }
 
 /* ── Scene container ─────────────────────────────────────── */
@@ -182,164 +217,229 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 270px;
+  height: 290px;
   pointer-events: none;
   overflow: hidden;
 }
 
-/* ── Ground — dark stone/concrete ────────────────────────── */
+/* ── Ground — stepped architectural platform ─────────────── */
 .gs-ground {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 90px;
-  background: #080c10;
-  border-top: 4px solid #1a2030;
-  box-shadow: 0 -6px 20px rgba(0,229,176,0.1), 0 -2px 0 #141824;
-  /* Subtle stone/concrete texture */
-  background-image:
-    repeating-linear-gradient(
-      90deg,
-      rgba(0,229,176,0.02) 0px,  rgba(0,229,176,0.02) 8px,
-      rgba(0,180,140,0.02) 8px,  rgba(0,180,140,0.02) 16px,
-      rgba(0,229,176,0.03) 16px, rgba(0,229,176,0.03) 24px,
-      rgba(0,180,140,0.02) 24px, rgba(0,180,140,0.02) 32px
-    );
-  background-size: 32px 8px;
-  background-position: top;
+  height: 72px;
+  background: linear-gradient(180deg, #2a1840 0%, #1e1030 100%);
+  border-top: 1px solid rgba(192, 152, 64, 0.22);
+}
+/* Platform step 1 */
+.gs-ground::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 14%;
+  right: 14%;
+  height: 14px;
+  background: #321e50;
+  border-top: 1px solid rgba(192, 152, 64, 0.18);
+}
+/* Platform step 2 */
+.gs-ground::after {
+  content: '';
+  position: absolute;
+  top: -28px;
+  left: 28%;
+  right: 28%;
+  height: 14px;
+  background: #3a2458;
+  border-top: 1px solid rgba(192, 152, 64, 0.14);
 }
 
-/* ── Building silhouettes (overgrown/ruined structures) ──── */
+/* ── Impossible geometric towers ─────────────────────────── */
 .gs-ruin {
   position: absolute;
-  bottom: 90px;
-  background: #0e0c10;
-  border: 2px solid #1a1820;
-  image-rendering: pixelated;
+  bottom: 72px;
+  image-rendering: auto;
 }
 
-/* Ivy tint on top of each building */
+/* Ruin base ::before used for top-of-building highlight seam */
 .gs-ruin::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 35%;
-  background: linear-gradient(rgba(0,30,20,0.7), transparent);
-  pointer-events: none;
+  height: 1px;
+  background: rgba(192, 152, 64, 0.15);
 }
 
-/* Teal-lit window slot */
 .gs-ruin::after {
-  content: '';
-  position: absolute;
-  bottom: 12px; left: 50%;
-  transform: translateX(-50%);
-  width: 55%;
-  height: 6px;
-  background: rgba(0,229,176,0.08);
-  box-shadow: 0 0 10px rgba(0,229,176,0.25);
+  display: none;
 }
 
-/* Left buildings */
-.gs-ruin-l1 { left: 1%;   width: 52px;  height: 80px;  border-color: #1a1828; }
-.gs-ruin-l2 { left: 7%;   width: 72px;  height: 135px; border-color: #141820; }
-.gs-ruin-l3 { left: 17%;  width: 44px;  height: 65px;  border-color: #1a1828; }
-/* Right buildings */
-.gs-ruin-r1 { right: 17%; width: 48px;  height: 75px;  border-color: #1a1828; }
-.gs-ruin-r2 { right: 7%;  width: 68px;  height: 125px; border-color: #141820; }
-.gs-ruin-r3 { right: 1%;  width: 52px;  height: 82px;  border-color: #1a1828; }
+/* Left — narrow stepped tower */
+.gs-ruin-l1 {
+  left: 0;
+  width: 76px;
+  height: 130px;
+  background: linear-gradient(180deg, #3a2858, #2a1840);
+  clip-path: polygon(
+    30% 100%, 30% 70%, 14% 70%, 14% 44%, 0% 44%,
+    0% 0%, 100% 0%, 100% 100%
+  );
+  border: none;
+}
 
-/* ── Overgrown trees — dark silhouettes ──────────────────── */
+/* Left — tall stepped pyramid */
+.gs-ruin-l2 {
+  left: 5%;
+  width: 110px;
+  height: 200px;
+  background: linear-gradient(180deg, #40305e 0%, #2e2050 45%, #221638 100%);
+  clip-path: polygon(
+    0% 100%, 0% 56%, 18% 56%, 18% 40%, 32% 40%,
+    32% 25%, 48% 25%, 48% 10%, 62% 10%, 62% 0%,
+    100% 0%, 100% 100%
+  );
+  border: none;
+}
+
+/* Left — small stepped block */
+.gs-ruin-l3 {
+  left: 22%;
+  width: 64px;
+  height: 88px;
+  background: #281a3e;
+  clip-path: polygon(
+    0% 100%, 0% 42%, 24% 42%, 24% 18%, 48% 18%,
+    48% 0%, 100% 0%, 100% 100%
+  );
+  border: none;
+}
+
+/* Right — small stepped block (mirror) */
+.gs-ruin-r1 {
+  right: 22%;
+  width: 64px;
+  height: 88px;
+  background: #281a3e;
+  clip-path: polygon(
+    100% 100%, 100% 42%, 76% 42%, 76% 18%, 52% 18%,
+    52% 0%, 0% 0%, 0% 100%
+  );
+  border: none;
+}
+
+/* Right — tall stepped pyramid (mirror) */
+.gs-ruin-r2 {
+  right: 5%;
+  width: 110px;
+  height: 200px;
+  background: linear-gradient(180deg, #40305e 0%, #2e2050 45%, #221638 100%);
+  clip-path: polygon(
+    100% 100%, 100% 56%, 82% 56%, 82% 40%, 68% 40%,
+    68% 25%, 52% 25%, 52% 10%, 38% 10%, 38% 0%,
+    0% 0%, 0% 100%
+  );
+  border: none;
+}
+
+/* Right — narrow stepped tower (mirror) */
+.gs-ruin-r3 {
+  right: 0;
+  width: 76px;
+  height: 130px;
+  background: linear-gradient(180deg, #3a2858, #2a1840);
+  clip-path: polygon(
+    70% 100%, 70% 70%, 86% 70%, 86% 44%, 100% 44%,
+    100% 0%, 0% 0%, 0% 100%
+  );
+  border: none;
+}
+
+/* ── Trees → geometric spires / obelisks ─────────────────── */
 .gs-tree {
   position: absolute;
-  bottom: 90px;
-  width: 80px;
+  bottom: 72px;
+  width: 64px;
 }
 
-.gs-tree-l { left: 26%; }
-.gs-tree-r { right: 25%; }
+.gs-tree-l { left: 33%; }
+.gs-tree-r { right: 32%; }
 
 .gs-tree-trunk {
-  width: 12px;
-  height: 55px;
-  background: #1a1214;
+  width: 10px;
+  height: 80px;
+  background: linear-gradient(180deg, #3e2c5e, #241636);
   margin: 0 auto;
-  box-shadow: inset -3px 0 0 #0e0a0c;
-  image-rendering: pixelated;
+  box-shadow: none;
 }
 
 .gs-tree-canopy {
   margin: 0 auto;
-  image-rendering: pixelated;
-}
-.gs-tree-canopy-top {
-  width: 40px;
-  height: 28px;
-  background: #0f1a10;
-  box-shadow: inset -4px -4px 0 #0a1010, 0 0 8px rgba(0,229,176,0.08);
-}
-.gs-tree-canopy-mid {
-  width: 60px;
-  height: 32px;
-  background: #142014;
-  box-shadow: inset -5px -5px 0 #0f1a10, 0 0 10px rgba(0,229,176,0.06);
-  animation: leafSway 5s ease-in-out infinite;
 }
 
-/* ── Ground ivy clusters ─────────────────────────────────── */
+/* Upper obelisk tip */
+.gs-tree-canopy-top {
+  width: 64px;
+  height: 52px;
+  background: #3e2c5e;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  box-shadow: none;
+  animation: none;
+}
+
+/* Lower obelisk body */
+.gs-tree-canopy-mid {
+  width: 64px;
+  height: 34px;
+  background: #321e4c;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  box-shadow: none;
+  animation: none;
+  margin-top: -10px;
+}
+
+/* ── Stepped ground platforms (formerly bushes) ──────────── */
 .gs-bush {
   position: absolute;
-  bottom: 88px;
-  height: 26px;
-  border-radius: 0;
-  image-rendering: pixelated;
+  bottom: 72px;
 }
 .gs-bush::before,
-.gs-bush::after {
-  content: '';
-  position: absolute;
-  background: #0f1a10;
-}
+.gs-bush::after { content: none; }
+
 .gs-bush-l {
-  left: 22%;
-  width: 48px;
-  background: #142014;
-  box-shadow: inset -4px -4px 0 #0f1a10, 2px 0 0 #1a2818;
+  left: 29%;
+  width: 88px;
+  height: 22px;
+  background: #321e50;
+  border-top: 1px solid rgba(192, 152, 64, 0.18);
 }
 .gs-bush-r {
-  right: 22%;
-  width: 52px;
-  background: #142014;
-  box-shadow: inset -4px -4px 0 #0f1a10, -2px 0 0 #1a2818;
+  right: 28%;
+  width: 88px;
+  height: 22px;
+  background: #321e50;
+  border-top: 1px solid rgba(192, 152, 64, 0.18);
 }
 
-/* ── Wall-E rolling sprite ───────────────────────────────── */
+/* ── Sprite — hidden (Wall-E replaced by MV atmosphere) ─── */
 .gs-sprite {
   position: absolute;
-  bottom: 90px;
-  image-rendering: pixelated;
-  animation: gsSpritePace 9s linear infinite;
-}
-
-@keyframes gsSpritePace {
-  0%   { left: 30%; transform: scaleX(1);  }
-  48%  { left: 64%; transform: scaleX(1);  }
-  50%  { left: 64%; transform: scaleX(-1); }
-  98%  { left: 30%; transform: scaleX(-1); }
-  100% { left: 30%; transform: scaleX(1);  }
+  bottom: 75px;
+  opacity: 0;
+  animation: none;
 }
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 600px) {
-  .gs-scene    { height: 190px; }
-  .gs-ground   { height: 60px; }
-  .gs-ruin     { bottom: 60px; }
-  .gs-ruin-l2  { height: 95px; }
-  .gs-ruin-r2  { height: 85px; }
-  .gs-tree     { bottom: 60px; }
-  .gs-bush     { bottom: 58px; }
-  .gs-sprite   { bottom: 60px; }
-  .gs-startBtn { font-size: 8px; padding: 12px 22px; }
-  .gs-mainTitle { font-size: 22px; }
+  .gs-scene    { height: 210px; }
+  .gs-ground   { height: 52px; }
+  .gs-ground::before { top: -12px; left: 10%; right: 10%; }
+  .gs-ground::after  { top: -24px; left: 24%; right: 24%; }
+  .gs-ruin     { bottom: 52px; }
+  .gs-ruin-l2  { height: 140px; }
+  .gs-ruin-r2  { height: 140px; }
+  .gs-tree     { bottom: 52px; }
+  .gs-bush     { bottom: 52px; }
+  .gs-startBtn { font-size: 9px; padding: 13px 32px; }
+  .gs-mainTitle { font-size: 26px; letter-spacing: 6px; }
 }

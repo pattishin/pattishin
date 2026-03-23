@@ -26,7 +26,7 @@ class Sidebar extends Component {
       >
         <div className={classes.toolbarIcon}>
           <IconButton onClick={() => setOpen(false) } aria-label="Close sidebar">
-            <ChevronLeftIcon style={{ color: 'rgb(100, 255, 218)' }} />
+            <ChevronLeftIcon style={{ color: '#5ab4ac' }} />
           </IconButton>
         </div>
         <div className="authorCard">
@@ -39,17 +39,17 @@ class Sidebar extends Component {
             <div className="authorSocialMedia">
               <a href="https://github.com/pattishin" target="_blank" rel="noopener noreferrer">
                 <IconButton className="menuButton" aria-label="GitHub">
-                  <GitHubIcon style={{ color: 'rgb(100, 255, 218)' }} />
+                  <GitHubIcon style={{ color: '#5ab4ac' }} />
                 </IconButton>
               </a>
               <a href="https://indieweb.social/@pattishin" target="_blank" rel="noopener noreferrer">
                 <IconButton className="menuButton" aria-label="Mastodon">
-                  <TwitterIcon style={{ color: 'rgb(100, 255, 218)' }} />
+                  <TwitterIcon style={{ color: '#5ab4ac' }} />
                 </IconButton>
               </a>
               <a href="https://www.linkedin.com/in/pattishin" target="_blank" rel="noopener noreferrer">
                 <IconButton className="menuButton" aria-label="LinkedIn">
-                  <LinkedInIcon style={{ color: 'rgb(100, 255, 218)' }} />
+                  <LinkedInIcon style={{ color: '#5ab4ac' }} />
                 </IconButton>
               </a>
             </div>

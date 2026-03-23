@@ -1,11 +1,12 @@
-/* ── Quest tag on talk cards ─────────────────────────────── */
+/* ── Quest tag ───────────────────────────────────────────── */
 .talkQuestTag {
-  font-family: var(--font-pixel);
-  font-size: 6px;
-  color: #ffd700;
-  letter-spacing: 2px;
-  margin-bottom: 6px;
-  text-shadow: 0 0 6px #ffd700;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--mv-gold-pale);
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
 }
 
 .talkHeader {
@@ -13,9 +14,11 @@
   align-items: center;
   justify-content: center;
   padding: 12px;
-  font-size: 11px;
+  font-size: 13px;
   font-family: var(--font-pixel);
   margin: 0 0 8px 0;
+  font-weight: 400;
+  letter-spacing: 2px;
 }
 
 .talkHeader::before,
@@ -25,27 +28,24 @@
   height: 1px;
   width: 30%;
 }
-
 .talkHeader::before {
-  background: linear-gradient(90deg, transparent, var(--tron-teal));
-  margin-right: 12px;
+  background: linear-gradient(90deg, transparent, rgba(90, 180, 172, 0.45));
+  margin-right: 14px;
 }
-
 .talkHeader::after {
-  background: linear-gradient(90deg, var(--tron-teal), transparent);
-  margin-left: 12px;
+  background: linear-gradient(90deg, rgba(90, 180, 172, 0.45), transparent);
+  margin-left: 14px;
 }
 
 .talkTitle {
-  padding: 6px 16px;
-  color: var(--tron-teal);
+  padding: 6px 18px;
+  color: var(--mv-cream);
   white-space: nowrap;
-  text-shadow: var(--glow-sm);
 }
 
-/* ── Timeline ───────────────────────────────────────────────────────────────── */
+/* ── Timeline ────────────────────────────────────────────── */
 .timelineList {
-  color: var(--tron-teal);
+  color: var(--mv-cream);
   display: flex;
   flex-direction: column;
   list-style: none;
@@ -55,26 +55,24 @@
 
 .timelineList li {
   display: flex;
-  padding: 0 0 20px 24px;
-  border-left: 1px solid rgba(0, 255, 231, 0.4);
-  box-shadow: -1px 0 6px rgba(0, 255, 231, 0.1);
+  padding: 0 0 22px 24px;
+  border-left: 1px solid rgba(90, 180, 172, 0.22);
   list-style: none;
   margin: 0;
 }
 
-/* Year node — diamond on the circuit line */
+/* Year node — diamond on the timeline */
 .timelineList li.year::before {
   content: '';
-  width: 14px;
-  height: 14px;
-  background: var(--tron-dark);
-  border: 2px solid var(--tron-teal);
-  box-shadow: var(--glow-sm);
+  width: 12px;
+  height: 12px;
+  background: var(--mv-deep);
+  border: 1px solid rgba(192, 152, 64, 0.6);
   transform: rotate(45deg);
   flex-shrink: 0;
   position: relative;
-  right: 31px;
-  top: 4px;
+  right: 30px;
+  top: 5px;
 }
 
 .timelineList li.year:last-child {
@@ -88,13 +86,14 @@
   display: flex;
   align-items: center;
   font-family: var(--font-pixel);
-  font-size: 12px;
-  color: var(--tron-teal);
-  text-shadow: var(--glow-sm);
-  padding-left: 6px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--mv-gold);
+  letter-spacing: 2px;
+  padding-left: 8px;
 }
 
-/* ── Timeline card ──────────────────────────────────────────────────────────── */
+/* ── Timeline card ───────────────────────────────────────── */
 .timelineButton {
   background: none;
   border: none;
@@ -109,13 +108,13 @@
 .timelineContentWrapper {
   display: flex;
   width: 100%;
-  border: 1px solid rgba(0, 255, 231, 0.4);
-  background: rgba(0, 26, 51, 0.7);
-  padding: 16px;
+  border: 1px solid rgba(90, 180, 172, 0.18);
+  background: rgba(28, 21, 48, 0.75);
+  padding: 18px;
   margin-left: -38px;
   cursor: pointer;
   position: relative;
-  transition: box-shadow 0.25s ease, transform 0.2s ease;
+  transition: box-shadow 0.35s ease, transform 0.3s ease, border-color 0.35s;
   overflow: hidden;
 }
 
@@ -125,16 +124,21 @@
   position: absolute;
   width: 8px;
   height: 8px;
-  border-color: var(--tron-teal);
+  border-color: rgba(192, 152, 64, 0.45);
   border-style: solid;
+  transition: border-color 0.3s;
 }
-
 .timelineContentWrapper::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
 .timelineContentWrapper::after  { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
 
 .timelineContentWrapper:hover {
-  box-shadow: var(--glow-sm);
-  transform: translateX(4px);
+  box-shadow: var(--shadow-hover);
+  transform: translateX(5px);
+  border-color: rgba(90, 180, 172, 0.35);
+}
+.timelineContentWrapper:hover::before,
+.timelineContentWrapper:hover::after {
+  border-color: rgba(192, 152, 64, 0.75);
 }
 
 .timelineContentWrapper img {
@@ -142,26 +146,28 @@
   width: 100%;
   max-width: 160px;
   object-fit: contain;
-  filter: grayscale(0.3) hue-rotate(150deg);
-  border: 1px solid rgba(0, 255, 231, 0.2);
+  border: 1px solid rgba(90, 180, 172, 0.12);
+  background: rgba(28, 21, 48, 0.5);
 }
 
 .timelineContent {
-  margin: 0 0 0 16px;
+  margin: 0 0 0 18px;
 }
 
 .timelineContent h4 {
   font-family: var(--font-pixel);
-  font-size: 9px;
-  color: var(--tron-teal);
-  text-shadow: var(--glow-sm);
-  margin: 0 0 10px 0;
-  line-height: 1.8;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--mv-cream);
+  margin: 0 0 12px 0;
+  line-height: 1.75;
+  letter-spacing: 1px;
 }
 
 .timelineContent p {
-  font-size: 12px;
-  color: #7fd9cc;
-  line-height: 1.7;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--mv-mist);
+  line-height: 1.75;
   margin: 0;
 }

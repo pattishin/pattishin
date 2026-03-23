@@ -75,7 +75,7 @@ class App extends Component {
               </section>
               <footer className="footer">
                 <p>Developed with</p>
-                <FavoriteIcon fontSize="small" style={{ color: '#e06890' }} />
+                <FavoriteIcon fontSize="small" style={{ color: '#c05848' }} />
                 <p>by</p>
                 <a href="mailto:pshin518@gmail.com">Patti Shin</a>
               </footer>

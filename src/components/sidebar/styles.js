@@ -9,7 +9,7 @@ const styles = (theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '0 8px',
-    backgroundColor: 'black',
+    backgroundColor: '#0f0c1a',
     ...theme.mixins.toolbar,
   },
   title: {
@@ -19,7 +19,7 @@ const styles = (theme) => ({
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
-    backgroundColor: 'black',
+    backgroundColor: '#0f0c1a',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,

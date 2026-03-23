@@ -98,13 +98,13 @@ export default function GameStart({ onStart }) {
       ))}
 
       {/* Studio label */}
-      <p className="gs-studio">✦ PATTI SHIN STUDIOS ✦</p>
+      <p className="gs-studio">✦ TINKERBOT STUDIOS ✦</p>
 
       {/* Titles */}
       <div className="gs-titles">
         <h1 className="gs-mainTitle">PATTI SHIN</h1>
         <div className="gs-divider" />
-        <h2 className="gs-subTitle">THE HERO&apos;S JOURNEY</h2>
+        <h2 className="gs-subTitle">SOFTWARE ENGINEER</h2>
         <p className="gs-tag">overgrown edition</p>
       </div>
 

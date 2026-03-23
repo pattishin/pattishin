@@ -1,38 +1,37 @@
+/* ── Sidebar card ────────────────────────────────────────── */
 .authorCard {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: var(--tron-dark);
-  color: var(--tron-teal);
-  border-right: 1px solid var(--tron-teal);
-  box-shadow: 2px 0 12px rgba(0, 255, 231, 0.15);
+  background: linear-gradient(180deg, #1c1530 0%, #18122a 100%);
+  color: var(--mv-cream);
+  border-right: 1px solid rgba(90, 180, 172, 0.15);
   height: 100%;
 }
 
 .avatar {
   width: 100%;
-  filter: sepia(0.3) hue-rotate(150deg) saturate(1.5);
-  transition: filter 0.3s ease;
+  filter: sepia(0.2) saturate(1.2) hue-rotate(300deg) brightness(0.95);
+  transition: filter 0.4s ease;
 }
-
 .avatar:hover {
-  filter: sepia(0) hue-rotate(0deg) saturate(1) drop-shadow(0 0 8px var(--tron-teal));
+  filter: sepia(0) saturate(1) brightness(1) hue-rotate(0deg);
 }
 
 .authorCardTop {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 15px;
-  background-color: var(--tron-dark);
+  padding: 20px;
+  background: rgba(15, 12, 26, 0.3);
 }
 
 .authorCardBody {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding: 12px;
 }
 
 .authorSocialMedia {
@@ -40,7 +39,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .authorAvatarWrapper {
@@ -50,17 +49,17 @@
   align-items: center;
   justify-content: center;
   width: 150px;
-  border: 2px solid var(--tron-teal);
-  box-shadow: var(--glow-md);
-  animation: neonPulse 3s ease-in-out infinite;
+  border: 1px solid rgba(90, 180, 172, 0.35);
+  box-shadow: 0 8px 40px rgba(15, 12, 26, 0.6), 0 0 0 4px rgba(90, 180, 172, 0.08);
+  animation: neonPulse 4s ease-in-out infinite;
 }
 
 .menuButton {
-  border: 1px solid var(--tron-teal);
+  border: 1px solid rgba(90, 180, 172, 0.28) !important;
   padding: 8px;
-  transition: box-shadow 0.2s ease;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
-
 .menuButton:hover {
-  box-shadow: var(--glow-sm);
+  border-color: rgba(90, 180, 172, 0.58) !important;
+  box-shadow: 0 0 20px rgba(90, 180, 172, 0.1);
 }

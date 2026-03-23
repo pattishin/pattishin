@@ -1,59 +1,63 @@
 /* ── Podcast card ────────────────────────────────────────── */
 .podcastCard {
-  border: 1px solid rgba(0, 255, 231, 0.4);
-  background: rgba(0, 26, 51, 0.7);
-  padding: 20px;
+  border: 1px solid rgba(90, 180, 172, 0.18);
+  background: rgba(28, 21, 48, 0.75);
+  padding: 22px;
   position: relative;
 }
 
 .podcastSignal {
   display: flex;
   align-items: flex-end;
-  gap: 4px;
-  margin-bottom: 14px;
+  gap: 5px;
+  margin-bottom: 16px;
 }
 
 .signalBar {
   display: inline-block;
-  width: 6px;
-  background: var(--tron-teal);
-  box-shadow: 0 0 6px var(--tron-teal);
-  animation: signalPulse 0.8s ease-in-out infinite alternate;
+  width: 5px;
+  background: var(--mv-gold);
+  border-radius: 1px;
+  animation: signalPulse 0.9s ease-in-out infinite alternate;
 }
 .signalBar:nth-child(1) { height: 8px;  animation-delay: 0s; }
-.signalBar:nth-child(2) { height: 14px; animation-delay: 0.1s; }
-.signalBar:nth-child(3) { height: 20px; animation-delay: 0.2s; }
-.signalBar:nth-child(4) { height: 14px; animation-delay: 0.3s; }
+.signalBar:nth-child(2) { height: 14px; animation-delay: 0.12s; }
+.signalBar:nth-child(3) { height: 20px; animation-delay: 0.24s; }
+.signalBar:nth-child(4) { height: 14px; animation-delay: 0.36s; }
 
 @keyframes signalPulse {
-  from { opacity: 0.4; }
+  from { opacity: 0.35; }
   to   { opacity: 1; }
 }
 
 .podcastOnAir {
-  font-family: var(--font-pixel);
-  font-size: 7px;
-  color: #ff4444;
-  text-shadow: 0 0 8px #ff4444;
-  letter-spacing: 2px;
-  margin-left: 8px;
-  animation: pixelBlink 1s step-start infinite;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--mv-rose-pale);
+  letter-spacing: 3px;
+  margin-left: 10px;
+  text-transform: uppercase;
+  animation: mvBreath 1.8s ease-in-out infinite;
 }
 
 .podcastMeta {
-  font-size: 10px;
-  color: #7fd9cc;
-  margin-top: 10px;
-  line-height: 1.6;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--mv-mist);
+  margin-top: 12px;
+  line-height: 1.75;
 }
 
 .podcastLink {
-  color: var(--tron-teal);
+  color: var(--mv-teal);
   text-decoration: none;
-  transition: text-shadow 0.2s;
+  transition: color 0.25s;
+  border-bottom: 1px solid rgba(90, 180, 172, 0.3);
 }
 .podcastLink:hover {
-  text-shadow: var(--glow-sm);
+  color: var(--mv-teal-pale);
+  border-bottom-color: rgba(90, 180, 172, 0.65);
 }
 
 .podcastWrapper {
@@ -67,9 +71,11 @@
   align-items: center;
   justify-content: center;
   padding: 12px;
-  font-size: 11px;
+  font-size: 13px;
   font-family: var(--font-pixel);
   margin: 0 0 8px 0;
+  font-weight: 400;
+  letter-spacing: 2px;
 }
 
 .podcastHeader::before,
@@ -79,20 +85,17 @@
   height: 1px;
   width: 30%;
 }
-
 .podcastHeader::before {
-  background: linear-gradient(90deg, transparent, var(--tron-teal));
-  margin-right: 12px;
+  background: linear-gradient(90deg, transparent, rgba(90, 180, 172, 0.45));
+  margin-right: 14px;
 }
-
 .podcastHeader::after {
-  background: linear-gradient(90deg, var(--tron-teal), transparent);
-  margin-left: 12px;
+  background: linear-gradient(90deg, rgba(90, 180, 172, 0.45), transparent);
+  margin-left: 14px;
 }
 
 .podcastTitle {
-  padding: 6px 16px;
-  color: var(--tron-teal);
+  padding: 6px 18px;
+  color: var(--mv-cream);
   white-space: nowrap;
-  text-shadow: var(--glow-sm);
 }

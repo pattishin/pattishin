@@ -1,72 +1,69 @@
 /* ═══════════════════════════════════════════════════════════
-   ABOUT — Hero profile card
+   ABOUT — Hero profile card · Monument Valley
    ═══════════════════════════════════════════════════════════ */
 
 .aboutContainer {
   display: flex !important;
   flex-direction: column;
-  padding: 30px 45px 45px 45px !important;
-  background: #0e1218 !important;
-  border: 1px solid var(--teal-neon);
-  box-shadow: var(--glow-sm), inset 0 0 30px rgba(0,229,176,0.03);
+  padding: 32px 48px 48px 48px !important;
+  background: linear-gradient(145deg, #1c1530 0%, #18122a 100%) !important;
+  border: 1px solid rgba(90, 180, 172, 0.18);
+  box-shadow: var(--shadow-card);
   position: relative;
   overflow: hidden;
 }
 
-/* Corner accent marks */
+/* Corner architectural accent marks */
 .aboutContainer::before,
 .aboutContainer::after {
   content: '';
   position: absolute;
-  width: 16px;
-  height: 16px;
-  border-color: var(--teal-neon);
+  width: 20px;
+  height: 20px;
+  border-color: rgba(192, 152, 64, 0.5);
   border-style: solid;
 }
-
 .aboutContainer::before {
   top: -1px; left: -1px;
   border-width: 2px 0 0 2px;
-  box-shadow: -2px -2px 8px rgba(0,229,176,0.5);
 }
 .aboutContainer::after {
   bottom: -1px; right: -1px;
   border-width: 0 2px 2px 0;
-  box-shadow: 2px 2px 8px rgba(0,229,176,0.5);
 }
 
 /* ── Stage label ─────────────────────────────────────────── */
 .stageLabel {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(0,229,176,0.2);
+  gap: 14px;
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(90, 180, 172, 0.15);
 }
 
 .stageBadge {
   font-family: var(--font-pixel);
-  font-size: 8px;
-  color: var(--cyber-dark);
-  background: var(--teal-neon);
-  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--mv-void);
+  background: var(--mv-teal);
+  padding: 5px 14px;
   letter-spacing: 1px;
-  box-shadow: 0 0 10px var(--teal-neon);
+  flex-shrink: 0;
 }
 
 .stageName {
   font-family: var(--font-pixel);
-  font-size: 9px;
-  color: var(--teal-neon);
-  letter-spacing: 3px;
-  text-shadow: var(--glow-sm);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--mv-cream);
+  letter-spacing: 4px;
 }
 
 .stageStars {
-  font-size: 10px;
-  color: #ffd700;
-  text-shadow: 0 0 6px #ffd700, 0 0 15px rgba(255,215,0,0.5);
+  font-size: 12px;
+  filter: sepia(0.3) saturate(1.5) hue-rotate(20deg);
   letter-spacing: 2px;
   margin-left: auto;
 }
@@ -75,32 +72,37 @@
 .heroProfileHeader {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-bottom: 20px;
+  gap: 5px;
+  margin-bottom: 22px;
 }
 
 .playerTag {
-  font-family: var(--font-pixel);
-  font-size: 8px;
-  color: var(--rust-orange);
-  letter-spacing: 3px;
-  text-shadow: 0 0 8px var(--rust-orange);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--mv-gold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }
 
 .aboutTitle {
   font-family: var(--font-pixel);
-  font-size: 22px;
-  color: var(--teal-neon);
-  text-shadow: var(--glow-lg);
-  letter-spacing: 2px;
-  margin: 4px 0;
-  animation: flicker 10s infinite;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--mv-cream);
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    0 6px 28px rgba(192, 88, 56, 0.25);
+  letter-spacing: 3px;
+  margin: 5px 0;
+  animation: none;
 }
 
 .heroClass {
-  font-family: var(--font-pixel);
-  font-size: 7px;
-  color: rgba(0,229,176,0.6);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--mv-mist);
   letter-spacing: 2px;
 }
 
@@ -108,53 +110,56 @@
 .heroStats {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 24px;
-  padding: 12px 16px;
-  background: rgba(0,0,0,0.3);
-  border-left: 2px solid var(--teal-neon);
+  gap: 10px;
+  margin-bottom: 26px;
+  padding: 14px 18px;
+  background: rgba(15, 12, 26, 0.4);
+  border-left: 2px solid rgba(90, 180, 172, 0.35);
 }
 
 .statRow {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .statLabel {
   font-family: var(--font-pixel);
-  font-size: 7px;
-  color: var(--teal-neon);
-  width: 24px;
+  font-size: 9px;
+  font-weight: 400;
+  color: var(--mv-mist);
+  width: 26px;
   flex-shrink: 0;
+  letter-spacing: 1px;
 }
 
 .statBarTrack {
   flex: 1;
-  height: 10px;
-  background: rgba(0,229,176,0.08);
-  border: 1px solid rgba(0,229,176,0.25);
+  height: 6px;
+  background: rgba(15, 12, 26, 0.6);
+  border: 1px solid rgba(90, 180, 172, 0.18);
   position: relative;
   overflow: hidden;
+  border-radius: 1px;
 }
 
 .statBarFill {
   height: 100%;
-  transition: width 1s ease;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 1px;
 }
 .statBarFill.hp {
-  background: var(--teal-neon);
-  box-shadow: 0 0 8px var(--teal-neon);
+  background: linear-gradient(90deg, var(--mv-teal), var(--mv-teal-pale));
 }
 .statBarFill.xp {
-  background: var(--rust-orange);
-  box-shadow: 0 0 8px var(--rust-orange);
+  background: linear-gradient(90deg, var(--mv-rose), var(--mv-peach));
 }
 
 .statVal {
-  font-family: var(--font-pixel);
-  font-size: 6px;
-  color: rgba(0,229,176,0.7);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--mv-mist);
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -162,11 +167,11 @@
 /* ── Quest log / attributes ──────────────────────────────── */
 .questLogLabel {
   font-family: var(--font-pixel);
-  font-size: 8px;
-  color: var(--rust-orange);
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-  text-shadow: 0 0 6px var(--rust-orange);
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--mv-gold);
+  letter-spacing: 3px;
+  margin-bottom: 14px;
 }
 
 .aboutAuthor {
@@ -179,30 +184,31 @@
   max-width: 500px;
   padding: 0 20px 10px 0;
   font-size: 14px;
-  line-height: 1.9;
-  color: var(--star-cool);
+  font-weight: 400;
+  line-height: 1.85;
+  color: var(--mv-cream);
 }
 
 .aboutDetails {
   width: 100%;
   line-height: 2;
   font-size: 13px;
-  color: var(--star-cool);
+  color: var(--mv-cream);
 }
 
 .aboutDetails p {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   margin: 6px 0;
-  padding: 6px 10px;
-  border-left: 2px solid var(--teal-neon);
-  transition: background 0.2s, box-shadow 0.2s;
+  padding: 8px 12px;
+  border-left: 2px solid rgba(90, 180, 172, 0.28);
+  transition: background 0.3s, border-color 0.3s;
 }
 
 .aboutDetails p:hover {
-  background: rgba(0,229,176,0.05);
-  box-shadow: inset 0 0 10px rgba(0,229,176,0.05);
+  background: rgba(90, 180, 172, 0.05);
+  border-color: rgba(90, 180, 172, 0.55);
 }
 
 .attrIcon {
