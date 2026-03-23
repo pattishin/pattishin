@@ -124,67 +124,10 @@ Posts appear in the order they are listed in the manifest. The `slug` must exact
 | Workflow | Trigger | What it does |
 |---|---|---|
 | `deploy.yml` | Push to `main` | Builds and deploys frontend + backend in parallel |
-| `security-agent.yml` | Daily at 6 AM UTC | Jules scans for vulnerabilities and opens a PR if found |
-| `weekly-cleanup.yml` | Mondays at 2 AM UTC | Jules refactors dead code and opens a PR if changes are impactful |
 
 ### Required secrets
 
 | Secret | Used by |
 |---|---|
 | `GCP_SA_KEY` | `deploy.yml` — GCP service account JSON with Firebase Hosting Admin, Cloud Run Admin, Storage Admin, and Service Account User roles |
-| `JULES_API_KEY` | `security-agent.yml`, `weekly-cleanup.yml` |
-
----
-
-## Connecting a custom domain (Squarespace DNS)
-
-The site is deployed to Firebase Hosting at **`https://pattishin-site.web.app`**. To point a custom domain (e.g. `pattishin.io`) managed through Squarespace:
-
-### Step 1 — Add the domain in Firebase Console
-
-1. Go to [Firebase Console](https://console.firebase.google.com) → select **pattishin-site**
-2. Navigate to **Build → Hosting → Add custom domain**
-3. Enter your domain (e.g. `pattishin.io`) and click **Continue**
-4. Firebase will show a **TXT record** for ownership verification — copy it
-
-### Step 2 — Add DNS records in Squarespace
-
-1. Log in to [Squarespace](https://account.squarespace.com/domains) → **Domains** → click your domain → **DNS Settings**
-2. Scroll to **Custom Records** and add the TXT record Firebase provided:
-
-   | Type | Host | Value |
-   |---|---|---|
-   | `TXT` | `@` | _(paste the value Firebase shows)_ |
-
-3. Click **Save** and return to the Firebase Console. Click **Verify** — this may take a few minutes to propagate.
-
-### Step 3 — Add A records for the apex domain
-
-After verification, Firebase shows two **A records** (IP addresses). Add both in Squarespace DNS:
-
-| Type | Host | Value |
-|---|---|---|
-| `A` | `@` | _(first IP from Firebase, e.g. `151.101.1.195`)_ |
-| `A` | `@` | _(second IP from Firebase, e.g. `151.101.65.195`)_ |
-
-> **Note:** Firebase's actual IPs are shown in the Console during setup — use those, not the examples above.
-
-### Step 4 — Add a CNAME for `www`
-
-| Type | Host | Value |
-|---|---|---|
-| `CNAME` | `www` | `pattishin-site.web.app.` |
-
-> If Squarespace already has a `www` CNAME pointing to their servers, update it to point to Firebase instead.
-
-### Step 5 — Wait for propagation
-
-DNS changes can take **a few minutes to a few hours** to propagate globally. Firebase Hosting automatically provisions an SSL certificate (via Let's Encrypt) once the records resolve — no extra configuration needed.
-
-### Verifying
-
-Once live, both of these should resolve to your site:
-- `https://pattishin.io`
-- `https://www.pattishin.io`
-
-You can check propagation status at [dnschecker.org](https://dnschecker.org).
+| `JULES_API_KEY` |
