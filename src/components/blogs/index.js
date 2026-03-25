@@ -28,7 +28,6 @@ export default function Blogs() {
           <div className="gsb-line" />
           <span className="gsb-title">SCROLL OF CHRONICLES</span>
           <div className="gsb-line" />
-          <div className="gsb-stars">★★★☆☆</div>
         </div>
         <p className="gsb-desc">📖 Collect scrolls of wisdom  ·  XP REWARD: 300</p>
       </div>

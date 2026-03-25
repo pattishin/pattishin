@@ -20,7 +20,6 @@ function Talks({ classes }) {
           <div className="gsb-line" />
           <span className="gsb-title">THE SPEAKING ARENA</span>
           <div className="gsb-line" />
-          <div className="gsb-stars">★★★★☆</div>
         </div>
         <p className="gsb-desc">⚔ Complete quests to unlock new talks  ·  XP REWARD: 500</p>
       </div>

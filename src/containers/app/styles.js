@@ -4,9 +4,6 @@ const styles = (theme) => ({
     fontFamily: "'Raleway', sans-serif",
     height: "inherit"
   },
-  title: {
-    fontFamily: "'Raleway', sans-serif"
-  },
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
@@ -14,17 +11,6 @@ const styles = (theme) => ({
     overflow: 'auto',
     backgroundColor: 'transparent',
   },
-  container: {
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
-  },
-  paper: {
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
-    padding: theme.spacing(2),
-  },
 });
 
 export default styles;
-

@@ -5,7 +5,6 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Grid2 from '@mui/material/Grid2';
 import MenuIcon from '@mui/icons-material/Menu';
-import MicIcon from '@mui/icons-material/Mic';
 import CodeIcon from '@mui/icons-material/Code';
 import SlideshowIcon from '@mui/icons-material/Slideshow';
 import styles from './styles';
@@ -33,11 +32,6 @@ function Header({ classes, open, setOpen }) {
             <a href="#talks_section">
               <IconButton className="menuButton" aria-label="Talks">
                 <SlideshowIcon style={{ color: '#5ab4ac' }} />
-              </IconButton>
-            </a>
-            <a href="#podcast_section">
-              <IconButton className="menuButton" aria-label="Podcast">
-                <MicIcon style={{ color: '#5ab4ac' }} />
               </IconButton>
             </a>
           </Grid2>

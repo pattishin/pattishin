@@ -2,9 +2,7 @@ import Container from '@mui/material/Container';
 import Grid2 from '@mui/material/Grid2';
 import './About.css';
 
-function About({ authors }) {
-  const mainAuthor = authors && authors[0];
-
+function About() {
   return (
     <Container className="aboutContainer">
 
@@ -12,7 +10,6 @@ function About({ authors }) {
       <div className="stageLabel">
         <span className="stageBadge">STAGE 00</span>
         <span className="stageName">HOME BASE</span>
-        <div className="stageStars">★★★★★</div>
       </div>
 
       {/* ── Hero profile header ── */}
@@ -40,32 +37,29 @@ function About({ authors }) {
         </div>
       </div>
 
-      {/* ── Bio + attributes ── */}
+      {/* ── Attributes ── */}
       <Grid2 container className="aboutAuthor">
-        <Grid2 size={{ xs: 12, lg: 6 }} className="aboutSummary">
-          <div className="questLogLabel">◈ QUEST LOG</div>
-          {mainAuthor && mainAuthor.description}
-        </Grid2>
         <Grid2 size={{ xs: 12, lg: 6 }} className="aboutDetails">
           <div className="questLogLabel">◈ ATTRIBUTES</div>
-          <p>
+          <div className="attrItem">
             <span className="attrIcon">💻</span>
             <span>Software Engineer</span>
-          </p>
-          <p>
+          </div>
+          <div className="attrItem">
             <span className="attrIcon">👷</span>
             <span>Community builder</span>
-          </p>
-          <p>
+          </div>
+          <div className="attrItem">
             <span className="attrIcon">☕</span>
             <span>Fluent in all things coffee</span>
-          </p>
-          <p>
+          </div>
+          <div className="attrItem">
             <span className="attrIcon">🙏</span>
             <span>#hopeistheanthem</span>
-          </p>
+          </div>
         </Grid2>
       </Grid2>
+
     </Container>
   );
 }
