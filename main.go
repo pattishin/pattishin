@@ -5,6 +5,7 @@ import (
   "log"
   "net/http"
   "os"
+  "regexp"
   "cloud.google.com/go/firestore"
   "github.com/gin-gonic/gin"
   "github.com/gin-contrib/cors"
@@ -12,6 +13,8 @@ import (
 )
 
 const firestoreProjectId = "pattishin-site"
+
+var emailRegex = regexp.MustCompile(`^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$`)
 
 type formData struct {
   Name string `json:"name" binding:"required"`
@@ -50,6 +53,8 @@ func SecurityHeadersMiddleware() gin.HandlerFunc {
 		c.Writer.Header().Set("X-Content-Type-Options", "nosniff")
 		c.Writer.Header().Set("X-Frame-Options", "DENY")
 		c.Writer.Header().Set("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;")
+		c.Writer.Header().Set("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
+		c.Writer.Header().Set("Referrer-Policy", "strict-origin-when-cross-origin")
 		c.Next()
 	}
 }
@@ -148,6 +153,17 @@ func userHandler(c *gin.Context) {
 
   var form formData
   if err := c.BindJSON(&form); err != nil {
+    return
+  }
+
+  // Basic input validation
+  if len(form.Name) > 100 || len(form.Email) > 100 {
+    c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid input: too long"})
+    return
+  }
+
+  if !emailRegex.MatchString(form.Email) {
+    c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid email format"})
     return
   }
 
