@@ -39,118 +39,296 @@
 }
 
 .blogLoading {
-  font-family: var(--font-pixel);
+  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 400;
   color: var(--mv-teal);
   letter-spacing: 4px;
   animation: mvBreath 2s ease-in-out infinite;
   padding: 20px 0;
+  text-align: center;
 }
 
-/* ── Blog post card ──────────────────────────────────────── */
-.blogCard {
-  width: 100%;
-  text-align: left;
-  background: rgba(28, 21, 48, 0.75);
-  border: 1px solid rgba(90, 180, 172, 0.18);
-  padding: 22px;
-  cursor: pointer;
+/* ── Game map scroll wrapper ─────────────────────────────── */
+.gameMapScrollWrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  /* push scrollbar below the Wall-E that floats up */
+  padding-top: 88px;
+  padding-bottom: 32px;
+  margin: 0 -4px;
+  /* Custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(90,180,172,0.35) transparent;
+}
+.gameMapScrollWrapper::-webkit-scrollbar { height: 4px; }
+.gameMapScrollWrapper::-webkit-scrollbar-track { background: transparent; }
+.gameMapScrollWrapper::-webkit-scrollbar-thumb {
+  background: rgba(90,180,172,0.35);
+  border-radius: 2px;
+}
+
+/* ── Game map canvas ─────────────────────────────────────── */
+.gameMapCanvas {
   position: relative;
-  transition: box-shadow 0.35s ease, transform 0.3s ease, border-color 0.35s ease;
-  overflow: hidden;
-  color: inherit;
-  font-family: inherit;
+  width: 100%;
+  min-width: 820px;
+  height: 420px;
+
+  /* Dark stone ground texture */
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(45, 32, 80, 0.6) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(45, 32, 80, 0.4) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 50%, rgba(28, 21, 48, 0.8) 0%, transparent 80%),
+    var(--mv-void);
+
+  /* Isometric diamond grid overlay */
+  background-image:
+    radial-gradient(ellipse at 20% 80%, rgba(45, 32, 80, 0.6) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(45, 32, 80, 0.4) 0%, transparent 55%),
+    linear-gradient(60deg, rgba(90, 180, 172, 0.03) 1px, transparent 1px),
+    linear-gradient(-60deg, rgba(90, 180, 172, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(90, 180, 172, 0.02) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px, 48px 24px;
+
+  border: 1px solid rgba(90, 180, 172, 0.1);
+  border-radius: 2px;
+  overflow: visible;
 }
 
-/* Corner architectural accents */
-.blogCard::before,
-.blogCard::after {
+/* ── Winding river / path SVG ────────────────────────────── */
+.mapPathSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Outer diffuse glow layer */
+.mapRiverGlow {
+  fill: none;
+  stroke: var(--mv-teal);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.25;
+  animation: riverPulse 3s ease-in-out infinite;
+}
+
+/* Mid-tone river body */
+.mapRiverMain {
+  fill: none;
+  stroke: var(--mv-teal);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.55;
+}
+
+/* Bright shimmering core */
+.mapRiverCore {
+  fill: none;
+  stroke: var(--mv-teal-pale);
+  stroke-width: 0.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.9;
+  animation: riverCore 2.5s ease-in-out infinite;
+}
+
+@keyframes riverPulse {
+  0%, 100% { opacity: 0.18; stroke-width: 4; }
+  50%       { opacity: 0.35; stroke-width: 5; }
+}
+@keyframes riverCore {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1; }
+}
+
+/* ── Level nodes ─────────────────────────────────────────── */
+.levelNode {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 130px;
+}
+
+/* ── Wall-E ──────────────────────────────────────────────── */
+.wallE {
+  position: absolute;
+  /* Float above the platform */
+  bottom: calc(100% - 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 6px rgba(90, 180, 172, 0.55));
+  animation: walleFloat 2.8s ease-in-out infinite;
+}
+
+@keyframes walleFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(-10px); }
+}
+
+/* ── Platform card ───────────────────────────────────────── */
+.levelPlatform {
+  position: relative;
+  width: 130px;
+  background: rgba(28, 21, 48, 0.92);
+  border: 1px solid rgba(90, 180, 172, 0.22);
+  padding: 10px 12px 10px;
+  text-align: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  /* Corner architectural accents */
+  clip-path: polygon(
+    0 4px, 4px 0,
+    calc(100% - 4px) 0, 100% 4px,
+    100% calc(100% - 4px), calc(100% - 4px) 100%,
+    4px 100%, 0 calc(100% - 4px)
+  );
+}
+
+.levelNode:hover .levelPlatform {
+  border-color: rgba(90, 180, 172, 0.5);
+  box-shadow: 0 0 18px rgba(90, 180, 172, 0.2);
+}
+
+/* ── Latest / current node ───────────────────────────────── */
+.levelLatest .levelPlatform {
+  border-color: rgba(90, 180, 172, 0.5);
+  box-shadow:
+    0 0 20px rgba(90, 180, 172, 0.25),
+    0 0 6px  rgba(90, 180, 172, 0.15);
+  animation: platformGlow 3s ease-in-out infinite;
+}
+
+@keyframes platformGlow {
+  0%, 100% { box-shadow: 0 0 16px rgba(90,180,172,0.2),  0 0 6px rgba(90,180,172,0.1); }
+  50%       { box-shadow: 0 0 32px rgba(90,180,172,0.38), 0 0 10px rgba(90,180,172,0.2); }
+}
+
+/* Portal swirl on top of the latest platform */
+.levelLatest .levelPlatform::before {
   content: '';
   position: absolute;
-  width: 10px;
-  height: 10px;
-  border-color: rgba(192, 152, 64, 0.45);
-  border-style: solid;
-  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
-}
-.blogCard::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
-.blogCard::after  { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
-
-.blogCard:hover::before,
-.blogCard:hover::after {
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 22px;
   height: 22px;
-  border-color: rgba(192, 152, 64, 0.75);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(90,180,172,0.9) 0%, rgba(90,180,172,0.2) 60%, transparent 100%);
+  filter: blur(3px);
+  animation: swirlPulse 2.5s ease-in-out infinite;
+  pointer-events: none;
 }
 
-.blogCard:hover {
-  box-shadow: var(--shadow-hover);
-  transform: translateY(-5px);
-  border-color: rgba(90, 180, 172, 0.35);
+@keyframes swirlPulse {
+  0%, 100% { transform: translateX(-50%) scale(1);   opacity: 0.7; }
+  50%       { transform: translateX(-50%) scale(1.4); opacity: 1;   }
 }
 
-.blogQuestTag {
+/* ── 3-D stone base ──────────────────────────────────────── */
+.levelBase {
+  width: 120px;
+  height: 10px;
+  background: linear-gradient(180deg, rgba(20, 14, 36, 0.9), rgba(10, 7, 18, 0.95));
+  border: 1px solid rgba(90, 180, 172, 0.1);
+  border-top: none;
+  /* Trapezoid perspective */
+  clip-path: polygon(2% 0, 98% 0, 96% 100%, 4% 100%);
+}
+
+/* ── Level badge ─────────────────────────────────────────── */
+.levelBadge {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
+  letter-spacing: 2px;
   color: var(--mv-gold);
-  letter-spacing: 3px;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   text-transform: uppercase;
+}
+
+/* ── Active level button ─────────────────────────────────── */
+.levelButton {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 100%;
+  color: inherit;
+  font-family: inherit;
+  text-align: center;
+}
+
+.levelTitle {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--mv-cream);
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.levelDate {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--mv-mist);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.levelCurrent {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--mv-teal);
+  letter-spacing: 2px;
   animation: mvBreath 2s ease-in-out infinite;
 }
 
-.blogCardTitle {
-  font-family: var(--font-pixel);
-  font-size: 12px;
-  font-weight: 400;
-  margin: 0 0 8px 0;
-  color: var(--mv-cream);
-  line-height: 1.65;
-  letter-spacing: 1px;
-}
-
-.blogCardDate {
-  color: var(--mv-mist);
-  margin: 0 0 12px 0;
+.levelXP {
   font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 300;
-  letter-spacing: 2px;
-}
-
-.blogCardDesc {
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.85;
-  color: rgba(176, 160, 144, 0.9);
-  margin: 0 0 16px 0;
-}
-
-.blogCardTags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-bottom: 14px;
-}
-
-.blogCardTag {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--mv-void);
-  background: var(--mv-teal);
-  padding: 4px 10px;
-  letter-spacing: 1px;
-  border-radius: 1px;
-}
-
-.blogXPReward {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 500;
+  font-size: 9px;
   color: var(--mv-gold-pale);
+  letter-spacing: 1.5px;
+  margin-top: 4px;
+  opacity: 0.75;
+}
+
+/* ── Locked node ─────────────────────────────────────────── */
+.levelLocked .levelPlatform {
+  border-color: rgba(90, 180, 172, 0.08);
+  background: rgba(15, 12, 26, 0.85);
+}
+
+.levelLocked .levelBase {
+  opacity: 0.4;
+}
+
+.levelLockBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  opacity: 0.5;
+}
+
+.levelLockIcon {
+  font-size: 14px;
+  filter: grayscale(1);
+}
+
+.levelLockText {
+  font-family: var(--font-mono);
+  font-size: 9px;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  color: var(--mv-mist);
 }
