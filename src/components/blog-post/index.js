@@ -69,6 +69,7 @@ export default function BlogPost() {
 
           {/* ── Post header ── */}
           <header className="bp-header">
+            <meta name="fediverse:creator" content="@pattishin@indieweb.social"></meta>
             <div className="bp-stageBadge">QUEST LOG ENTRY</div>
             {meta && (
               <>
@@ -90,7 +91,6 @@ export default function BlogPost() {
               {content}
             </ReactMarkdown>
           </div>
-
         </article>
       )}
     </div>

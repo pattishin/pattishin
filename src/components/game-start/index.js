@@ -87,6 +87,8 @@ export default function GameStart({ onStart }) {
         {/* Ground — dark stone */}
         <div className="gs-ground" />
       </div>
+      {/* Hidden Mastodon rel=me link */}
+      <a href="https://indieweb.social/@pattishin" rel="me" style={{ visibility: 'hidden' }} aria-label="Mastodon profile link">Mastodon</a>
     </div>
   );
 }
