@@ -45,7 +45,7 @@ function Sidebar({ classes, open = true, setOpen = () => {} }) {
                 <GitHubIcon style={{ color: '#5ab4ac' }} />
               </IconButton>
             </a>
-            <a href="https://indieweb.social/@pattishin" target="_blank" rel="me">
+            <a href="https://indieweb.social/@pattishin" rel="me">
               <IconButton className="menuButton" aria-label="Mastodon">
                 <MastodonIcon style={{ color: '#5ab4ac' }} />
               </IconButton>
